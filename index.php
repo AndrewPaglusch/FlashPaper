@@ -114,7 +114,4 @@
           echo "You will need to either remove this option, or submit POST data for 'secret'";
         }
     }
-
-
-;
 ?>
