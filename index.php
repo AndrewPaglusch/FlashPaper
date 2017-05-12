@@ -59,7 +59,7 @@
             echo "View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a>";
         }
 
-    } elseif (isset($_POST['submit'])) || $style == false) {
+    } elseif (isset($_POST['submit']) || $style == false) {
         $rand_pass = random_str();
         $enc_text = encrypt_decrypt("encrypt", $rand_pass, $_POST['secret']);
         $dec_text = encrypt_decrypt("decrypt", $rand_pass, $enc_text);
