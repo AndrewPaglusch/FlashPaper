@@ -10,15 +10,22 @@
     require_once "functions.php";
     include('html/header.html');
 
+<<<<<<< HEAD
     echo "string";
 
+=======
+>>>>>>> aa34b24d0c84bd8b49fdf63352007df697a964b2
     $style = true;
 
     //Disable all CSS and extra HTML to make automation easier
     if (isset($_GET['nostyle'])) { $style = false; }
+<<<<<<< HEAD
 
     //print_r($_GET); die();
 
+=======
+        
+>>>>>>> aa34b24d0c84bd8b49fdf63352007df697a964b2
     if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
         $password = base64_decode_url($base_pass);
