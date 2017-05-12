@@ -10,7 +10,7 @@
     require_once "functions.php";
     include('html/header.html');
 
-    echo "string";
+    echo "this is a test";
 
     $style = true;
 
