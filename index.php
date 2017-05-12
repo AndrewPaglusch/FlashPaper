@@ -8,9 +8,6 @@
     */
 
     require_once "functions.php";
-    include('html/header.html');
-
-    echo "this is a test";
 
     $style = true;
 
@@ -46,7 +43,8 @@
                 $message = htmlentities($dec_text);
                 $message_title = "Self-Destructing Message";
                 $message_subtitle = "This message has been destroyed";
-
+                
+                include('html/header.html');
                 include('pages/message.php');
             } else {
                 echo $dec_text;
@@ -92,7 +90,7 @@
         $message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
         $message_title = "Self-Destructing URL";
         $message_subtitle = "";
-
+        include('html/header.html');
         include('pages/message.php');
 
 	} else {
