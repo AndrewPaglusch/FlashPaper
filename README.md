@@ -7,10 +7,10 @@ A one-time encrypted zero-knowledge password/secret sharing application focused 
 http://password.paglusch.com
 
 ## Requirements
-* PHP 5
+* PHP 5.4
 * Web server
 * Linux
-* OpenSSL
+* OpenSSL 1.0.1e
 
 ## Installation
 Copy contents of this repository to document root of web server
