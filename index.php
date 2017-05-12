@@ -8,9 +8,6 @@
     */
 
     require_once "functions.php";
-    include('html/header.html');
-
-    echo "this is a test";
 
     $style = true;
 
@@ -47,7 +44,9 @@
                 $message_title = "Self-Destructing Message";
                 $message_subtitle = "This message has been destroyed";
 
+                include('html/header.html');
                 include('pages/message.php');
+                include('html/footer.html');
             } else {
                 echo $dec_text;
             }
@@ -57,7 +56,10 @@
         } else {
             //Ask user to confirm viewing of secret
             //TODO: http://stackoverflow.com/a/41703064
+
+            include('html/header.html');
             echo "View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a>";
+            include('html/footer.html');
         }
 
     } elseif (isset($_POST['submit'])) {
@@ -93,12 +95,12 @@
         $message_title = "Self-Destructing URL";
         $message_subtitle = "";
 
+        include('html/header.html');
         include('pages/message.php');
+        include('html/footer.html');
 
 	} else {
         print_html_form();
     }
-
-	include('html/footer.html');
 
 ?>
