@@ -47,7 +47,7 @@
         }
 
     } elseif (isset($_POST['submit'])) {
-	$rand_pass = random_str();
+        $rand_pass = random_str();
         $enc_text = encrypt_decrypt("encrypt", $rand_pass, $_POST['secret']);
         $dec_text = encrypt_decrypt("decrypt", $rand_pass, $enc_text);
         $sha_pass = sha1($rand_pass);
