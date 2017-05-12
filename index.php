@@ -10,8 +10,6 @@
     require_once "functions.php";
     include('html/header.html');
 
-    echo "testing";
-
     $style = true;
 
     //Disable all CSS and extra HTML to make automation easier
