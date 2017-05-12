@@ -12,7 +12,7 @@
     $style = true;
 
     //Disable all CSS and extra HTML to make automation easier
-    if (isset($_GET['nostyle'])) { $style = false; }
+    if (isset($_POST['nostyle'])) { $style = false; }
 
     //print_r($_GET); die();
 
