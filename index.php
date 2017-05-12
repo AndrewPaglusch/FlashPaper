@@ -29,11 +29,15 @@
         //This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
         if (isset($_GET['accept']) && $_GET['accept'] == "true") {
             //User has confirmed they'd like to see the secret
-            echo htmlentities($dec_text);
-            echo "<hr /><br />";
+            
+            //Build variables that will be displayed on 'message.php' page when included
+            $message = htmlentities($dec_text);
+            $message_title = "Self-Destructing Message";
+            $message_subtitle = "This message has been destroyed";
+  
+            include('pages/message.php');
 
             delete_file($sha_pass);
-            echo "This secret has been destroyed" . "<br />";
 
         } else {
             //Ask user to confirm viewing of secret
@@ -69,7 +73,12 @@
         echo "<br /><br /><br />";
 	*/
 	
-    	echo $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
+        //Build variables that will be displayed on 'message.php' page when included
+        $message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
+        $message_title = "Self-Destructing URL";
+        $message_subtitle = "";
+  
+        include('pages/message.php');
 
 	} else {
         print_html_form();
