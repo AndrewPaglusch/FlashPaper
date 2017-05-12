@@ -2,7 +2,7 @@
 
     function print_html_form() {
 
-        readfile("main.html");
+        readfile("pages/main.html");
     }
 
     function encrypt_decrypt($action, $password, $string) {
