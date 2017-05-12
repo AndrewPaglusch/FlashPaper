@@ -6,6 +6,8 @@ A one-time encrypted zero-knowledge password/secret sharing application focused 
 
 http://password.paglusch.com
 
+![Picture of Main Page](http://i.imgur.com/Tib5D02.png)
+
 ## Requirements
 * PHP 5.4
 * Web server
