@@ -10,6 +10,14 @@
     require_once "functions.php";
     include('html/header.html');
 
+
+    $style = true;
+
+    //Disable all CSS and extra HTML to make automation easier
+    if (isset($_GET['nostyle'])) { $style = false; }
+
+    //print_r($_GET); die();
+        
     if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
         $password = base64_decode_url($base_pass);
@@ -25,19 +33,24 @@
         echo "Reading secret from file " . $sha_pass . "<br />";
         echo "Encrypted Secret Associated with SHA1 of Given Password: " . $enc_text . "<br />";
         echo "Decrypted Secret Associated with SHA1 of Given Password: " . $dec_text . "<br />";
-	*/
+        */
 
         //This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
-        if (isset($_GET['accept']) && $_GET['accept'] == "true") {
+        if ((isset($_GET['accept']) && $_GET['accept'] == "true") || $style == false) {
             //User has confirmed they'd like to see the secret
+            //OR the user has 'nostyle' set in the URL
             
-            //Build variables that will be displayed on 'message.php' page when included
-            $message = htmlentities($dec_text);
-            $message_title = "Self-Destructing Message";
-            $message_subtitle = "This message has been destroyed";
+            if ($style == true) {
+                //Build variables that will be displayed on 'message.php' page when included
+                $message = htmlentities($dec_text);
+                $message_title = "Self-Destructing Message";
+                $message_subtitle = "This message has been destroyed";
   
-            include('pages/message.php');
-
+                include('pages/message.php');
+            } else {
+                echo $dec_text;
+            }
+            
             delete_file($sha_pass);
 
         } else {
@@ -72,7 +85,7 @@
         echo "<b>Here's how the URL you'll share will look:</b>" . "<br />";
         echo "https://password.paglusch.com/?k=" . $base_pass;
         echo "<br /><br /><br />";
-	*/
+	    */
 	
         //Build variables that will be displayed on 'message.php' page when included
         $message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
