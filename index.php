@@ -25,7 +25,7 @@
         echo "Reading secret from file " . $sha_pass . "<br />";
         echo "Encrypted Secret Associated with SHA1 of Given Password: " . $enc_text . "<br />";
         echo "Decrypted Secret Associated with SHA1 of Given Password: " . $dec_text . "<br />";
-	*/
+        */
 
         //This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
         if (isset($_GET['accept']) && $_GET['accept'] == "true") {
