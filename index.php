@@ -12,7 +12,7 @@
     if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
         $password = base64_decode_url($base_pass);
-        $sha_pass = sha1($password);
+        $sha_pass = hash("sha512", $password);
         $enc_text = read_file($sha_pass);
         $dec_text = encrypt_decrypt("decrypt", $password, $enc_text);
         
@@ -49,7 +49,7 @@
         $rand_pass = random_str();
         $enc_text = encrypt_decrypt("encrypt", $rand_pass, $_POST['secret']);
         $dec_text = encrypt_decrypt("decrypt", $rand_pass, $enc_text);
-        $sha_pass = sha1($rand_pass);
+        $sha_pass = hash("sha512", $rand_pass);
         $base_pass = base64_encode_url($rand_pass);
       
         write_file($sha_pass, $enc_text);
