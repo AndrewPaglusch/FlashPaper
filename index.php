@@ -109,7 +109,7 @@
           print_html_form();
           include('html/footer.html');
         } else {
-          echo "You have requested that we not show you any style/html by addding the 'nostyle' option to your request\r";
+          echo "You have requested that we not show you any style/html by addding the 'nostyle' option to your request. ";
           echo "You will need to either remove this option, or submit POST data for 'secret'";
         }
     }
