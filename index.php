@@ -10,13 +10,13 @@
     require_once "functions.php";
     include('html/header.html');
 
-
+    echo "test"; die();
     $style = true;
 
     //Disable all CSS and extra HTML to make automation easier
     if (isset($_GET['nostyle'])) { $style = false; }
 
-    //print_r($_GET); die();
+    print_r($_GET); die();
         
     if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
