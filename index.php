@@ -59,7 +59,7 @@
             echo "View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a>";
         }
 
-    } elseif (isset($_POST['submit'])) {
+    } elseif (isset($_POST['submit'])) || $style == false) {
         $rand_pass = random_str();
         $enc_text = encrypt_decrypt("encrypt", $rand_pass, $_POST['secret']);
         $dec_text = encrypt_decrypt("decrypt", $rand_pass, $enc_text);
@@ -109,7 +109,8 @@
           print_html_form();
           include('html/footer.html');
         } else {
-          echo "You have requested that we not show you any style/html by addding the 'nostyle' option to your request. ";
+          //User didn't give us the required options, but they passed 'nostyle'
+          echo "You have requested that we not show you any style/html by addding the 'nostyle' option to the POST data in this request. ";
           echo "You will need to either remove this option, or submit POST data for 'secret'";
         }
     }
