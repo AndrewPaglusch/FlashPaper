@@ -10,6 +10,7 @@
     require_once "functions.php";
     include('html/header.html');
 
+    echo "string";
 
     $style = true;
 
@@ -17,14 +18,14 @@
     if (isset($_GET['nostyle'])) { $style = false; }
 
     //print_r($_GET); die();
-        
+
     if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
         $password = base64_decode_url($base_pass);
         $sha_pass = hash("sha512", $password);
         $enc_text = read_file($sha_pass);
         $dec_text = encrypt_decrypt("decrypt", $password, $enc_text);
-        
+
         /* DEBUG
         echo "<b>Given Password in Base64 (URL Safe) Form:</b> " . $base_pass . "<br />";
         echo "<b>Decoded Version of Given Password:</b> " . $password . "<br />";
@@ -39,18 +40,18 @@
         if ((isset($_GET['accept']) && $_GET['accept'] == "true") || $style == false) {
             //User has confirmed they'd like to see the secret
             //OR the user has 'nostyle' set in the URL
-            
+
             if ($style == true) {
                 //Build variables that will be displayed on 'message.php' page when included
                 $message = htmlentities($dec_text);
                 $message_title = "Self-Destructing Message";
                 $message_subtitle = "This message has been destroyed";
-  
+
                 include('pages/message.php');
             } else {
                 echo $dec_text;
             }
-            
+
             delete_file($sha_pass);
 
         } else {
@@ -65,9 +66,9 @@
         $dec_text = encrypt_decrypt("decrypt", $rand_pass, $enc_text);
         $sha_pass = hash("sha512", $rand_pass);
         $base_pass = base64_encode_url($rand_pass);
-      
+
         write_file($sha_pass, $enc_text);
-        
+
         /* DEBUG
         echo "<b>Submitted Text:</b> " . $_POST['secret'] . "<br />";
         echo "<b>Random Pasword:</b> " . $rand_pass . "<br />";
@@ -86,12 +87,12 @@
         echo "https://password.paglusch.com/?k=" . $base_pass;
         echo "<br /><br /><br />";
 	    */
-	
+
         //Build variables that will be displayed on 'message.php' page when included
         $message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
         $message_title = "Self-Destructing URL";
         $message_subtitle = "";
-  
+
         include('pages/message.php');
 
 	} else {
