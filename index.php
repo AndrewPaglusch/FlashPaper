@@ -10,7 +10,7 @@
     require_once "functions.php";
     include('html/header.html');
 
-    if (isset($_GET['k'])) {i
+    if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
         $password = base64_decode_url($base_pass);
         $sha_pass = sha1($password);
