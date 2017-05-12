@@ -37,6 +37,7 @@
 
         } else {
             //Ask user to confirm viewing of secret
+            //TODO: http://stackoverflow.com/a/41703064
             echo "View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a>";
         }
 
