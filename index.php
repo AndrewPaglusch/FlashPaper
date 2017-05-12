@@ -34,11 +34,11 @@
         */
 
         //This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
-        if ((isset($_GET['accept']) && $_GET['accept'] == "true") || $nostyle == true) {
+        if ((isset($_GET['accept']) && $_GET['accept'] == "true") || $style == false) {
             //User has confirmed they'd like to see the secret
             //OR the user has 'nostyle' set in the URL
             
-            if ($nostyle != true) {
+            if ($style == true) {
                 //Build variables that will be displayed on 'message.php' page when included
                 $message = htmlentities($dec_text);
                 $message_title = "Self-Destructing Message";
