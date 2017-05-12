@@ -1,36 +1,3 @@
-<html>
-    <head>
-        <title>Password</title>
-        <style>
-            #form-div {
-                background-color:rgba(72,72,72,0.1);
-                padding-left:35px;
-                padding-right:35px;
-                padding-top:35px;
-                padding-bottom:50px;
-
-                margin:30px;
-                -moz-border-radius: 7px;
-                -webkit-border-radius: 7px;
-            }
-            textarea {
-                width: 100%;
-                height: 150px;
-                padding: 12px 20px;
-                box-sizing: border-box;
-                border: 2px solid #ccc;
-                border-radius: 4px;
-                background-color: #f8f8f8;
-                resize: none;
-            }
-            fieldset {
-                margin:10px;
-                border: 0;
-            }
-        </style>
-    </head>
-
-    <body>
         <div id="form-div">
             <fieldset>
                 <div>
@@ -44,6 +11,3 @@
                 </div>
             </fieldset>
         </div>
-    </body>
-</html>
-

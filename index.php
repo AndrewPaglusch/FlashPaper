@@ -8,6 +8,7 @@
     */
 
     require_once "functions.php";
+    include('html/header.html');
 
     if (isset($_GET['k'])) {
         $base_pass = $_GET['k'];
@@ -83,5 +84,7 @@
 	} else {
         print_html_form();
     }
+
+	include('html/footer.html');
 
 ?>
