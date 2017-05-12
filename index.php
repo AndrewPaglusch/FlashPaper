@@ -7,25 +7,6 @@
     error_reporting(-1);
     */
 
-    /*
-    GENERATE::
-    Generate password
-    secret text is encrypted with password
-    password hashed
-    hashed password and encrypted text stored in db
-    base64 the password
-    send base64 password to user as URL
-
-    RETREIVE::
-    Get Base64 portion of URL
-    Un-Base64 the URL to get the random password
-    sha1 the password
-    look up the sha1 of the password in the db
-    get the associated ciphertext and decrypt with the un-base64'd version of the password
-    return decrypted ciphertext to user
-    remove entry from database
-    */
-
     require_once "functions.php";
 
     if (isset($_GET['k'])) {
@@ -43,7 +24,7 @@
         echo "Reading secret from file " . $sha_pass . "<br />";
         echo "Encrypted Secret Associated with SHA1 of Given Password: " . $enc_text . "<br />";
         echo "Decrypted Secret Associated with SHA1 of Given Password: " . $dec_text . "<br />";
-	    */
+	*/
 
         echo htmlentities($dec_text);
         echo "<hr /><br />";
@@ -77,10 +58,9 @@
         echo "<b>Here's how the URL you'll share will look:</b>" . "<br />";
         echo "https://password.paglusch.com/?k=" . $base_pass;
         echo "<br /><br /><br />";
-	    */
-    	
-	//echo "http://password.paglusch.com/?k=" . $base_pass;
-    echo $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
+	*/
+	
+    	echo $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
 
 	} else {
         print_html_form();
