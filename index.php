@@ -94,6 +94,7 @@
         include('pages/message.php');
 
 	} else {
+        include('html/header.html');
         print_html_form();
     }
 
