@@ -26,11 +26,19 @@
         echo "Decrypted Secret Associated with SHA1 of Given Password: " . $dec_text . "<br />";
 	*/
 
-        echo htmlentities($dec_text);
-        echo "<hr /><br />";
+        //This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
+        if (isset($_GET['accept']) && $_GET['accept'] == "true") {
+            //User has confirmed they'd like to see the secret
+            echo htmlentities($dec_text);
+            echo "<hr /><br />";
 
-        delete_file($sha_pass);
-        echo "This secret has been destroyed" . "<br />";
+            delete_file($sha_pass);
+            echo "This secret has been destroyed" . "<br />";
+
+        } else {
+            //Ask user to confirm viewing of secret
+            echo "View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a>";
+        }
 
     } elseif (isset($_POST['submit'])) {
         $rand_pass = random_str();
