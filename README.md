@@ -1,6 +1,11 @@
 # FlashPaper
 A one-time encrypted zero-knowledge password/secret sharing application focused on simplicity and security. No database or complicated set-up required. 
 
+## Demo
+**Not** for production use, as this demo does not use SSL/TLS encryption (https://)
+
+http://password.paglusch.com
+
 ## Requirements
 * PHP 5
 * Web server
