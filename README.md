@@ -21,7 +21,7 @@ Copy contents of this repository to document root of web server
 * Encrypted version of submitted text is stored inside of created file
 * Password is Base64 encoded
 * Retrieval URL is created by appending Base64 version of password to end
-* * `https://site.com/k?=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
+  * `https://site.com/k?=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
 
 ### Retrieving Secret
 * Base64 portion of URL is stripped from URL
