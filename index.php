@@ -43,9 +43,10 @@
                 $message = htmlentities($dec_text);
                 $message_title = "Self-Destructing Message";
                 $message_subtitle = "This message has been destroyed";
-                
+
                 include('html/header.html');
                 include('pages/message.php');
+                include('html/footer.html');
             } else {
                 echo $dec_text;
             }
@@ -87,17 +88,32 @@
 	    */
 
         //Build variables that will be displayed on 'message.php' page when included
+
         $message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $base_pass;
-        $message_title = "Self-Destructing URL";
-        $message_subtitle = "";
-        include('html/header.html');
-        include('pages/message.php');
+
+        if ($style == true) {
+          $message_title = "Self-Destructing URL";
+          $message_subtitle = "";
+
+          include('html/header.html');
+          include('pages/message.php');
+          include('html/footer.html');
+        } else {
+          echo $message;
+        }
+
 
 	} else {
-        include('html/header.html');
-        print_html_form();
+        if ($style == true) {
+          include('html/header.html');
+          print_html_form();
+          include('html/footer.html');
+        } else {
+          echo "You have requested that we not show you any style/html by addding the 'nostyle' option to your request\r";
+          echo "You will need to either remove this option, or submit POST data for 'secret'";
+        }
     }
 
-	include('html/footer.html');
 
+;
 ?>
