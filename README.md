@@ -24,10 +24,10 @@ Copy contents of this repository to document root of web server
 To supress the HTML and CSS output so that you just have plain-text results, you'll need to include the 'nostyle' argument in the POST data of each request
 
 ### Get self-destructing link
-curl -s -X POST -d "nostyle&secret=*your secret here*" http://password.paglusch.com)
+`curl -s -X POST -d "nostyle&secret=*your secret here*" http://password.paglusch.com)`
 
 ### Retreive secret text from link
-curl -s -X POST -d "nostyle" http://password.paglusch.com/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$)
+`curl -s -X POST -d "nostyle" http://password.paglusch.com/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$)`
 
 ## Summary Of How It Works
 ### Submitting Secret
