@@ -19,6 +19,16 @@ Copy contents of this repository to document root of web server
 
 *To increase security, disable access logging in your web server's configuration*
 
+## Automating Requests With `curl`
+
+To supress the HTML and CSS output so that you just have plain-text results, you'll need to include the 'nostyle' argument in the POST data of each request
+
+### Get self-destructing link
+curl -s -X POST -d "nostyle&secret=*your secret here*" http://password.paglusch.com)
+
+### Retreive secret text from link
+curl -s -X POST -d "nostyle" http://password.paglusch.com/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$)
+
 ## Summary Of How It Works
 ### Submitting Secret
 * Random 32-character password is created
@@ -28,7 +38,7 @@ Copy contents of this repository to document root of web server
 * Encrypted version of submitted text is stored inside of created file
 * Password is Base64 encoded
 * Retrieval URL is created by appending Base64 version of password to end
-  * `https://site.com/k?=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
+  * `https://site.com/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
 
 ### Retrieving Secret
 * Base64 portion of URL is stripped from URL
