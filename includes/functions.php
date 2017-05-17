@@ -55,7 +55,7 @@
     }
 
     function is_valid_base64($base64text) {
-      //This isn't perfect, but it'll cath 99% of non-valid Base64 endoding
+      //This isn't perfect, but it'll catch 99% of non-valid Base64 endoding
 
       // Check if there is no invalid character in string
       if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $base64text)) return false;
