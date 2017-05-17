@@ -1,9 +1,4 @@
-<?php 
-
-    function print_html_form() {
-
-        readfile("html/form.html");
-    }
+<?php
 
     function encrypt_decrypt($action, $password, $string) {
         $output = false;
@@ -58,6 +53,29 @@
 
     function base64_decode_url($input) {
         return base64_decode(strtr($input, '-_$', '+/='));
+    }
+
+    function store_secret($text) {
+      $rand_pass = random_str();
+      $enc_text = encrypt_decrypt("encrypt", $rand_pass, $text);
+      $dec_text = encrypt_decrypt("decrypt", $rand_pass, $enc_text);
+      $sha_pass = hash("sha512", $rand_pass);
+      $base_pass = base64_encode_url($rand_pass);
+
+      write_file($sha_pass, $enc_text);
+
+      //Return the 'k' portion of the URL
+      return $base_pass;
+    }
+
+    function retrieve_secret($key) {
+      $password = base64_decode_url($key);
+      $sha_pass = hash("sha512", $password);
+      $enc_text = read_file($sha_pass);
+      $dec_text = encrypt_decrypt("decrypt", $password, $enc_text);
+      delete_file($sha_pass);
+
+      return $dec_text;
     }
 
 ?>
