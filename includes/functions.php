@@ -27,7 +27,7 @@
     }
 
     function read_file($filename) {
-        $file = fopen("secrets/$filename", "r") or die("<h2>This secret can not be found!</h2>");
+        $file = fopen("secrets/$filename", "r") or die("This secret can not be found!");
         $text = fread($file,filesize("secrets/$filename"));
         fclose($file);
 
@@ -40,10 +40,9 @@
 
     function random_str() {
         for ($i = -1; $i <= 32; $i++) {
-        $bytes = openssl_random_pseudo_bytes($i, $cstrong);
-        $out = base64_encode($bytes);
+          $bytes = openssl_random_pseudo_bytes($i, $cstrong);
+          $out = base64_encode($bytes);
         }
-
         return $bytes;
     }
 
@@ -56,12 +55,16 @@
     }
 
     function is_valid_base64($base64text) {
+      //This isn't perfect, but it'll cath 99% of non-valid Base64 endoding
       if (base64_encode(base64_decode($base64text)) === $base64text){
-        return true;
+        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $base64text)) {
+            return true;
+          } else {
+            return false;
+          }
       } else {
         return false;
       }
-
     }
 
     function store_secret($text) {

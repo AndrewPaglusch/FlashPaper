@@ -25,7 +25,6 @@
             $secret = retrieve_secret($_GET['k']);
 
             if ($style == true) {
-                //Build variables that will be displayed on 'message.php' page when included
                 $message = htmlentities($secret);
                 $message_title = "Self-Destructing Message";
                 $message_subtitle = "This message has been destroyed";
@@ -40,7 +39,7 @@
 
         } else {
             //TODO: http://stackoverflow.com/a/41703064
-            echo "View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a>";
+            echo "<h2>View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a></h2>";
         }
 
     } elseif (isset($_POST['submit']) || $style == false) {
