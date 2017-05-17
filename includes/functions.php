@@ -56,15 +56,18 @@
 
     function is_valid_base64($base64text) {
       //This isn't perfect, but it'll cath 99% of non-valid Base64 endoding
-      if (base64_encode(base64_decode($base64text)) === $base64text){
-        if (preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $base64text)) {
-            return true;
-          } else {
-            return false;
-          }
-      } else {
-        return false;
-      }
+      $decoded = base64_decode($base64text, true);
+
+      // Check if there is no invalid character in string
+      if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $string)) return false;
+
+      // Decode the string in strict mode and send the response
+      if (!base64_decode($string, true)) return false;
+
+      // Encode and compare it to original one
+      if (base64_encode($decoded) != $string) return false;
+
+      return true;
     }
 
     function store_secret($text) {
