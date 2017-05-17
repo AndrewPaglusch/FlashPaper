@@ -51,9 +51,9 @@
         //If this is not being submitted via the GUI,
         //Incoming text should be base64 endoded. Try to decode
         if ($style == false) {
-          try {
+          if (is_valid_base64($incoming_text) == true) {
             $incoming_text = base64_decode($incoming_text);
-          } catch (Exception $e) {
+          } else {
             die("ERROR: Input text is not in valid Base64 format");
           }
         }

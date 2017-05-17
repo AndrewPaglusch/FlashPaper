@@ -55,6 +55,15 @@
         return base64_decode(strtr($input, '-_$', '+/='));
     }
 
+    function is_valid_base64($base64text) {
+      if (base64_encode(base64_decode($base64text)) === $base64text){
+        return true;
+      } else {
+        return false;
+      }
+
+    }
+
     function store_secret($text) {
       $rand_pass = random_str();
       $enc_text = encrypt_decrypt("encrypt", $rand_pass, $text);
