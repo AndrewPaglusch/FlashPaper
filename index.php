@@ -26,7 +26,7 @@
 
             if ($style == true) {
                 //Build variables that will be displayed on 'message.php' page when included
-                $message = htmlentities($dec_text);
+                $message = htmlentities($secret);
                 $message_title = "Self-Destructing Message";
                 $message_subtitle = "This message has been destroyed";
 
@@ -35,7 +35,7 @@
                 include('html/footer.html');
             } else {
                 //Getting secret with now style
-                echo $dec_text;
+                echo $secret;
             }
 
         } else {
