@@ -64,7 +64,7 @@
       if (!base64_decode($base64text, true)) return false;
 
       // Encode and compare it to original one
-      if (base64_encode(base64_decode($base64text, true);) != $base64text) return false;
+      if (base64_encode(base64_decode($base64text, true)) != $base64text) return false;
 
       return true;
     }
