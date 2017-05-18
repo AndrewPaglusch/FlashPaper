@@ -1,5 +1,5 @@
 # FlashPaper
-A one-time encrypted zero-knowledge password/secret sharing application focused on simplicity and security. No database or complicated set-up required. 
+A one-time encrypted zero-knowledge password/secret sharing application focused on simplicity and security. No database or complicated set-up required.
 
 ## Demo
 **Not** for production use, as this demo does not use SSL/TLS encryption (https://)
@@ -18,16 +18,6 @@ http://password.paglusch.com
 Copy contents of this repository to document root of web server
 
 *To increase security, disable access logging in your web server's configuration*
-
-## Automating Requests With `curl`
-
-To supress the HTML and CSS output so that you just have plain-text results, you'll need to include the 'nostyle=true' argument in the POST data of each request
-
-### Get self-destructing link
-`curl -s -X POST -d "nostyle=true&secret=*your secret here*" http://password.paglusch.com`
-
-### Retreive secret text from link
-`curl -s -X POST -d "nostyle=true" http://password.paglusch.com/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
 
 ## Summary Of How It Works
 ### Submitting Secret
@@ -48,3 +38,15 @@ To supress the HTML and CSS output so that you just have plain-text results, you
 * Get text from the file that we found and decrypt it with the password
 * Return the decrypted secret text to user
 * Delete the file
+
+## Automating Requests With `curl`
+
+To suppress the HTML and CSS output so that you just have plain-text results, you'll need to include the 'nostyle' argument in the POST data of each request.
+
+### Get self-destructing link
+`curl -s -X POST -d "nostyle=true&secret=**BASE64 SECRET HERE**" http://password.paglusch.com`
+
+### Retrieve secret text from link
+`curl -s -X POST -d "nostyle=true" http://password.paglusch.com/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
+
+:exclamation: When generating a self-destructing link; the 'secret' variable must be in Base64 encoded format. There are some built-in checks to validate that you haven't forgotten this, but they will not work 100% of the time. If you fail to properly Base64 encode your secret before submission and manage to get a retrieval link returned to you, you **WILL** get invalid data when that secret is recovered from that link.
