@@ -35,9 +35,7 @@
     }
 
     function delete_file($filename) {
-        if ! (shell_exec('shred secrets/$filename')) {
-          unlink("secrets/$filename");
-        }
+        unlink("secrets/$filename");
     }
 
     function random_str() {
