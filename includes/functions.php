@@ -21,13 +21,13 @@
     }
 
     function write_file($filename, $text) {
-        $file = fopen("secrets/$filename", "w") or die("Unable to write file!");
+        $file = fopen($filename, "w") or die("Unable to write file!");
         fwrite($file, $text);
         fclose($file);
     }
 
     function read_file($filename) {
-        $file = fopen("secrets/$filename", "r") or die("This secret can not be found!");
+        $file = fopen($filename, "r") or die("This secret can not be found!");
         $text = fread($file,filesize("secrets/$filename"));
         fclose($file);
 
@@ -76,7 +76,7 @@
       $sha_pass = hash("sha512", $rand_pass);
       $base_pass = base64_encode_url($rand_pass);
 
-      write_file($sha_pass, $enc_text);
+      write_file("secrets/" . $sha_pass, $enc_text);
 
       //Return the 'k' portion of the URL
       return $base_pass;
@@ -85,7 +85,7 @@
     function retrieve_secret($key) {
       $password = base64_decode_url($key);
       $sha_pass = hash("sha512", $password);
-      $enc_text = read_file($sha_pass);
+      $enc_text = read_file("secrets/" . $sha_pass);
       $dec_text = encrypt_decrypt("decrypt", $password, $enc_text);
       delete_file($sha_pass);
 
