@@ -1,4 +1,10 @@
-This
-is
-a
-test
+Card Type (Visa/MasterCard/Discover/AMEX): 
+Card Number: 
+Card Expiration Date (MM/YY): 
+Card Security Code: 
+Name on Card: 
+
+Billing Address: 
+Billing City: 
+Billing Zip: 
+Billing State: 
