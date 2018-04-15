@@ -28,7 +28,7 @@
 
     function read_file($filename) {
         $file = fopen($filename, "r") or die("This secret can not be found!");
-        $text = fread($file,filesize("secrets/$filename"));
+        $text = fread($file,filesize("$filename"));
         fclose($file);
 
         return $text;

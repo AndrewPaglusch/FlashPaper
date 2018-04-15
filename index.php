@@ -76,7 +76,6 @@
           $template_text = "";
           if (isset($_GET['t']) && $_GET['t'] != "") {
             $template_text = read_file('templates/' . $_GET['t'] . '.txt');
-            die($templat_text);
           }
 
           include('html/header.html');
