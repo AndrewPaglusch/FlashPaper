@@ -8,10 +8,9 @@ https://flashpaper.io
 ![Picture of Main Page](https://i.imgur.com/3gDOy5l.png)
 
 ## Requirements
-* PHP 5.4
+* PHP 5.5.0+
 * Web server
 * Linux
-* OpenSSL 1.0.1e
 
 ## Installation
 Copy contents of this repository to document root of web server
