@@ -5,7 +5,7 @@ A one-time encrypted zero-knowledge password/secret sharing application focused 
 
 https://flashpaper.io
 
-![Picture of Main Page](http://i.imgur.com/Tib5D02.png)
+![Picture of Main Page](https://i.imgur.com/3gDOy5l.png)
 
 ## Requirements
 * PHP 5.4
