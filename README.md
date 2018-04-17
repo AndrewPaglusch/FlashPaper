@@ -21,9 +21,9 @@ Copy contents of this repository to document root of web server
 ## Summary Of How It Works
 ### Submitting Secret
 * Random 32-character password is created
-* Submitted text is encrypted with password
-* Password is hashed via SHA512
-* File created in `secrets` directory. Name of file is the SHA512 of the random password
+* Submitted text is SHA256 encrypted with password
+* Password is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
+* File created in `secrets` directory. Name of file is the base64'd bcrypt hash of the random password
 * Encrypted version of submitted text is stored inside of created file
 * Password is Base64 encoded
 * Retrieval URL is created by appending Base64 version of password to end
@@ -32,8 +32,8 @@ Copy contents of this repository to document root of web server
 ### Retrieving Secret
 * Base64 portion of URL is stripped from URL
 * Decode Base64 string to get the decryption password
-* Generate SHA512 of the password
-* Look for file in `secrets` that is named the SHA512 that we just generated
+* Generate bcrypt of the password and base64 it
+* Look for file in `secrets` that is named the base64'd hash that we just generated
 * Get text from the file that we found and decrypt it with the password
 * Return the decrypted secret text to user
 * Delete the file
