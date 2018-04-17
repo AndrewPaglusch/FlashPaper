@@ -5,15 +5,12 @@
     ini_set('display_errors', 1);
     error_reporting(-1); */
 
-
     require_once "includes/functions.php";
 
     $style = true;
 
     //Disable all CSS and extra HTML to make automation easier
     if (isset($_POST['nostyle'])) { $style = false; }
-
-
 
     if (isset($_GET['k'])) {
         // **User is trying to view a secret**
@@ -41,7 +38,6 @@
             //TODO: http://stackoverflow.com/a/41703064
             echo "<h2>View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a></h2>";
         }
-
     } elseif (isset($_POST['submit']) || $style == false) {
         // **User is trying to submit a secret**
 
@@ -72,11 +68,16 @@
           //Display the retreival URL in plain text
           echo $message;
         }
-
-
 	} else {
         // **User is loading the main page**
         if ($style == true) {
+
+          //Get template from URL (if any)
+          $template_text = "";
+          if (isset($_GET['t']) && $_GET['t'] != "") {
+            $template_text = read_file('templates/' . $_GET['t'] . '.txt');
+          }
+
           include('html/header.html');
           include('html/form.html');
           include('html/footer.html');
