@@ -19,21 +19,21 @@ Copy contents of this repository to document root of web server
 
 ## Summary Of How It Works
 ### Submitting Secret
-* Random 32-character password is created
-* Submitted text is SHA256 encrypted with password
-* Password is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
-* File created in `secrets` directory. Name of file is the base64'd bcrypt hash of the random password
+* Random 32-character key is created
+* Submitted text is AES-256-CBC encrypted with key
+* Kay is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
+* File created in `secrets` directory. Name of file is the base64'd bcrypt hash of the random key
 * Encrypted version of submitted text is stored inside of created file
-* Password is Base64 encoded
-* Retrieval URL is created by appending Base64 version of password to end
+* Key is Base64 encoded
+* Retrieval URL is created by appending Base64 version of the key to end
   * `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
 
 ### Retrieving Secret
 * Base64 portion of URL is stripped from URL
-* Decode Base64 string to get the decryption password
-* Generate bcrypt of the password and base64 it
+* Decode Base64 string to get the decryption key
+* Generate bcrypt of the key and base64 it
 * Look for file in `secrets` that is named the base64'd hash that we just generated
-* Get text from the file that we found and decrypt it with the password
+* Get text from the file that we found and decrypt it with the key
 * Return the decrypted secret text to user
 * Delete the file
 
