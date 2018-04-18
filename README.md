@@ -21,7 +21,7 @@ Copy contents of this repository to document root of web server
 ### Submitting Secret
 * Random 32-character key is created
 * Submitted text is AES-256-CBC encrypted with key
-* Kay is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
+* Key is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
 * File created in `secrets` directory. Name of file is the base64'd bcrypt hash of the random key
 * Encrypted version of submitted text is stored inside of created file
 * Key is Base64 encoded
