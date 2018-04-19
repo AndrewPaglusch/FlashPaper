@@ -39,12 +39,10 @@ Copy contents of this repository to document root of web server
 
 ## Automating Requests With `curl`
 
-To suppress the HTML and CSS output so that you just have plain-text results, you'll need to include the 'nostyle' argument in the POST data of each request.
-
-### Get self-destructing link
-`curl -s -X POST -d "nostyle=true&secret=**BASE64 SECRET HERE**" https://flashpaper.io`
+### Create self-destructing link
+`curl -X POST -d "k=**BASE64 SECRET HERE**" https://flashpaper.io/api.php`
 
 ### Retrieve secret text from link
-`curl -s -X POST -d "nostyle=true" https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
+`curl https://flashpaper.io/api.php?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
 
 :exclamation: When generating a self-destructing link; the 'secret' variable must be in Base64 encoded format. There are some built-in checks to validate that you haven't forgotten this, but they will not work 100% of the time. If you fail to properly Base64 encode your secret before submission and manage to get a retrieval link returned to you, you **WILL** get invalid data when that secret is recovered from that link.
