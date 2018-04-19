@@ -1,7 +1,7 @@
 <?php
 
-    require_once "includes/functions.php";
-
+	require_once "includes/functions.php";
+	
 	if (isset($_GET['k'])) {
 		#**User is trying to view a secret**
 		if ($_GET['accept'] == "true") {
@@ -23,7 +23,7 @@
 		#**User is trying to submit a secret**
 		$incoming_text = $_POST['secret'];
 		$k = store_secret($incoming_text);
-
+	
 		$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
 		$message_title = "Self-Destructing URL";
 		$message_subtitle = "";
