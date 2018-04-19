@@ -5,24 +5,16 @@
         'salt' => "7jEKI5ISLaLwmU9xrNuh2JeO54rS4cJdbPwCvifJr8OoKa3Y59RWn67cNaHnGcpvmnnH7AGzB465FpnjdhSu8roJHnjQcrnWCP",
     ];
 
-    function encrypt_decrypt($action, $password, $string) {
-        $output = false;
-
-        $encrypt_method = "AES-256-CBC";
-        $secret_key = $password;
-        $secret_iv = sha1($password);
+    function encrypt_decrypt($encrypt, $secret_key, $string) {
         $key = hash('sha256', $secret_key);
-        $iv = substr(hash('sha256', $secret_iv), 0, 16);
+        $iv = substr(hash('sha256', $secret_key), 0, 16); #sha256 sha1 of key and get first 16 bytes
 
-        if( $action == 'encrypt' ) {
-            $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
-            $output = base64_encode($output);
+        if( $encrypt == true) {
+            return openssl_encrypt($string, "AES-256-CBC", $key, 0, $iv);
         }
-        else if( $action == 'decrypt' ){
-            $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+        else {
+            return openssl_decrypt($string, "AES-256-CBC", $key, 0, $iv);
         }
-
-        return $output;
     }
 
     function write_file($filename, $text) {
@@ -40,13 +32,12 @@
     }
 
     function delete_file($filename) {
-        unlink("secrets/$filename");
+        unlink($filename);
     }
 
     function random_str() {
         for ($i = -1; $i <= 32; $i++) {
           $bytes = openssl_random_pseudo_bytes($i, $cstrong);
-          $out = base64_encode($bytes);
         }
         return $bytes;
     }
@@ -84,7 +75,7 @@
       $base_pass = base64_encode_mod($rand_pass);
 
       #encrypt text with password
-      $enc_text = encrypt_decrypt("encrypt", $rand_pass, $text);
+      $enc_text = encrypt_decrypt(true, $rand_pass, $text);
 
       #generate hash of password & base64 it
       $filename = base64_encode_mod(password_hash($rand_pass, PASSWORD_BCRYPT, $bcrypt_options));
@@ -109,10 +100,10 @@
       $enc_text = read_file("secrets/" . $filename);
 
       #decrypt contents of file with the base64 decoded password
-      $dec_text = encrypt_decrypt("decrypt", $password, $enc_text);
+      $dec_text = encrypt_decrypt(false, $password, $enc_text);
 
       #delete the file from disk
-      delete_file($filename);
+      delete_file("secrets/" . $filename);
 
       #return decrypted text
       return $dec_text;
