@@ -24,11 +24,13 @@
     }
 
     function read_file($filename) {
-        $file = fopen($filename, "r") or die("This secret can not be found!");
-        $text = fread($file,filesize("$filename"));
-        fclose($file);
-
-        return $text;
+        if ( file_exists($filename) && ($fp = fopen($filename, "rb")) !== false ) {
+            $str = stream_get_contents($fp);
+            fclose($fp);
+            return $str;
+         } else {
+            throw new Exception('This secret can not be found!');
+        }
     }
 
     function delete_file($filename) {
