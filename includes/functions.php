@@ -18,9 +18,12 @@
     }
 
     function write_file($filename, $text) {
-        $file = fopen($filename, "w") or die("Unable to write file!");
-        fwrite($file, $text);
-        fclose($file);
+        if ($fp = fopen($filename, "w")) {
+            fwrite($fp, $text);
+            fclose($fp);
+         } else {
+            throw new Exception('Unable to write secret!');
+        }
     }
 
     function read_file($filename) {

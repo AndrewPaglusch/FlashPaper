@@ -1,30 +1,41 @@
 <?php
 
-    require_once "includes/functions.php";
-      
-    if (isset($_GET['k'])) {
-        #retrieve secret
-        try {
-            echo sendSuccess(retrieve_secret($_GET['k']));
-        } catch (Exception $e) {
-            echo sendFailure($e); 
-        }
-    } elseif (isset($_POST['k'])) {
-        #store secret
-        try {
-            echo sendSuccess(store_secret(base64_decode($_POST['k'])));
-        } catch (Exception $e) {
-          echo sendFailure($e);
-        }
-    } else {
-        echo sendFailure("Invalid input");
-    }
+	require_once "includes/functions.php";
 
-    function sendSuccess(message) {
-        return "[{\"SUCCESS\":true, \"message\": \"${message}\"}]";
-    }
+	$useJson = true;
+	if ($_GET['json'] == "false") {
+		$useJson = false;
+	}
 
-    function sendFailure(error) {
-        return "[{\"SUCCESS\":false, \"message\": \"${error}\"}]";      
-    }
+	if (isset($_GET['k'])) {
+		#retrieve secret
+		try {
+			echo sendJSON(true, retrieve_secret($_GET['k']));
+		} catch (Exception $e) {
+			echo sendJSON(false, "Secret can not be found!");
+		}
+	} elseif (isset($_POST['k'])) {
+		#store secret
+		try {
+			echo sendJSON(true, store_secret(base64_decode($_POST['k'])));
+		} catch (Exception $e) {
+			echo sendJSON(false, $e);
+		}
+	} else {
+		echo sendJSON(false, "Invalid input");
+	}
+
+	function sendJSON($success, $message) {
+		global $useJson;
+
+		if ($useJson == true) {
+			if ($success) {
+				return "[{\"SUCCESS\":true, \"message\": \"${message}\"}]";
+			} else {
+				return "[{\"SUCCESS\":false, \"message\": \"${message}\"}]";
+			}
+		} else {
+			return $message;
+		}
+	}
 ?>
