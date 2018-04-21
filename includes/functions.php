@@ -1,5 +1,7 @@
 <?php
 
+    defined('_DEFVAR') or exit(); 
+
     $bcrypt_options = [
         'cost' => 11,
         'salt' => "7jEKI5ISLaLwmU9xrNuh2JeO54rS4cJdbPwCvifJr8OoKa3Y59RWn67cNaHnGcpvmnnH7AGzB465FpnjdhSu8roJHnjQcrnWCP",

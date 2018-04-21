@@ -1,3 +1,4 @@
+<?php defined('_DEFVAR') or exit(); ?>
         <div id="form-div">
             <fieldset>
                 <div>

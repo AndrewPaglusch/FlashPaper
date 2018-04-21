@@ -1,3 +1,4 @@
+<?php defined('_DEFVAR') or exit(); ?>
 <!DOCTYPE html>
     <head>
         <title>FlashPaper :: Self-Destructing Message</title>

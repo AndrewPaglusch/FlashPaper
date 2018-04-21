@@ -1,3 +1,4 @@
+<?php defined('_DEFVAR') or exit(); ?>
     <body>
         <div id="form-div">
             <form class="form-horizontal" action=index.php method=POST>

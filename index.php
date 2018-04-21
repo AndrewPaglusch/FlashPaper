@@ -1,5 +1,6 @@
 <?php
 
+    define('_DIRECT_ACCESS_CHECK', 1);
 	require_once "includes/functions.php";
 	
 	if (isset($_GET['k'])) {
@@ -11,9 +12,9 @@
 				$message_title = "Self-Destructing Message";
 				$message_subtitle = "This message has been destroyed";
 				
-				include('html/header.html');
-				include('pages/message.php');
-				include('html/footer.html');
+				include('html/header.php');
+				include('html/message.php');
+				include('html/footer.php');
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}
@@ -31,9 +32,9 @@
 			$message_title = "Self-Destructing URL";
 			$message_subtitle = "";
 			
-			include('html/header.html');
-			include('pages/message.php');
-			include('html/footer.html');
+			include('html/header.php');
+			include('html/message.php');
+			include('html/footer.php');
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -44,10 +45,13 @@
 		if (isset($_GET['t']) && $_GET['t'] != "") {
 			$template_text = read_file('templates/' . $_GET['t'] . '.txt');
 		}
+
+		$message_title = "Self-Destructing Message";
+		$message_subtitle = "";
 		
-		include('html/header.html');
-		include('html/form.html');
-		include('html/footer.html');
+		include('html/header.php');
+		include('html/form.php');
+		include('html/footer.php');
 	}
 ?>
 
