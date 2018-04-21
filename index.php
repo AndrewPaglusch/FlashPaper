@@ -1,6 +1,6 @@
 <?php
 
-    define('_DIRECT_ACCESS_CHECK', 1);
+	define('_DIRECT_ACCESS_CHECK', 1);
 	require_once "includes/functions.php";
 	
 	if (isset($_GET['k'])) {
@@ -41,16 +41,16 @@
 	} else {
 		#**User is loading the main page**
       
-        #Get template from URL (if any)
+		#Get template from URL (if any)
 		$template_text = "";
         
-        try {
-	    	if (isset($_GET['t']) && $_GET['t'] != "") {
-                $template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
-	    	}
-        } catch (Exception $e) {
-            die("Template can not be found!");
-        }
+        	try {
+			if (isset($_GET['t']) && $_GET['t'] != "") {
+				$template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
+	    		}
+        	} catch (Exception $e) {
+			die("Template can not be found!");
+       		}
 
 		$message_title = "Self-Destructing Message";
 		$message_subtitle = "";
