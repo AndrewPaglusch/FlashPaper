@@ -46,7 +46,7 @@
         
         try {
 	    	if (isset($_GET['t']) && $_GET['t'] != "") {
-		    	$template_text = read_file('templates/' . $_GET['t'] . '.txt');
+                $template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
 	    	}
         } catch (Exception $e) {
             die("Template can not be found!");
