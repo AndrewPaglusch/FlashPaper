@@ -40,11 +40,17 @@
 		}
 	} else {
 		#**User is loading the main page**
-		#Get template from URL (if any)
+      
+        #Get template from URL (if any)
 		$template_text = "";
-		if (isset($_GET['t']) && $_GET['t'] != "") {
-			$template_text = read_file('templates/' . $_GET['t'] . '.txt');
-		}
+        
+        try {
+	    	if (isset($_GET['t']) && $_GET['t'] != "") {
+		    	$template_text = read_file('templates/' . $_GET['t'] . '.txt');
+	    	}
+        } catch (Exception $e) {
+            die("Template can not be found!");
+        }
 
 		$message_title = "Self-Destructing Message";
 		$message_subtitle = "";
