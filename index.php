@@ -23,7 +23,7 @@
 			echo "<h2>View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a></h2>";
 		}		
 	} elseif (isset($_POST['submit'])) {
-		#**User is trying to submit a secret**
+		#**User just submitted a secret. Show them the generated URL**
 		try {
 			$incoming_text = $_POST['secret'];
 			$k = store_secret($incoming_text);
