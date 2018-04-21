@@ -4,7 +4,10 @@
             <form class="form-horizontal" action=index.php method=POST>
                 <fieldset>
                     <div>
-                        <label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;">Self-Destructing Message</label>
+                        <label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $message_title; ?></label>
+                        <div style="font-style: italic">
+                            <label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $message_subtitle; ?></label>
+                        </div>
                         <div style="margin-top:10px">
                             <textarea class="form-control" name="secret" placeholder="Secret text..."><?php echo $template_text ?></textarea>
                         </div>
