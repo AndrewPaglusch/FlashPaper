@@ -1,4 +1,4 @@
-<?php defined('_DEFVAR') or exit(); ?>
+<?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 <!DOCTYPE html>
     <head>
         <title>FlashPaper :: Self-Destructing Message</title>

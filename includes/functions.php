@@ -1,6 +1,6 @@
 <?php
 
-    defined('_DEFVAR') or exit(); 
+    defined('_DIRECT_ACCESS_CHECK') or exit(); 
 
     $bcrypt_options = [
         'cost' => 11,
