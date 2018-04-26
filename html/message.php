@@ -1,3 +1,4 @@
+<?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
         <div id="form-div">
             <fieldset>
                 <div>

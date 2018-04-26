@@ -1,5 +1,6 @@
 <?php
 
+	define('_DIRECT_ACCESS_CHECK', 1);
 	require_once "includes/functions.php";
 
 	$useJson = true;
