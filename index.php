@@ -1,4 +1,6 @@
 <?php
+	#Settings
+	define('RETURN_FULL_URL', true);
 
 	define('_DIRECT_ACCESS_CHECK', 1);
 	require_once "includes/functions.php";
@@ -28,7 +30,12 @@
 			$incoming_text = $_POST['secret'];
 			$k = store_secret($incoming_text);
 		
-			$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
+			if (constant("RETURN_FULL_URL") == true) {
+				$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
+			} else {
+				$message = $k;
+			}
+
 			$message_title = "Self-Destructing URL";
 			$message_subtitle = "";
 			
@@ -43,11 +50,11 @@
       
 		#Get template from URL (if any)
 		$template_text = "";
-        
-        	try {
+
+		try {
 			if (isset($_GET['t']) && $_GET['t'] != "") {
 				$template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
-	    		}
+			}
         	} catch (Exception $e) {
 			die("Template can not be found!");
        		}
