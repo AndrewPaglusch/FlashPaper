@@ -50,13 +50,13 @@
       
 		#Get template from URL (if any)
 		$template_text = "";
-        
-        	try {
-				if (isset($_GET['t']) && $_GET['t'] != "") {
-					$template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
-	    		}
+
+		try {
+			if (isset($_GET['t']) && $_GET['t'] != "") {
+				$template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
+			}
         	} catch (Exception $e) {
-				die("Template can not be found!");
+			die("Template can not be found!");
        		}
 
 		$message_title = "Self-Destructing Message";
