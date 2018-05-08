@@ -1,5 +1,5 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
-    <body>
+    <body onUnload="document.getElementById('secret').value = ''">
         <div id="form-div">
             <form class="form-horizontal" action=index.php method=POST>
                 <fieldset>
@@ -9,7 +9,7 @@
                             <label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $message_subtitle; ?></label>
                         </div>
                         <div style="margin-top:10px">
-                            <textarea class="form-control" name="secret" placeholder="Secret text..."><?php echo $template_text ?></textarea>
+                            <textarea class="form-control" id="secret" name="secret" placeholder="Secret text..."><?php echo $template_text ?></textarea>
                         </div>
                     </div>
                     <div style="margin-top: 1%; width: 100%">
