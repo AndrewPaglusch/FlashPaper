@@ -30,7 +30,7 @@
 			$incoming_text = $_POST['secret'];
 			$k = store_secret($incoming_text);
 		
-			if ($RETURN_FULL_URL) {
+			if (constant("RETURN_FULL_URL") == true) {
 				$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
 			} else {
 				$message = $k;
