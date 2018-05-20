@@ -19,6 +19,10 @@
                 -moz-border-radius: 7px;
                 -webkit-border-radius: 7px;
             }
+			.form-control[readonly] {
+				background-color:#ffffff !important;
+				opacity:1
+			}
             textarea {
                 width: 100%;
                 height: 150px;
