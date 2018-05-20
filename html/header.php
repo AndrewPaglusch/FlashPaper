@@ -50,5 +50,11 @@
                 background-color: #67b2bc;
                 color: white;
             }
+			.col-8 {
+                width: 320px !important;
+            }
+			.col-4 {
+				width: 100% !important;
+			}
         </style>
     </head>
