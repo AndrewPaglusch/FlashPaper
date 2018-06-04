@@ -19,10 +19,10 @@
                 -moz-border-radius: 7px;
                 -webkit-border-radius: 7px;
             }
-			.form-control[readonly] {
-				background-color:#ffffff !important;
-				opacity:1
-			}
+            .form-control[readonly] {
+                background-color:#ffffff !important;
+                opacity:1
+            }
             textarea {
                 width: 100%;
                 height: 150px;
@@ -54,11 +54,11 @@
                 background-color: #67b2bc;
                 color: white;
             }
-			.col-8 {
+            .col-8 {
                 width: 320px !important;
             }
-			.col-4 {
-				width: 100% !important;
-			}
+            .col-4 {
+                width: 100% !important;
+            }
         </style>
     </head>
