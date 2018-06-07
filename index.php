@@ -22,7 +22,9 @@
 			}
 		} else {
 			#This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
-			echo "<h2>View the secret?<br /><a href='?k=" . $_GET['k'] . "&accept=true'>Yes</a></h2>";
+			include('html/header.php');
+			include('html/confirm.php');
+			include('html/footer.php');
 		}		
 	} elseif (isset($_POST['submit'])) {
 		#**User just submitted a secret. Show them the generated URL**
