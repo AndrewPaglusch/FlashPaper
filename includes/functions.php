@@ -2,14 +2,13 @@
 
     defined('_DIRECT_ACCESS_CHECK') or exit(); 
 
-    $bcrypt_options = [
-        'cost' => 11,
-        'salt' => "7jEKI5ISLaLwmU9xrNuh2JeO54rS4cJdbPwCvifJr8OoKa3Y59RWn67cNaHnGcpvmnnH7AGzB465FpnjdhSu8roJHnjQcrnWCP",
-    ];
+    $bcrypt_options = ['cost' => 11, 'salt' => '#`jQ9`@qryyF]`uz,-a,i|}^]=a8LT\$'];
 
-    function encrypt_decrypt($encrypt, $secret_key, $string) {
-        $key = hash('sha256', $secret_key);
-        $iv = substr(hash('sha256', $secret_key), 0, 16); #sha256 sha1 of key and get first 16 bytes
+    #used for second round of encryption. can be destroyed to invalidate all secrets on disk
+    $static_key = 'FAg&Se(YO3h!Ib?K2W^>Gv[n?h)w)!y>';
+
+    function encrypt_decrypt($encrypt, $key, $string) {
+        $iv = substr(hash('sha256', $key), 0, 16); #sha256 sha1 of key and get first 16 bytes
 
         if( $encrypt == true) {
             return openssl_encrypt($string, "AES-256-CBC", $key, 0, $iv);
@@ -57,57 +56,48 @@
         return base64_decode(strtr($input, '-_$', '+/='));
     }
 
-    function is_valid_base64($base64text) {
-      #This isn't perfect, but it'll catch 99% of non-valid Base64 endoding
-
-      #Check if there is no invalid character in string
-      if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $base64text)) return false;
-
-      #Decode the string in strict mode and send the response
-      if (!base64_decode($base64text, true)) return false;
-
-      #Encode and compare it to original one
-      if (base64_encode(base64_decode($base64text, true)) != $base64text) return false;
-
-      return true;
-    }
-
     function store_secret($text) {
-      global $bcrypt_options;
+      global $bcrypt_options, $static_key;
 
-      #generate random password
-      $rand_pass = random_str();
+      #generate random key
+      $rand_key = random_str();
 
-      #base64 encode the password (for URL)
-      $base_pass = base64_encode_mod($rand_pass);
+      #base64 encode the key (for URL)
+      $base_key = base64_encode_mod($rand_key);
 
-      #encrypt text with password
-      $enc_text = encrypt_decrypt(true, $rand_pass, $text);
+      #encrypt text with random key
+      $enc_text = encrypt_decrypt(true, $rand_key, $text);
 
-      #generate hash of password & base64 it
-      $filename = base64_encode_mod(password_hash($rand_pass, PASSWORD_BCRYPT, $bcrypt_options));
+      #encrypt text with static key
+      $enc_text = encrypt_decrypt(true, $static_key, $enc_text);
 
-      #write encrypted text to disk. filename is hash of password
+      #generate hash of key & base64 it
+      $filename = base64_encode_mod(password_hash($rand_key, PASSWORD_BCRYPT, $bcrypt_options));
+
+      #write encrypted text to disk. filename is hash of key
       write_file("secrets/" . $filename, $enc_text);
 
-      #return base64 of password
-      return $base_pass;
+      #return base64 of key
+      return $base_key;
     }
 
     function retrieve_secret($key) {
-      global $bcrypt_options;
+      global $bcrypt_options, $static_key;
       
-      #decode password from url with modified base64
-      $password = base64_decode_mod($key);
+      #decode key from url with modified base64
+      $key = base64_decode_mod($key);
 
-      #generate hash of password & base64 it
-      $filename = base64_encode_mod(password_hash($password, PASSWORD_BCRYPT, $bcrypt_options));
+      #generate hash of key & base64 it
+      $filename = base64_encode_mod(password_hash($key, PASSWORD_BCRYPT, $bcrypt_options));
 
-      #read file that is named same as the hash of password
+      #read file that is named same as the hash of key
       $enc_text = read_file("secrets/" . $filename);
 
-      #decrypt contents of file with the base64 decoded password
-      $dec_text = encrypt_decrypt(false, $password, $enc_text);
+      #decrypt contents of file with the static key
+      $dec_text = encrypt_decrypt(false, $static_key, $enc_text);
+
+      #decrypt contents of file with the base64 decoded key
+      $dec_text = encrypt_decrypt(false, $key, $dec_text);
 
       #delete the file from disk
       delete_file("secrets/" . $filename);
