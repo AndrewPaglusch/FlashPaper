@@ -7,7 +7,7 @@
 	
 	if (isset($_GET['k'])) {
 		#**User is trying to view a secret**
-		if ($_GET['accept'] == "true") {
+		if (isset($_GET['accept']) && $_GET['accept'] == "true") {
 			try {
 				$secret = retrieve_secret($_GET['k']);
 				$message = htmlentities($secret);
@@ -57,9 +57,9 @@
 			if (isset($_GET['t']) && $_GET['t'] != "") {
 				$template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
 			}
-        	} catch (Exception $e) {
+       	} catch (Exception $e) {
 			die("Template can not be found!");
-       		}
+       	}
 
 		$message_title = "Self-Destructing Message";
 		$message_subtitle = "";
