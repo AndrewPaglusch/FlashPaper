@@ -4,17 +4,15 @@
 
     $bcrypt_options = ['cost' => 11, 'salt' => '#`jQ9`@qryyF]`uz,-a,i|}^]=a8LT\$'];
 
-    #used for second round of encryption. can be destroyed to invalidate all secrets on disk
-    $static_key = 'FAg&Se(YO3h!Ib?K2W^>Gv[n?h)w)!y>';
+    #Used for second round of encryption. Can be destroyed to invalidate all secrets on disk
+    $static_key = base64_decode('tGOrlqr/97qxQwby+uwsbReOLxTLgrMntDKX/Uj4LMy6YSSQ9Xr4DjMgKVhnUT2pZ/YFJUo/qE/xBMD5dZBF9ZBZTnPNz+Pnez1OazpoEAy2M3vE7N/kQ4tP7kA98jf+NCKqi8MLJ6hQPMPXFuciIQsKUNWc6clJ+q5GwJAxikyxy8VCnDgOEoV0u6GpVB7syrB1OlvORAWsB7wqkq2XmiZnRVJsnz/td6kBhnwPE5F7ghlncZcyXjuL86M/bFlrqtm6pH6mVLWIAeRFdH7jVdgB/ihVsnaxXXkHnY9AZEzmuk19r+IiRHIv+ft299t//ddFM5lGduwqKCJ8tfpWFQ==');
+    $static_iv = base64_decode('PhIumEnRYCnv+DlQOO2rvw==');
 
-    function encrypt_decrypt($encrypt, $key, $string) {
-        $iv = substr(hash('sha256', $key), 0, 16); #get first 16 bytes of sha256(key) for IV
-        $enc_method = 'AES-256-CBC';
-
+    function encrypt_decrypt($encrypt, $key, $iv, $string) {
         if( $encrypt == true) {
-            return openssl_encrypt($string, $enc_method, $key, 0, $iv);
+            return openssl_encrypt($string, 'AES-256-CBC', $key, 0, $iv);
         } else {
-            return openssl_decrypt($string, $enc_method, $key, 0, $iv);
+            return openssl_decrypt($string, 'AES-256-CBC', $key, 0, $iv);
         }
     }
 
@@ -41,8 +39,8 @@
         unlink($filename);
     }
 
-    function random_str() {
-        for ($i = -1; $i <= 32; $i++) {
+    function random_str($len) {
+        for ($i = -1; $i <= $len; $i++) {
           $bytes = openssl_random_pseudo_bytes($i, $cstrong);
         }
         return $bytes;
@@ -57,19 +55,22 @@
     }
 
     function store_secret($text) {
-        global $bcrypt_options, $static_key;
+        global $bcrypt_options, $static_key, $static_iv;
         
         #generate random key
-        $rand_key = random_str();
-        
+        $rand_key = random_str(32);
+
+        #generate random iv
+        $iv = random_str(16);
+
         #base64 encode the key (for URL)
-        $base_key = base64_encode_mod($rand_key);
+        $base_key = base64_encode_mod($iv . $rand_key);
         
         #encrypt text with random key
-        $enc_text = encrypt_decrypt(true, $rand_key, $text);
+        $enc_text = encrypt_decrypt(true, $rand_key, $iv, $text);
         
         #encrypt text with static key
-        $enc_text = encrypt_decrypt(true, $static_key, $enc_text);
+        $enc_text = encrypt_decrypt(true, $static_key, $static_iv, $enc_text);
         
         #generate hash of key & base64 it
         $filename = base64_encode_mod(password_hash($rand_key, PASSWORD_BCRYPT, $bcrypt_options));
@@ -81,12 +82,20 @@
         return $base_key;
     }
 
-    function retrieve_secret($key) {
-        global $bcrypt_options, $static_key;
+    function retrieve_secret($k) {
+        global $bcrypt_options, $static_key, $static_iv;
+
+        #validate length of key - must be 48 chars (iv = 16, key = 32)
+        if ( strlen(base64_decode_mod($key)) != 48 ) {
+            throw new Exception('Malformed key!');
+        }
         
         #decode key from url with modified base64
-        $key = base64_decode_mod($key);
-        
+        $key = substr(base64_decode_mod($k), -32);
+		
+        #decode iv from url
+        $iv = substr(base64_decode_mod($k), 0, 16);
+
         #generate hash of key & base64 it
         $filename = base64_encode_mod(password_hash($key, PASSWORD_BCRYPT, $bcrypt_options));
         
@@ -94,10 +103,10 @@
         $enc_text = read_file("secrets/" . $filename);
         
         #decrypt contents of file with the static key
-        $dec_text = encrypt_decrypt(false, $static_key, $enc_text);
+        $dec_text = encrypt_decrypt(false, $static_key, $static_iv, $enc_text);
         
         #decrypt contents of file with the base64 decoded key
-        $dec_text = encrypt_decrypt(false, $key, $dec_text);
+        $dec_text = encrypt_decrypt(false, $key, $iv, $dec_text);
         
         #delete the file from disk
         delete_file("secrets/" . $filename);
