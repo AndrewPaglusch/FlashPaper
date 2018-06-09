@@ -2,9 +2,7 @@
 
     defined('_DIRECT_ACCESS_CHECK') or exit(); 
 
-    $bcrypt_options = ['cost' => 11, 'salt' => '#`jQ9`@qryyF]`uz,-a,i|}^]=a8LT\$'];
-
-    #Used for second round of encryption. Can be destroyed to invalidate all secrets on disk
+    $bcrypt_options = ['cost' => 11, 'salt' => base64_decode('6bDvAudGJKkTweOWIlxVbTWjmj/8kDL9giAPkGDN7qhCi+jM50eS/2ijplJ1jf7T1+ZF1pUmtw2xlxsb0hlr3w==')];
     $static_key = base64_decode('tGOrlqr/97qxQwby+uwsbReOLxTLgrMntDKX/Uj4LMy6YSSQ9Xr4DjMgKVhnUT2pZ/YFJUo/qE/xBMD5dZBF9ZBZTnPNz+Pnez1OazpoEAy2M3vE7N/kQ4tP7kA98jf+NCKqi8MLJ6hQPMPXFuciIQsKUNWc6clJ+q5GwJAxikyxy8VCnDgOEoV0u6GpVB7syrB1OlvORAWsB7wqkq2XmiZnRVJsnz/td6kBhnwPE5F7ghlncZcyXjuL86M/bFlrqtm6pH6mVLWIAeRFdH7jVdgB/ihVsnaxXXkHnY9AZEzmuk19r+IiRHIv+ft299t//ddFM5lGduwqKCJ8tfpWFQ==');
     $static_iv = base64_decode('PhIumEnRYCnv+DlQOO2rvw==');
 
