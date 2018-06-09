@@ -73,7 +73,7 @@
         $enc_text = encrypt_decrypt(true, $static_key, $static_iv, $enc_text);
         
         #generate hash of key & base64 it
-        $filename = base64_encode_mod(password_hash($rand_key, PASSWORD_BCRYPT, $bcrypt_options));
+        $filename = base64_encode_mod(password_hash($iv . $rand_key, PASSWORD_BCRYPT, $bcrypt_options));
         
         #write encrypted text to disk. filename is hash of key
         write_file("secrets/" . $filename, $enc_text);
@@ -97,7 +97,7 @@
         $iv = substr(base64_decode_mod($k), 0, 16);
 
         #generate hash of key & base64 it
-        $filename = base64_encode_mod(password_hash($key, PASSWORD_BCRYPT, $bcrypt_options));
+        $filename = base64_encode_mod(password_hash($iv . $key, PASSWORD_BCRYPT, $bcrypt_options));
         
         #read file that is named same as the hash of key
         $enc_text = read_file("secrets/" . $filename);
