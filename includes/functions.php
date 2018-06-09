@@ -86,7 +86,7 @@
         global $bcrypt_options, $static_key, $static_iv;
 
         #validate length of key - must be 48 chars (iv = 16, key = 32)
-        if ( strlen(base64_decode_mod($key)) != 48 ) {
+        if ( strlen(base64_decode_mod($k)) != 48 ) {
             throw new Exception('Malformed key!');
         }
         
