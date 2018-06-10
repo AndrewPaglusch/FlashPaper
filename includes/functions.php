@@ -14,7 +14,13 @@
         }
     }
 
-    function write_file($filename, $text) {
+    function write_file($filename, $text, $randPrefix = false) {
+        if ( $randPrefix ) {
+            #generate random 20-character prefix
+            $prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+            $filename = dirname($filename) . "/" . $prefix . "---" . basename($filename);
+        }
+
         if ($fp = fopen($filename, "w")) {
             fwrite($fp, $text);
             fclose($fp);
@@ -23,7 +29,15 @@
         }
     }
 
-    function read_file($filename) {
+    function read_file($filename, $randPrefix = false) {
+        if ( $randPrefix ) {
+           $results = glob(dirname($filename) . '/*--' . basename($filename));
+           if ( count($results) != 1 ) {
+               throw new Exception('This secret can not be found!');
+           } else {
+               $filename = $results[0];
+           }
+        }
         if ( file_exists($filename) && ($fp = fopen($filename, "rb")) !== false ) {
             $str = stream_get_contents($fp);
             fclose($fp);
@@ -33,8 +47,17 @@
         }
     }
 
-    function delete_file($filename) {
-        unlink($filename);
+    function delete_file($filename, $randPrefix) {
+        if ( $randPrefix ) {
+           $results = glob(dirname($filename) . '/*--' . basename($filename));
+           if ( count($results) != 1 ) {
+               throw new Exception('Failed to delete secret!');
+           } else {
+               unlink($results[0]);
+           }
+        } else {
+            unlink($filename);
+        }
     }
 
     function random_str($len) {
@@ -74,7 +97,7 @@
         $filename = base64_encode_mod(password_hash($iv . $rand_key, PASSWORD_BCRYPT, $bcrypt_options));
         
         #write encrypted text to disk. filename is hash of key
-        write_file("secrets/" . $filename, $enc_text);
+        write_file("secrets/" . $filename, $enc_text, true);
         
         #return base64 of key
         return $base_key;
@@ -98,7 +121,7 @@
         $filename = base64_encode_mod(password_hash($iv . $key, PASSWORD_BCRYPT, $bcrypt_options));
         
         #read file that is named same as the hash of key
-        $enc_text = read_file("secrets/" . $filename);
+        $enc_text = read_file("secrets/" . $filename, true);
         
         #decrypt contents of file with the static key
         $dec_text = encrypt_decrypt(false, $static_key, $static_iv, $enc_text);
@@ -107,7 +130,7 @@
         $dec_text = encrypt_decrypt(false, $key, $iv, $dec_text);
         
         #delete the file from disk
-        delete_file("secrets/" . $filename);
+        delete_file("secrets/" . $filename, true);
         
         #return decrypted text
         return $dec_text;
