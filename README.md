@@ -15,15 +15,12 @@ https://flashpaper.io
 ## Installation
 Copy the contents of this repository to document root of your web server. 
 
-Change the static AES key, static IV, and salt in `includes/functions.php` if you're going to use this in production. Do **not** skip this step if your care about security!
+Change the static AES key and salt in `includes/functions.php` if you're going to use this in production. Do **not** skip this step if your care about security!
 
-### To generate a unique key, IV, and salt:
+### To generate a unique key and salt:
 ```
 #key
 openssl rand -base64 256 | tr -d '\n'
-
-#iv
-openssl rand -base64 16
 
 #salt
 openssl rand -base64 64 | tr -d '\n'
@@ -36,9 +33,9 @@ To further increase security, disable access logging in your web server's config
 * Random 256-bit cryptographically strong key is created
 * Random IV is created
 * Submitted text is AES-256-CBC encrypted with key. Random IV used during encryption
-* Ciphertext is now encrypted with static AES key and IV. **This should be unique for your install!**
+* Ciphertext is now encrypted with static AES key. **This should be unique for your install!**
 * IV + key is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
-* File is created in `secrets` directory. The name of file is the base64'd bcrypt hash of the IV + key
+* File is created in `secrets` directory. The name of file is a random 20-character + the base64'd bcrypt hash of the IV + key
 * Ciphertext is stored inside of created file
 * 'k' value of retrieval URL is base64 endcoded IV + key
   * `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
@@ -46,9 +43,9 @@ To further increase security, disable access logging in your web server's config
 ### Retrieving Secret
 * 'k' value of URL is base64 decoded and split into IV and key portions
 * IV + key from URL are hashed with bcrypt (static salt, cost of 11) and then base64 encoded
-* Look for file in `secrets` directory that's named the base64'd hash of IV + key that we just generated. If the URL has been tampered with, the hash will not match any filename on disk and no secret will not be returned.
+* Look for file in `secrets` directory that's named the base64'd hash of IV + key that we just generated (plus random 20-character prefix in filename). If the URL has been tampered with, the hash will not match any filename on disk and no secret will not be returned.
 * Get text from the file that we found and decrypt it with the key and IV from URL
-* Decrypt text using static AES key and IV
+* Decrypt text using static AES key
 * Return the decrypted text to user
 * Delete the file
 
