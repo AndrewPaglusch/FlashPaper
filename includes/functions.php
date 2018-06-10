@@ -4,7 +4,6 @@
 
     $bcrypt_options = ['cost' => 11, 'salt' => base64_decode('6bDvAudGJKkTweOWIlxVbTWjmj/8kDL9giAPkGDN7qhCi+jM50eS/2ijplJ1jf7T1+ZF1pUmtw2xlxsb0hlr3w==')];
     $static_key = base64_decode('tGOrlqr/97qxQwby+uwsbReOLxTLgrMntDKX/Uj4LMy6YSSQ9Xr4DjMgKVhnUT2pZ/YFJUo/qE/xBMD5dZBF9ZBZTnPNz+Pnez1OazpoEAy2M3vE7N/kQ4tP7kA98jf+NCKqi8MLJ6hQPMPXFuciIQsKUNWc6clJ+q5GwJAxikyxy8VCnDgOEoV0u6GpVB7syrB1OlvORAWsB7wqkq2XmiZnRVJsnz/td6kBhnwPE5F7ghlncZcyXjuL86M/bFlrqtm6pH6mVLWIAeRFdH7jVdgB/ihVsnaxXXkHnY9AZEzmuk19r+IiRHIv+ft299t//ddFM5lGduwqKCJ8tfpWFQ==');
-    $static_iv = base64_decode('PhIumEnRYCnv+DlQOO2rvw==');
 
     function encrypt_decrypt($encrypt, $key, $iv, $string) {
         if( $encrypt == true) {
@@ -76,7 +75,7 @@
     }
 
     function store_secret($text) {
-        global $bcrypt_options, $static_key, $static_iv;
+        global $bcrypt_options, $static_key;
         
         #generate random key
         $rand_key = random_str(32);
@@ -91,7 +90,7 @@
         $enc_text = encrypt_decrypt(true, $rand_key, $iv, $text);
         
         #encrypt text with static key
-        $enc_text = encrypt_decrypt(true, $static_key, $static_iv, $enc_text);
+        $enc_text = encrypt_decrypt(true, $static_key, $iv, $enc_text);
         
         #generate hash of key & base64 it
         $filename = base64_encode_mod(password_hash($iv . $rand_key, PASSWORD_BCRYPT, $bcrypt_options));
@@ -104,7 +103,7 @@
     }
 
     function retrieve_secret($k) {
-        global $bcrypt_options, $static_key, $static_iv;
+        global $bcrypt_options, $static_key;
 
         #validate length of key - must be 48 chars (iv = 16, key = 32)
         if ( strlen(base64_decode_mod($k)) != 48 ) {
@@ -124,7 +123,7 @@
         $enc_text = read_file("secrets/" . $filename, true);
         
         #decrypt contents of file with the static key
-        $dec_text = encrypt_decrypt(false, $static_key, $static_iv, $enc_text);
+        $dec_text = encrypt_decrypt(false, $static_key, $iv, $enc_text);
         
         #decrypt contents of file with the base64 decoded key
         $dec_text = encrypt_decrypt(false, $key, $iv, $dec_text);
