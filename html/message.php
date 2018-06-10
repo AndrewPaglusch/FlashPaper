@@ -1,4 +1,5 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
+    <body>
         <div id="form-div">
             <fieldset>
                 <div>
@@ -12,3 +13,4 @@
                 </div>
             </fieldset>
         </div>
+    </body>
