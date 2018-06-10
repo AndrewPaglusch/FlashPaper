@@ -15,11 +15,9 @@
 
     function write_file($filename, $text, $randPrefix = false) {
         if ( $randPrefix ) {
-            #generate random 20-character prefix
             $prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
             $filename = dirname($filename) . "/" . $prefix . "---" . basename($filename);
         }
-
         if ($fp = fopen($filename, "w")) {
             fwrite($fp, $text);
             fclose($fp);
@@ -107,7 +105,7 @@
 
         #validate length of key - must be 48 chars (iv = 16, key = 32)
         if ( strlen(base64_decode_mod($k)) != 48 ) {
-            throw new Exception('Malformed key!');
+			throw new Exception('This secret can not be found!');
         }
         
         #decode key from url with modified base64
