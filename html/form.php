@@ -19,8 +19,14 @@
                          <select id="select" name="select" class="custom-select" onChange="window.location.href=this.value">
                             <option value="" selected disabled hidden>-- Select Template</option>
                             <option value="/">No Template</option>
-                            <option value="?t=cc">Credit Card</option>
-                            <option value="?t=creds">Credentials</option>
+                            <?php
+                                $templates = glob('templates/*.txt');
+                                foreach ($templates as $t) {
+                                    $filename = basename($t, '.txt');
+                                    $url_filename = urlencode($filename);
+                                    echo "<option value=\"?t={$url_filename}\">{$filename}</option>";
+                                }
+                            ?>
                          </select>
                        </div>
                      </div> 
@@ -33,3 +39,4 @@
                 </fieldset>
             </form>
         </div>
+    </body>
