@@ -1,6 +1,10 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 <!DOCTYPE html>
     <head>
+        <!-- ##############################################################################
+             # Copyright (c) 2018 Andrew Paglusch                                         #
+             # https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE #
+             ############################################################################## -->
         <title>FlashPaper :: Self-Destructing Message</title>
         <!-- Meta tags -->
         <meta charset="utf-8">
