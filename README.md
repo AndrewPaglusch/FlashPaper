@@ -35,7 +35,7 @@ To further increase security, disable access logging in your web server's config
 * Submitted text is AES-256-CBC encrypted with key. Random IV used during encryption
 * Ciphertext is now encrypted with static AES key. **This should be unique for your install!**
 * IV + key is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
-* File is created in `secrets` directory. The name of file is a random 20-character + the base64'd bcrypt hash of the IV + key
+* File is created in `secrets` directory. The name of file is a random 20-character string + the base64'd bcrypt hash of the IV + key
 * Ciphertext is stored inside of created file
 * 'k' value of retrieval URL is base64 endcoded IV + key
   * `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
