@@ -12,8 +12,18 @@
 		}
 	}
 
-	function connect($databaseName) {
-		$db = new PDO("sqlite:{$databaseName}");
+	function connect() {
+		$dbName = "secrets.sqlite";
+		$results = glob("*--{$dbName}");
+
+		if ( count($results) != 1 ) {
+			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+			$dbName = "{$prefix}--{$dbName}";
+		} else {
+			$dbName = $results[0];
+		}
+
+		$db = new PDO("sqlite:{$dbName}");
 		$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT)');
 		return $db;
 	}
@@ -60,7 +70,7 @@
 		global $staticKey;
 
 		#connect to sqlite db
-		$db = connect('secrets.sqlite');
+		$db = connect();
 
 		#generate random id, iv, key
 		$id = random_str(8);
@@ -96,7 +106,7 @@
 		global $staticKey;
 
 		#connect to sqlite db
-		$db = connect('secrets.sqlite');
+		$db = connect();
 
 		#validate length of k - must be 40 chars (id = 8, key = 32)
 		if ( strlen(base64_decode_mod($k)) != 40 ) {
