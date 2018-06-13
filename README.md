@@ -34,7 +34,7 @@ To further increase security, disable access logging in your web server's config
 * Submitted text is encrypted with AES-256-CBC using AES key and random IV
 * Ciphertext is now encrypted with AES-256-CBC using static AES key and random IV
 * ID and AES key joined (known as `k`)
-* ID, IV, bcrypt hash, and ciphertext stored in in DB
+* ID, IV, bcrypt hash, and ciphertext stored in DB
 * `k` value returned to user in one-time URL
   * Example URL: `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d7e8f9g`
 
