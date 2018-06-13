@@ -1,6 +1,7 @@
 <?php
 	#Settings
 	define('RETURN_FULL_URL', true);
+	define('MAX_INPUT_LENGTH', 3000);
 
 	define('_DIRECT_ACCESS_CHECK', 1);
 	require_once "includes/functions.php";
@@ -29,9 +30,14 @@
 		#**User just submitted a secret. Show them the generated URL**
 		try {
 			$incoming_text = $_POST['secret'];
+
+			if ( strlen($incoming_text) > constant('MAX_INPUT_LENGTH') ) {
+				throw new exception("Input length too long");
+			}
+
 			$k = store_secret($incoming_text);
 
-			if (constant("RETURN_FULL_URL") == true) {
+			if (constant('RETURN_FULL_URL') == true) {
 				$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
 			} else {
 				$message = $k;

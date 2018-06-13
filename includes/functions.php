@@ -36,31 +36,17 @@
 		$statement->execute();
 	}
 
-	function readSecret($db, $hash) {
-		$statement = $db->prepare('SELECT * FROM "secrets" WHERE hash = :hash LIMIT 1');
-		$statement->bindValue(':hash', $hash);
+	function readRow($db, $table, $key, $value) {
+		$statement = $db->prepare('SELECT * FROM "' . $table . '" WHERE ' . $key . ' = :value LIMIT 1');
+		$statement->bindValue(':value', $value);
 		$statement->execute();
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
 		return $result;
 	}
 
-	function readSalt($db, $saltid) {
-		$statement = $db->prepare('SELECT * FROM "salts" WHERE id = :saltid LIMIT 1');
-		$statement->bindValue(':saltid', $saltid);
-		$statement->execute();
-		$result = $statement->fetch(PDO::FETCH_ASSOC);
-		return $result;
-	}
-
-	function deleteSecret($db, $hash) {
-		$statement = $db->prepare('DELETE FROM "secrets" WHERE hash = :hash');
-		$statement->bindValue(':hash', $hash);
-		$statement->execute();
-	}
-
-	function deleteSalt($db, $saltid) {
-		$statement = $db->prepare('DELETE FROM "salts" WHERE id = :saltid');
-		$statement->bindValue(':saltid', $saltid);
+	function deleteRow($db, $table, $key, $value) {
+		$statement = $db->prepare('DELETE FROM "' . $table . '" WHERE ' . $key . ' = :value');
+		$statement->bindValue(':value', $value);
 		$statement->execute();
 	}
 
@@ -140,7 +126,7 @@
 		$saltid = base64_encode_mod($saltid);
 
 		#look up salt with saltid
-		$saltResult = readSalt($db, $saltid);
+		$saltResult = readRow($db, 'salts', 'id', $saltid);
 
 		#throw exception if query failed
 		if ( ! $saltResult ) {
@@ -159,7 +145,7 @@
 		$secret_hash = base64_encode_mod($secret_hash);
 
 		#read secret, hash, and iv from db
-		$db_result = readSecret($db, $secret_hash);
+		$db_result = readRow($db, 'secrets', 'hash', $secret_hash);
 
 		#throw exception if query failed
 		if ( ! $db_result ) {
@@ -179,8 +165,8 @@
 		$secret = encrypt_decrypt(false, $key, $iv, $secret);
 
 		#delete secret and salt from db
-		deleteSecret($db, $secret_hash);
-		deleteSalt($db, $saltid);
+		deleteRow($db, 'secrets', 'hash', $secret_hash);
+		deleteRow($db, 'salts', 'id', $saltid);
 
 		#close db
 		$db = null;
