@@ -15,39 +15,42 @@ https://flashpaper.io
 ## Installation
 Copy the contents of this repository to document root of your web server. 
 
-Change the static AES key and salt in `includes/functions.php` if you're going to use this in production. Do **not** skip this step if your care about security!
+Change the static AES key in `includes/functions.php` if you're going to use this in production. Do **not** skip this step if your care about security!
 
-### To generate a unique key and salt:
+### To generate a unique key:
 ```
-#key
 openssl rand -base64 256 | tr -d '\n'
-
-#salt
-openssl rand -base64 64 | tr -d '\n'
 ```
 
 To further increase security, disable access logging in your web server's configuration so nothing sensetive (IP addresses, useragents, timestamps, etc) are logged to disk.
 
 ## Summary Of How It Works
 ### Submitting Secret
-* Random 256-bit cryptographically strong key is created
-* Random IV is created
-* Submitted text is AES-256-CBC encrypted with key. Random IV used during encryption
-* Ciphertext is now encrypted with static AES key. **This should be unique for your install!**
-* IV + key is hashed with bcrypt (static salt, cost of 11) and then base64 encoded
-* File is created in `secrets` directory. The name of file is a random 20-character string + the base64'd bcrypt hash of the IV + key
-* Ciphertext is stored inside of created file
-* 'k' value of retrieval URL is base64 endcoded IV + key
-  * `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d$`
+* `secrets.sqlite` sqlite database created (if it doesn't already exist) with two tables: `salts` and `secrets`.
+* Random 256-bit AES key is created
+* Random 16-bit IV is created
+* Random 64-bit salt is created
+* Random 16-bit salt ID is created
+* AES key is hashed with bcrypt (cost of 11). Random salt is used.
+* Submitted text is encrypted with AES-256-CBC using AES key and random IV
+* Ciphertext is now encrypted with AES-256-CBC using static AES key and random IV
+* Salt ID and AES key joined (known as `k`)
+* Salt ID and salt stored in `salts` table in DB
+* bcrypt hash, IV, and ciphertext stored in `secrets` table in DB
+* `k` value returned to user in one-time URL
+  * Example URL: `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d7e8f9g`
 
+ 
 ### Retrieving Secret
-* 'k' value of URL is base64 decoded and split into IV and key portions
-* IV + key from URL are hashed with bcrypt (static salt, cost of 11) and then base64 encoded
-* Look for file in `secrets` directory that's named the base64'd hash of IV + key that we just generated (plus random 20-character prefix in filename). If the URL has been tampered with, the hash will not match any filename on disk and no secret will not be returned.
-* Get text from the file that we found and decrypt it with the key and IV from URL
-* Decrypt text using static AES key
-* Return the decrypted text to user
-* Delete the file
+* `k` value removed from URL and base64 decoded
+* Decoded `k` value split into two parts: salt ID and AES key
+* Salt looked up from `salts` table in DB using salt ID from `k`
+* AES key from `k` hashed with bcrypt (cost of 11). Salt from DB is used.
+* bcrypt output used to look up ciphertext and IV from `secrets` table in DB
+* Ciphertext decrypted with static AES key and IV
+* Ciphertext decrypted with AES key from `k` and IV
+* Salt, salt ID, bcrypt hash, ciphertext, and IV all deleted from DB
+* Decrypted text sent to user
 
 ## Automating Requests With `curl`
 
