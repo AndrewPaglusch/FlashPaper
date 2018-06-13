@@ -53,7 +53,7 @@
 
 		try {
 			if (isset($_GET['t']) && $_GET['t'] != "") {
-				$template_text = read_file('templates/' . basename($_GET['t'] . '.txt'));
+				$template_text = file_get_contents('templates/' . basename($_GET['t'] . '.txt'));
 			}
 
 			$message_title = "Self-Destructing Message";
