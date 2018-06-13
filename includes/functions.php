@@ -74,7 +74,7 @@
 		#generate random key, iv, salt, and saltid
 		$key = random_str(32);
 		$iv = random_str(16);
-		$salt = random_str(64);
+		$salt = random_str(8);
 		$saltid = random_str(16);
 
 		#generate hash of key
