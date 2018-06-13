@@ -28,9 +28,9 @@ To further increase security, disable access logging in your web server's config
 ### Submitting Secret
 * `secrets.sqlite` sqlite database created (if it doesn't already exist) with two tables: `salts` and `secrets`.
 * Random 256-bit AES key is created
-* Random 16-bit IV is created
+* Random 128-bit IV is created
 * Random 64-bit salt is created
-* Random 16-bit salt ID is created
+* Random 128-bit salt ID is created
 * AES key is hashed with bcrypt (cost of 11). Random salt is used.
 * Submitted text is encrypted with AES-256-CBC using AES key and random IV
 * Ciphertext is now encrypted with AES-256-CBC using static AES key and random IV
