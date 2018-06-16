@@ -2,8 +2,6 @@
 
 	defined('_DIRECT_ACCESS_CHECK') or exit();
 
-	$staticKey = base64_decode('tGOrlqr/97qxQwby+uwsbReOLxTLgrMntDKX/Uj4LMy6YSSQ9Xr4DjMgKVhnUT2pZ/YFJUo/qE/xBMD5dZBF9ZBZTnPNz+Pnez1OazpoEAy2M3vE7N/kQ4tP7kA98jf+NCKqi8MLJ6hQPMPXFuciIQsKUNWc6clJ+q5GwJAxikyxy8VCnDgOEoV0u6GpVB7syrB1OlvORAWsB7wqkq2XmiZnRVJsnz/td6kBhnwPE5F7ghlncZcyXjuL86M/bFlrqtm6pH6mVLWIAeRFdH7jVdgB/ihVsnaxXXkHnY9AZEzmuk19r+IiRHIv+ft299t//ddFM5lGduwqKCJ8tfpWFQ==');
-
 	function encrypt_decrypt($encrypt, $key, $iv, $string) {
 		if( $encrypt == true) {
 			return openssl_encrypt($string, 'AES-256-CBC', $key, 0, $iv);
@@ -26,6 +24,41 @@
 		$db = new PDO("sqlite:{$dbName}");
 		$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT)');
 		return $db;
+	}
+
+	function getStaticKey() {
+		$keyName = "aes-static.key";
+		$results = glob("*--{$keyName}");
+		$staticKey = null;
+
+		if ( count($results) != 1 ) {
+			#static key needs to be created
+			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+			$keyName = "{$prefix}--{$keyName}";
+			$staticKey = random_str(32);
+
+			if ($fp = fopen($keyName, "w")) {
+				fwrite($fp, $staticKey);
+				fclose($fp);
+			} else {
+				throw new Exception('Failed to write static key to disk!');
+			}
+		} else {
+			#read static key from disk
+			$keyName = $results[0];
+			if ( ($fp = fopen($keyName, "rb")) !== false ) {
+				$staticKey = stream_get_contents($fp);
+				fclose($fp);
+			} else {
+				throw new Exception('Unable to read static key from disk!');
+			}
+		}
+
+		if ( strlen($staticKey) >= 32 ) {
+			return $staticKey;
+		} else {
+			throw new Exception('Bad static key length!');
+		}
 	}
 
 	function writeSecret($db, $id, $iv, $hash, $secret) {
@@ -67,8 +100,6 @@
 	}
 
 	function store_secret($secret) {
-		global $staticKey;
-
 		#connect to sqlite db
 		$db = connect();
 
@@ -85,7 +116,7 @@
 
 		#encrypt text with key and then static key
 		$secret = encrypt_decrypt(true, $key, $iv, $secret);
-		$secret = encrypt_decrypt(true, $staticKey, $iv, $secret);
+		$secret = encrypt_decrypt(true, getStaticKey(), $iv, $secret);
 
 		#base64 encode the id, iv, and secret for db storage
 		$id = base64_encode_mod($id);
@@ -103,7 +134,6 @@
 	}
 
 	function retrieve_secret($k) {
-		global $staticKey;
 
 		#connect to sqlite db
 		$db = connect();
@@ -137,7 +167,7 @@
 		}
 
 		#decrypt secret with the static key, and then with url key
-		$secret = encrypt_decrypt(false, $staticKey, $iv, $secret);
+		$secret = encrypt_decrypt(false, getStaticKey(), $iv, $secret);
 		$secret = encrypt_decrypt(false, $key, $iv, $secret);
 
 		#delete secret from db
