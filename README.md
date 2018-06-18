@@ -15,19 +15,13 @@ https://flashpaper.io
 ## Installation
 Copy the contents of this repository to document root of your web server. 
 
-Change the static AES key in `includes/functions.php` if you're going to use this in production. Do **not** skip this step if your care about security!
-
-### To generate a unique key:
-```
-openssl rand -base64 256 | tr -d '\n'
-```
-
 To further increase security, disable access logging in your web server's configuration so nothing sensetive (IP addresses, useragents, timestamps, etc) are logged to disk.
 
 ## Summary Of How It Works
 ### Submitting Secret
 * `secrets.sqlite` sqlite database created (if it doesn't already exist).
 * Random 256-bit AES key is created
+* Random 256-bit AES static key is created (if one doesn't exist already)
 * Random 128-bit IV is created
 * Random 64-bit ID is created
 * ID + AES key is hashed with bcrypt 
