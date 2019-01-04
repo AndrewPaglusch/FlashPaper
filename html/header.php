@@ -29,7 +29,7 @@
             }
             textarea {
                 width: 100%;
-                height: 150px;
+                height: 200px;
                 padding: 12px 20px;
                 box-sizing: border-box;
                 border: 2px solid #ccc;
