@@ -82,6 +82,11 @@
 		$statement = $db->prepare('DELETE FROM "secrets" WHERE id = :id');
 		$statement->bindValue(':id', $id);
 		$statement->execute();
+
+		$verify = $db->prepare('SELECT COUNT(*) FROM "secrets" WHERE id = :id');
+		$verify->bindValue(':id', $id);
+		$verify->execute();
+		return ( $verify->fetchColumn() == 0 );
 	}
 
 	function random_str($byteLen) {
@@ -162,7 +167,7 @@
 		$secret = base64_decode_mod($secretQuery['secret']);
 
 		#verify hash from DB equals hash of id + key from URL
-		if ( ! password_verify($id . $key, $hash)) {
+		if ( ! password_verify($id . $key, $hash) ) {
 			throw new Exception('This secret can not be found!');
 		}
 
@@ -170,8 +175,10 @@
 		$secret = encrypt_decrypt(false, getStaticKey(), $iv, $secret);
 		$secret = encrypt_decrypt(false, $key, $iv, $secret);
 
-		#delete secret from db
-		deleteSecret($db, $idBase64);
+		#delete secret and verify it's gone
+		if ( ! deleteSecret($db, $idBase64) ) {
+			throw new Exception('This secret can not be found!');
+		}
 
 		#close db
 		$db = null;
