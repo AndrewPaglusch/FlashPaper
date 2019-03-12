@@ -66,3 +66,4 @@
             }
         </style>
     </head>
+	<body onUnload="document.getElementById('secret').value = ''">

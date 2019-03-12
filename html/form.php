@@ -1,5 +1,4 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
-    <body onUnload="document.getElementById('secret').value = ''">
         <div id="form-div">
             <form class="form-horizontal" action=index.php method=POST>
                 <fieldset>
@@ -39,4 +38,3 @@
                 </fieldset>
             </form>
         </div>
-    </body>
