@@ -3,7 +3,7 @@
 	<head>
 		<!-- 
 		##############################################################################
-		# Copyright (c) 2018 Andrew Paglusch										 #
+		# Copyright (c) 2018 Andrew Paglusch					     #
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE #
 		############################################################################## 
 		-->
