@@ -4,7 +4,7 @@
 				<div class="form-group row float-middle">
 					<div class="col">
 						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 15px; font-size: 30px; font-weight: bold; padding-bottom: 1%">View this secret?</label>
-                        <br />
+						<br />
 						<form method="post" action="/">
 							<input type="hidden" name="k" value="<?php echo $_GET['k'] ?>">
 							<button type="submit" class="btn btn-primary w-20 mx-auto">View Secret</button>
