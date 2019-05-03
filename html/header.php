@@ -23,6 +23,7 @@
 				padding-bottom:50px;
 
 				margin:30px;
+				border-radius: 7px;
 				-moz-border-radius: 7px;
 				-webkit-border-radius: 7px;
 			}
@@ -70,8 +71,8 @@
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">
-	<?php
-		if ($_SERVER['REQUEST_SCHEME'] != 'https') {
-			echo '<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>';
-		}
-	?>
+<?php
+	if ($_SERVER['REQUEST_SCHEME'] != 'https') {
+		echo '<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>'; 
+	}
+?>
