@@ -10,21 +10,19 @@
 
 	if (isset($_GET['k'])) {
 		#**User is trying to view a secret**
-		if (isset($_GET['accept']) && $_GET['accept'] == "true") {
-			try {
-				$secret = retrieve_secret($_GET['k']);
-				$message = htmlentities($secret);
-				$message_title = "Self-Destructing Message";
-				$message_subtitle = "This message has been destroyed";
+		include('html/confirm.php');
+	} elseif (isset($_POST['k'])) {
+		#**User confirmed viewing the secret**
+		try {
+			$secret = retrieve_secret($_POST['k']);
+			$message = htmlentities($secret);
+			$message_title = "Self-Destructing Message";
+			$message_subtitle = "This message has been destroyed";
 
-				include('html/message.php');
-			} catch (Exception $e) {
-				$error_message = $e->getMessage();
-				include('html/error.php');
-			}
-		} else {
-			#This is to prevent 'preview bots' from automatically viewing the secret and thus destroying it
-			include('html/confirm.php');
+			include('html/message.php');
+		} catch (Exception $e) {
+			$error_message = $e->getMessage();
+			include('html/error.php');
 		}
 	} elseif (isset($_POST['submit'])) {
 		#**User just submitted a secret. Show them the generated URL**
