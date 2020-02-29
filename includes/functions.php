@@ -90,10 +90,12 @@
 	}
 
 	function random_str($byteLen) {
-		for ($i = -1; $i <= $byteLen; $i++) {
-			$bytes = openssl_random_pseudo_bytes($i, $cstrong);
+		$bytes = openssl_random_pseudo_bytes($byteLen, $cstrong);
+		if ( ! $cstrong ) {
+			throw new Exception('Failed to generate cryptographically secure bytes!');
+		} else {
+			return $bytes;
 		}
-		return $bytes;
 	}
 
 	function base64_encode_mod($input) {
