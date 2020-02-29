@@ -90,10 +90,7 @@
 	}
 
 	function random_str($byteLen) {
-		for ($i = -1; $i <= $byteLen; $i++) {
-			$bytes = openssl_random_pseudo_bytes($i, $cstrong);
-		}
-		return $bytes;
+		return openssl_random_pseudo_bytes($byteLen, $cstrong);
 	}
 
 	function base64_encode_mod($input) {
