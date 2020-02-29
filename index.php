@@ -36,7 +36,14 @@
 			$k = store_secret($incoming_text);
 
 			if (constant('RETURN_FULL_URL') == true) {
-				$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
+				# construct retrieval url
+				$scheme = $_SERVER['REQUEST_SCHEME'] . '://'; # https://
+				$hostname = $_SERVER['HTTP_HOST']; # my.flashpaper.io
+				$path = preg_replace('/(\/+)/','/',$_SERVER['REQUEST_URI']); # strip any duplicate /'s from path
+				$path = rtrim($path,'index.php'); # remove index.php from path if it's there
+				$path = rtrim($path, '/') . '/'; # make sure path ends with /
+				$args = "?k=${k}"; # /?k=a1b2c3d4...
+				$message = "${scheme}${hostname}${path}${args}";
 			} else {
 				$message = $k;
 			}
