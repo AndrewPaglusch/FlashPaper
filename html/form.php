@@ -1,6 +1,6 @@
 <?php #defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 		<div id="form-div">
-			<form class="form-horizontal" action="index.php" method="POST">
+			<form class="form-horizontal" action="" method="POST">
 				<fieldset>
 					<div>
 						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $message_title; ?></label>
@@ -15,7 +15,7 @@
 						<div class="col">
 							<select id="select" name="select" class="custom-select" onChange="window.location.href=this.value">
 								<option value="" selected disabled hidden>-- Select Template</option>
-								<option value="/">No Template</option>
+								<option value="./">No Template</option>
 								<?php
 									$templates = glob('templates/*.txt');
 									foreach ($templates as $t) {
