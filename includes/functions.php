@@ -3,7 +3,7 @@
 	defined('_DIRECT_ACCESS_CHECK') or exit();
 
 	function encrypt_decrypt($encrypt, $key, $iv, $string) {
-		if( $encrypt == true) {
+		if ( $encrypt == true ) {
 			return openssl_encrypt($string, 'AES-256-CBC', $key, 0, $iv);
 		} else {
 			return openssl_decrypt($string, 'AES-256-CBC', $key, 0, $iv);
@@ -37,7 +37,7 @@
 			$keyName = "{$prefix}--{$keyName}";
 			$staticKey = random_str(32);
 
-			if ($fp = fopen($keyName, "w")) {
+			if ( $fp = fopen($keyName, "w") ) {
 				fwrite($fp, $staticKey);
 				fclose($fp);
 			} else {
