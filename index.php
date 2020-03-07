@@ -2,6 +2,7 @@
 	#Settings
 	define('RETURN_FULL_URL', true);
 	define('MAX_INPUT_LENGTH', 3000);
+	define('DATA_DIR', 'data');
 
 	define('_DIRECT_ACCESS_CHECK', 1);
 	require_once "includes/functions.php";
