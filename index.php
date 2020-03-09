@@ -40,8 +40,9 @@
 				# construct retrieval url
 				$scheme = $_SERVER['REQUEST_SCHEME'] . '://'; # https://
 				$hostname = $_SERVER['HTTP_HOST']; # my.flashpaper.io
-				$path = preg_replace('/(\/+)/','/',$_SERVER['REQUEST_URI']); # strip any duplicate /'s from path
-				$path = rtrim($path,'index.php'); # remove index.php from path if it's there
+				$path = strtok($_SERVER['REQUEST_URI'], '?'); # strip any GET vars from url (like ?t=bla)
+				$path = str_replace("index.php","",$path); # remove index.php from path if it's there
+				$path = preg_replace('/(\/+)/','/',$path); # strip any duplicate /'s from path
 				$path = rtrim($path, '/') . '/'; # make sure path ends with /
 				$args = "?k=${k}"; # /?k=a1b2c3d4...
 				$message = "${scheme}${hostname}${path}${args}";
