@@ -42,7 +42,11 @@
 
 			if (constant('RETURN_FULL_URL') == true) {
 				# construct retrieval url
-				$scheme = $_SERVER['REQUEST_SCHEME'] . '://'; # https://
+				if ( isset($_SERVER['REQUEST_SCHEME']) ) {
+					$scheme = $_SERVER['REQUEST_SCHEME'] . '://'; # https://
+				} else {
+					$scheme = 'https://';
+				}
 				$hostname = $_SERVER['HTTP_HOST']; # my.flashpaper.io
 				$path = strtok($_SERVER['REQUEST_URI'], '?'); # strip any GET vars from url (like ?t=bla)
 				$path = str_replace("index.php","",$path); # remove index.php from path if it's there
