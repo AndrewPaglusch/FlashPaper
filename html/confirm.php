@@ -7,7 +7,7 @@
 						<br />
 						<form method="post" action="./">
 							<input type="hidden" name="k" value="<?php echo $_GET['k'] ?>">
-							<button type="submit" class="btn btn-primary w-20 mx-auto">View Secret</button>
+							<button type="submit" onclick="this.disabled=true;this.form.submit();" class="btn btn-primary w-20 mx-auto">View Secret</button>
 						</form>
 					</div>
 				</div>
