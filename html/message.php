@@ -7,7 +7,7 @@
 						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $message_subtitle; ?></label>
 					</div>
 					<div style="margin-top:10px">
-						<textarea readonly class="form-control" name="secret"><?php echo $message ?></textarea>
+						<textarea readonly class="form-control" name="secret" rows="8" style="resize: vertical;"><?php echo $message ?></textarea>
 					</div>
 				</div>
 			</fieldset>
