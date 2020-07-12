@@ -3,41 +3,58 @@
 	defined('_DIRECT_ACCESS_CHECK') or exit();
 
 	function encrypt_decrypt($encrypt, $key, $iv, $string) {
-		if( $encrypt == true) {
-			return openssl_encrypt($string, 'AES-256-CBC', $key, 0, $iv);
+		if ( $encrypt == true ) {
+			$encText = openssl_encrypt($string, 'AES-256-CBC', $key, 0, $iv);
+			if ( ! $encText ) {
+				throw new Exception('Failed to encrypt data!');
+			} else {
+				return $encText;
+			}
 		} else {
-			return openssl_decrypt($string, 'AES-256-CBC', $key, 0, $iv);
+			$decText = openssl_decrypt($string, 'AES-256-CBC', $key, 0, $iv);
+			if ( ! $decText ) {
+				throw new Exception('Failed to decrypt data!');
+			} else {
+				return $decText;
+			}
 		}
 	}
 
 	function connect() {
 		$dbName = "secrets.sqlite";
-		$results = glob("*--{$dbName}");
+		$results = glob("./" . constant('DATA_DIR') . "/*--{$dbName}");
 
+		# find name of existing db or generate a new one if not found
 		if ( count($results) != 1 ) {
 			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
-			$dbName = "{$prefix}--{$dbName}";
+			$dbName = "./" . constant('DATA_DIR') . "/{$prefix}--{$dbName}";
 		} else {
 			$dbName = $results[0];
 		}
 
-		$db = new PDO("sqlite:{$dbName}");
-		$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT)');
-		return $db;
+		# open the db (create if it doesnt exist)
+		try {
+			$db = new PDO("sqlite:{$dbName}");
+			$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT)');
+			return $db;
+		} catch (Exception $e) {
+			# re-throw exception so we can catch it higer up with a more helpful error message
+			throw new Exception('Failed to create or open database!');
+		}
 	}
 
 	function getStaticKey() {
 		$keyName = "aes-static.key";
-		$results = glob("*--{$keyName}");
+		$results = glob("./" . constant('DATA_DIR') . "/*--{$keyName}");
 		$staticKey = null;
 
 		if ( count($results) != 1 ) {
 			#static key needs to be created
 			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
-			$keyName = "{$prefix}--{$keyName}";
+			$keyName = "./" . constant('DATA_DIR') . "/{$prefix}--{$keyName}";
 			$staticKey = random_str(32);
 
-			if ($fp = fopen($keyName, "w")) {
+			if ( $fp = fopen($keyName, "w") ) {
 				fwrite($fp, $staticKey);
 				fclose($fp);
 			} else {
@@ -67,26 +84,36 @@
 		$statement->bindValue(':iv', $iv);
 		$statement->bindValue(':hash', $hash);
 		$statement->bindValue(':secret', $secret);
-		$statement->execute();
+		if ( ! $statement->execute() ) {
+			throw new Exception('Failed to write to database!');
+		}
 	}
 
 	function readSecret($db, $id) {
 		$statement = $db->prepare('SELECT * FROM "secrets" WHERE id = :id LIMIT 1');
 		$statement->bindValue(':id', $id);
-		$statement->execute();
-		$result = $statement->fetch(PDO::FETCH_ASSOC);
-		return $result;
+		if ( ! $statement->execute() ) {
+			throw new Exception('Failed to read from database!');
+		} else {
+			$result = $statement->fetch(PDO::FETCH_ASSOC);
+			return $result;
+		}
 	}
 
 	function deleteSecret($db, $id) {
 		$statement = $db->prepare('DELETE FROM "secrets" WHERE id = :id');
 		$statement->bindValue(':id', $id);
-		$statement->execute();
+		if ( ! $statement->execute() ) {
+			throw new Exception('Failed to write to database!');
+		}
 
 		$verify = $db->prepare('SELECT COUNT(*) FROM "secrets" WHERE id = :id');
 		$verify->bindValue(':id', $id);
-		$verify->execute();
-		return ( $verify->fetchColumn() == 0 );
+		if ( ! $verify->execute() ) {
+			throw new Exception('Failed to read from database!');
+		} else {
+			return ( $verify->fetchColumn() == 0 );
+		}
 	}
 
 	function random_str($byteLen) {
@@ -179,7 +206,8 @@
 
 		#delete secret and verify it's gone
 		if ( ! deleteSecret($db, $idBase64) ) {
-			throw new Exception('This secret can not be found!');
+			# if we cant destroy it, dont give the secret out
+			throw new Exception('Failed to destroy secret!');
 		}
 
 		#close db

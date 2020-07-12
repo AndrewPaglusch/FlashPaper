@@ -2,15 +2,20 @@
 	#Settings
 	define('RETURN_FULL_URL', true);
 	define('MAX_INPUT_LENGTH', 3000);
+	define('DATA_DIR', 'data');
 
 	define('_DIRECT_ACCESS_CHECK', 1);
+
+	# check everything before we proceed
+	require_once("includes/sanitycheck.php");
+
 	require_once "includes/functions.php";
 
-	include('html/header.php');
+	require_once('html/header.php');
 
 	if (isset($_GET['k'])) {
 		#**User is trying to view a secret**
-		include('html/confirm.php');
+		require_once('html/confirm.php');
 	} elseif (isset($_POST['k'])) {
 		#**User confirmed viewing the secret**
 		try {
@@ -19,10 +24,10 @@
 			$message_title = "Self-Destructing Message";
 			$message_subtitle = "This message has been destroyed";
 
-			include('html/message.php');
+			require_once('html/message.php');
 		} catch (Exception $e) {
 			$error_message = $e->getMessage();
-			include('html/error.php');
+			require_once('html/error.php');
 		}
 	} elseif (isset($_POST['submit'])) {
 		#**User just submitted a secret. Show them the generated URL**
@@ -36,7 +41,19 @@
 			$k = store_secret($incoming_text);
 
 			if (constant('RETURN_FULL_URL') == true) {
-				$message = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/?k=" . $k;
+				# construct retrieval url
+				if ( isset($_SERVER['REQUEST_SCHEME']) ) {
+					$scheme = $_SERVER['REQUEST_SCHEME'] . '://'; # https://
+				} else {
+					$scheme = 'https://';
+				}
+				$hostname = $_SERVER['HTTP_HOST']; # my.flashpaper.io
+				$path = strtok($_SERVER['REQUEST_URI'], '?'); # strip any GET vars from url (like ?t=bla)
+				$path = str_replace("index.php","",$path); # remove index.php from path if it's there
+				$path = preg_replace('/(\/+)/','/',$path); # strip any duplicate /'s from path
+				$path = rtrim($path, '/') . '/'; # make sure path ends with /
+				$args = "?k=${k}"; # /?k=a1b2c3d4...
+				$message = "${scheme}${hostname}${path}${args}";
 			} else {
 				$message = $k;
 			}
@@ -44,10 +61,10 @@
 			$message_title = "Self-Destructing URL";
 			$message_subtitle = "";
 
-			include('html/message.php');
+			require_once('html/message.php');
 		} catch (Exception $e) {
 			$error_message = $e->getMessage();
-			include('html/error.php');
+			require_once('html/error.php');
 		}
 	} else {
 		#**User is loading the main page**
@@ -63,12 +80,12 @@
 			$message_title = "Self-Destructing Message";
 			$message_subtitle = "";
 
-			include('html/form.php');
+			require_once('html/form.php');
 		} catch (Exception $e) {
 			$error_message = "Template can not be found!";
-			include('html/error.php');
+			require_once('html/error.php');
 	   	}
 	}
 
-	include('html/footer.php');
+	require_once('html/footer.php');
 ?>
