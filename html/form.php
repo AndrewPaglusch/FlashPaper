@@ -8,7 +8,7 @@
 							<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $message_subtitle; ?></label>
 						</div>
 						<div style="margin-top:10px">
-							<textarea class="form-control" id="secret" name="secret" rows="8" style="resize: vertical;" placeholder="Secret text..."><?php echo $template_text ?></textarea>
+							<textarea class="form-control" id="secret" name="secret" rows="8" maxlength="<?php echo constant('MAX_INPUT_LENGTH') ?>" style="resize: vertical;" placeholder="Secret text..."><?php echo $template_text ?></textarea>
 						</div>
 					</div>
 					<div class="form-group row float-right" style='padding-top: 3%'>
