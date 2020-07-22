@@ -101,6 +101,7 @@
 	}
 
 	function deleteSecret($db, $id) {
+		$db->exec('PRAGMA secure_delete = 1');
 		$statement = $db->prepare('DELETE FROM "secrets" WHERE id = :id');
 		$statement->bindValue(':id', $id);
 		if ( ! $statement->execute() ) {
