@@ -53,15 +53,19 @@
 				$path = preg_replace('/(\/+)/','/',$path); # strip any duplicate /'s from path
 				$path = rtrim($path, '/') . '/'; # make sure path ends with /
 				$args = "?k=${k}"; # /?k=a1b2c3d4...
+
+				# display URL to user
 				$message = "${scheme}${hostname}${path}${args}";
+				$message_title = "Self-Destructing URL";
+				$message_subtitle = "Share this URL via email, chat, or another messaging service. It will self-destruct after being viewed once.";
+				require_once('html/message.php');
 			} else {
+				# display 'k' value of URL to user
 				$message = $k;
+				$message_title = "Self-Destructing Message Code";
+				$message_subtitle = "Share this code with the person who requested it. Your message will self-destruct after being viewed once.";
+				require_once('html/message.php');
 			}
-
-			$message_title = "Self-Destructing URL";
-			$message_subtitle = "";
-
-			require_once('html/message.php');
 		} catch (Exception $e) {
 			$error_message = $e->getMessage();
 			require_once('html/error.php');
@@ -77,7 +81,7 @@
 				$template_text = file_get_contents('templates/' . basename($_GET['t'] . '.txt'));
 			}
 
-			$message_title = "Self-Destructing Message";
+			$message_title = "Create A Self-Destructing Message";
 			$message_subtitle = "";
 
 			require_once('html/form.php');

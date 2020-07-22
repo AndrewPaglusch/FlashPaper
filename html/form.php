@@ -29,7 +29,7 @@
 					</div>
 					<div class="form-group row float-left" style='padding-top: 3%'>
 						<div class="col">
-							<button name="submit" type="submit" class="btn btn-primary">Submit</button>
+							<button name="submit" type="submit" class="btn btn-primary">Encrypt Message</button>
 						</div>
 					</div>
 				</fieldset>
