@@ -4,6 +4,9 @@
 
   if(file_exists('./env.php')) {
       include './env.php';
+  } else {
+    echo 'Please make sure env.php is readable';
+    die();
   }
 
   if(!function_exists('env')) {

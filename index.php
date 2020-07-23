@@ -11,6 +11,8 @@
 
 	require_once "includes/functions.php";
 
+    include "autoload.php";
+
 	require_once('html/header.php');
 
 	if (isset($_GET['k'])) {
