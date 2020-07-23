@@ -13,7 +13,8 @@ https://flashpaper.io
 * Linux
 
 ## Installation
-Copy the contents of this repository to document root of your web server. 
+Copy the contents of this repository to document root of your web server.
+Copy env.example.php to env.php
 
 To further increase security, disable access logging in your web server's configuration so nothing sensetive (IP addresses, useragents, timestamps, etc) are logged to disk.
 
