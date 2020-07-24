@@ -5,7 +5,7 @@
 		$errors = [];
 
 		# make sure data dir is writable. doesn't account for missing executable bit
-		if ( ! is_writable("./" . constant('DATA_DIR')) ) {
+		if ( ! is_writable("./data") ) {
 			$errors[] = 'Data directory is not writable';
 		}
 
@@ -16,7 +16,7 @@
 
 		# make sure settings.php exists
 		if ( ! file_exists('./settings.php') ) {
-			$errors[] = 'The settings.php file is not readable';
+			$errors[] = 'The settings.php file is not readable or does not exist';
 		}
 
 		return $errors;
@@ -26,7 +26,7 @@
 	$check_results = sanity_check();
 
 	if ( count($check_results) > 0 ) {
-		include('html/base.php');
+		include('html/header.php');
 		foreach ($check_results as $issue) { $error_message .= "<li>{$issue}</li>"; }
 
 		echo <<<EOS
