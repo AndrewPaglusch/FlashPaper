@@ -73,7 +73,7 @@
 			$template_text = file_get_contents('templates/' . basename($_GET['t'] . '.txt'));
 		}
 
-		require_once('html/form.php');
+		require_once('html/submit_secret.php');
 	}
 
 	require_once('html/footer.php');
