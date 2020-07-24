@@ -14,6 +14,11 @@
 			$errors[] = 'PHP SQLite module is not installed';
 		}
 
+		# make sure settings.php exists
+		if ( ! file_exists('./settings.php') ) {
+			$errors[] = 'The settings.php file is not readable';
+		}
+
 		return $errors;
 	}
 

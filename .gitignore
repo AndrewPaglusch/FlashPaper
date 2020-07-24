@@ -1,4 +1,4 @@
 data/*.sqlite
 data/*.key
 stage-*
-env.php
+settings.php

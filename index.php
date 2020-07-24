@@ -9,9 +9,7 @@
 	# check everything before we proceed
 	require_once("includes/sanitycheck.php");
 
-	require_once "includes/functions.php";
-
-    include "autoload.php";
+	require_once("includes/functions.php");
 
 	require_once('html/header.php');
 
