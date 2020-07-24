@@ -26,7 +26,7 @@
 	$check_results = sanity_check();
 
 	if ( count($check_results) > 0 ) {
-		include('html/header.php');
+		include('html/base.php');
 		foreach ($check_results as $issue) { $error_message .= "<li>{$issue}</li>"; }
 
 		echo <<<EOS
