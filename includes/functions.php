@@ -22,12 +22,12 @@
 
 	function connect() {
 		$dbName = "secrets.sqlite";
-		$results = glob("./" . constant('DATA_DIR') . "/*--{$dbName}");
+		$results = glob("./data/*--{$dbName}");
 
 		# find name of existing db or generate a new one if not found
 		if ( count($results) != 1 ) {
 			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
-			$dbName = "./" . constant('DATA_DIR') . "/{$prefix}--{$dbName}";
+			$dbName = "./data/{$prefix}--{$dbName}";
 		} else {
 			$dbName = $results[0];
 		}
@@ -45,13 +45,13 @@
 
 	function getStaticKey() {
 		$keyName = "aes-static.key";
-		$results = glob("./" . constant('DATA_DIR') . "/*--{$keyName}");
+		$results = glob("./data/*--{$keyName}");
 		$staticKey = null;
 
 		if ( count($results) != 1 ) {
 			#static key needs to be created
 			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
-			$keyName = "./" . constant('DATA_DIR') . "/{$prefix}--{$keyName}";
+			$keyName = "./data/{$prefix}--{$keyName}";
 			$staticKey = random_str(32);
 
 			if ( $fp = fopen($keyName, "w") ) {
