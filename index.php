@@ -1,13 +1,10 @@
 <?php
-	#Settings
-	define('RETURN_FULL_URL', true);
-	define('MAX_INPUT_LENGTH', 3000);
-	define('DATA_DIR', 'data');
-
 	define('_DIRECT_ACCESS_CHECK', 1);
 
 	# check everything before we proceed
 	require_once("includes/sanitycheck.php");
+
+	require_once("settings.php");
 
 	require_once("includes/functions.php");
 
@@ -16,31 +13,30 @@
 	if (isset($_GET['k'])) {
 		#**User is trying to view a secret**
 		require_once('html/confirm.php');
+
 	} elseif (isset($_POST['k'])) {
 		#**User confirmed viewing the secret**
 		try {
 			$secret = retrieve_secret($_POST['k']);
 			$message = htmlentities($secret);
-			$message_title = "Self-Destructing Message";
-			$message_subtitle = "This message has been destroyed";
-
-			require_once('html/message.php');
+			require_once('html/view_secret.php');
 		} catch (Exception $e) {
 			$error_message = $e->getMessage();
 			require_once('html/error.php');
 		}
+
 	} elseif (isset($_POST['submit'])) {
 		#**User just submitted a secret. Show them the generated URL**
 		try {
 			$incoming_text = $_POST['secret'];
 
-			if ( strlen($incoming_text) > constant('MAX_INPUT_LENGTH') ) {
+			if ( strlen($incoming_text) > $settings['max_secret_length'] ) {
 				throw new exception("Input length too long");
 			}
 
 			$k = store_secret($incoming_text);
 
-			if (constant('RETURN_FULL_URL') == true) {
+			if ($settings['return_full_url'] == true) {
 				# construct retrieval url
 				if ( isset($_SERVER['REQUEST_SCHEME']) ) {
 					$scheme = $_SERVER['REQUEST_SCHEME'] . '://'; # https://
@@ -56,39 +52,28 @@
 
 				# display URL to user
 				$message = "${scheme}${hostname}${path}${args}";
-				$message_title = "Self-Destructing URL";
-				$message_subtitle = "Share this URL via email, chat, or another messaging service. It will self-destruct after being viewed once.";
-				require_once('html/message.php');
+				require_once('html/view_code.php');
 			} else {
 				# display 'k' value of URL to user
 				$message = $k;
-				$message_title = "Self-Destructing Message Code";
-				$message_subtitle = "Share this code with the person who requested it. Your message will self-destruct after being viewed once.";
-				require_once('html/message.php');
+				require_once('html/view_code.php');
 			}
 		} catch (Exception $e) {
 			$error_message = $e->getMessage();
 			require_once('html/error.php');
 		}
+
 	} else {
 		#**User is loading the main page**
 
 		#Get template from URL (if any)
 		$template_text = "";
 
-		try {
-			if (isset($_GET['t']) && $_GET['t'] != "") {
-				$template_text = file_get_contents('templates/' . basename($_GET['t'] . '.txt'));
-			}
+		if (isset($_GET['t']) && $_GET['t'] != "") {
+			$template_text = file_get_contents('templates/' . basename($_GET['t'] . '.txt'));
+		}
 
-			$message_title = "Create A Self-Destructing Message";
-			$message_subtitle = "";
-
-			require_once('html/form.php');
-		} catch (Exception $e) {
-			$error_message = "Template can not be found!";
-			require_once('html/error.php');
-	   	}
+		require_once('html/form.php');
 	}
 
 	require_once('html/footer.php');
