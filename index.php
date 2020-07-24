@@ -4,10 +4,13 @@
 	# check everything before we proceed
 	require_once("includes/sanitycheck.php");
 
+	# load settings
 	require_once("settings.php");
 
+	# load functions
 	require_once("includes/functions.php");
 
+	# display header
 	require_once('html/header.php');
 
 	if (isset($_GET['k'])) {
