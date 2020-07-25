@@ -6,17 +6,17 @@
 	require_once('html/header.php'); # display header
 
 
-	if (isset($_GET['k'])) {
+	if (!empty($_GET['k'])) {
 		try {
 			confirm_display_secret(); # ask confirmation before showing secret
 		} catch (Exception $e) { display_error($e); }
 
-	} elseif (isset($_POST['k'])) {
+	} elseif (!empty($_POST['k'])) {
 		try {
 			display_secret(); # user confirmed viewing the secret
 		} catch (Exception $e) { display_error($e); }
 
-	} elseif (isset($_POST['submit'])) {
+	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
 		try {
 			display_secret_code(); # secret submitted. display url/code
 		} catch (Exception $e) { display_error($e); }
@@ -33,7 +33,7 @@
 		global $settings;
 
 		$template_text = '';
-		if ( isset($_GET['t']) && $_GET['t'] != "" ) {
+		if ( !empty($_GET['t']) ) {
 			$safe_path = 'templates/' . basename($_GET['t']) . '.txt';
 			if ( file_exists($safe_path) ) { $template_text = file_get_contents($safe_path); }
 		}
