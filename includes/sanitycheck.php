@@ -5,13 +5,18 @@
 		$errors = [];
 
 		# make sure data dir is writable. doesn't account for missing executable bit
-		if ( ! is_writable("./" . constant('DATA_DIR')) ) {
+		if ( ! is_writable("./data") ) {
 			$errors[] = 'Data directory is not writable';
 		}
 
 		# make sure sqlite is installed
 		if ( ! in_array("sqlite", PDO::getAvailableDrivers()) ) {
 			$errors[] = 'PHP SQLite module is not installed';
+		}
+
+		# make sure settings.php exists
+		if ( ! file_exists('./settings.php') ) {
+			$errors[] = 'The settings.php file is not readable or does not exist';
 		}
 
 		return $errors;

@@ -8,7 +8,7 @@
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE         #
 		######################################################################################
 		-->
-		<title>FlashPaper :: Self-Destructing Message</title>
+		<title><?php echo $settings['site_title'] ?></title>
 		<!-- Meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
