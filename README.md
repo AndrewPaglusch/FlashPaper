@@ -10,7 +10,6 @@ https://flashpaper.io
 ## Requirements
 * PHP 5.6+
 * Web server
-* Linux
 
 ## Installation
 Copy the contents of this repository to document root of your web server.
