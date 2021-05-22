@@ -16,5 +16,5 @@ RUN mkdir -p /var/run/nginx && \
     mkdir -p /var/run/php-fpm && \
     chown -R nginx:nginx /var/run/ && \
     chmod +x /entrypoint.sh
-
+VOLUME /var/www/html/data
 ENTRYPOINT ["/bin/ash", "/entrypoint.sh"]
