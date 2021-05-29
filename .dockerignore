@@ -1,0 +1,6 @@
+LICENSE
+README.md
+settings.example.php
+docker-compose.yml
+\.*
+data/*
