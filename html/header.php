@@ -51,7 +51,7 @@
 				color: white;
 				padding: 12px 28px;
 				text-decoration: none;
-				font-size: 20px;
+				font-size: 16px;
 				margin: 4px 2px;
 				cursor: pointer;
 
