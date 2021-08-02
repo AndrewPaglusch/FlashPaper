@@ -12,7 +12,7 @@
 						</div>
 					</div>
 					<div class="form-group row float-end" style='padding-top: 3%'>
-						<div class="col float-end">
+						<div class="col">
 							<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
 								<option value="" selected disabled hidden>-- Select Template</option>
 								<option value="./">No Template</option>
