@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- 
+		<!--
 		######################################################################################
 		# Copyright (c) 2017-2019 Andrew Paglusch                                            #
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE         #
@@ -45,7 +45,7 @@
 				margin:10px;
 				border: 0;
 			}
-			input[type=submit] {
+			.btn-primary {
 				background-color: #4ca2ae;
 				border: none;
 				color: white;
@@ -58,7 +58,7 @@
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
 			}
-			input[type=submit]:hover {
+			.btn-primary:hover {
 				background-color: #67b2bc;
 				color: white;
 			}
