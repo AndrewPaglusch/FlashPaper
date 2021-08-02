@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- 
+		<!--
 		######################################################################################
 		# Copyright (c) 2017-2019 Andrew Paglusch                                            #
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE         #
@@ -13,7 +13,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="./css/bootstrap_4.6.0.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/bootstrap_5.0.2.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<style>
 			#form-div {
 				background-color:rgba(72,72,72,0.1);
@@ -45,20 +45,20 @@
 				margin:10px;
 				border: 0;
 			}
-			input[type=submit] {
+			.btn-primary {
 				background-color: #4ca2ae;
 				border: none;
 				color: white;
 				padding: 12px 28px;
 				text-decoration: none;
-				font-size: 20px;
+				font-size: 16px;
 				margin: 4px 2px;
 				cursor: pointer;
 
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
 			}
-			input[type=submit]:hover {
+			.btn-primary:hover {
 				background-color: #67b2bc;
 				color: white;
 			}
