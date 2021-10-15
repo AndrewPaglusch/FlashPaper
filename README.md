@@ -42,3 +42,10 @@ To further increase security, disable access logging in your web server's config
 * Ciphertext decrypted with AES key from `k` and IV
 * Entry deleted from DB
 * Decrypted text sent to user
+
+## Donations
+
+PayPal: https://paypal.me/AndrewPaglusch
+BitCoin: 1EYDa33S14ejuQGMhSjtBUmBHTBB8mbTRs
+
+Donations are not expected, but they are very appreciated!
