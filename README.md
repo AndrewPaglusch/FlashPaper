@@ -46,6 +46,7 @@ To further increase security, disable access logging in your web server's config
 ## Donations
 
 PayPal: https://paypal.me/AndrewPaglusch
+
 BitCoin: 1EYDa33S14ejuQGMhSjtBUmBHTBB8mbTRs
 
 Donations are not expected, but they are very appreciated!
