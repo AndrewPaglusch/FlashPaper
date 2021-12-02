@@ -26,7 +26,7 @@
 
 		# find name of existing db or generate a new one if not found
 		if ( count($results) != 1 ) {
-			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+			$prefix = crypto_rand_string(32);
 			$dbName = "./data/{$prefix}--{$dbName}";
 		} else {
 			$dbName = $results[0];
@@ -50,7 +50,7 @@
 
 		if ( count($results) != 1 ) {
 			#static key needs to be created
-			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+			$prefix = crypto_rand_string(32);
 			$keyName = "./data/{$prefix}--{$keyName}";
 			$staticKey = random_bytes(32);
 
