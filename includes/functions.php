@@ -52,7 +52,7 @@
 			#static key needs to be created
 			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
 			$keyName = "./data/{$prefix}--{$keyName}";
-			$staticKey = random_str(32);
+			$staticKey = crypto_rand_bytes(32);
 
 			if ( $fp = fopen($keyName, "w") ) {
 				fwrite($fp, $staticKey);
@@ -117,7 +117,7 @@
 		}
 	}
 
-	function random_str($byteLen) {
+	function crypto_rand_bytes($byteLen) {
 		$bytes = openssl_random_pseudo_bytes($byteLen, $cstrong);
 		if ( ! $cstrong ) {
 			throw new Exception('Failed to generate cryptographically secure bytes!');
@@ -126,15 +126,24 @@
 		}
 	}
 
+	function crypto_rand_string($strLen) {
+		# random_int() generates cryptographically secure pseudo-random integers
+	        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	        $key = '';
+	        for ($i = 0; $i < $strLen; ++$i) {
+	                $key .= $chars[random_int(0, strlen($chars) -1)];
+	        }
+		return $key;
+	}
+
 	function store_secret($secret) {
 		#connect to sqlite db
 		$db = connect();
 
 		#generate random id, iv, key
-		$master_hash = hash('sha256', random_str(128));
-		$id = substr($master_hash, 0, 8);
-		$iv = substr($master_hash, 8, 16);
-		$key = substr($master_hash, 24, 32);
+		$id = crypto_rand_string(8);
+		$iv = crypto_rand_string(16);
+		$key = crypto_rand_string(32);
 
 		#generate k value for url (id + key)
 		$k = $id . $key;
