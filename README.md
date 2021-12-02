@@ -8,7 +8,7 @@ https://flashpaper.io
 ![Picture of Main Page](https://i.imgur.com/3gDOy5l.png)
 
 ## Requirements
-* PHP 5.6+
+* PHP 7.0+
 * Web server
 
 ## Installation
