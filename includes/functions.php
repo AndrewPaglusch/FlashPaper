@@ -146,7 +146,7 @@
 		$secret = encrypt_decrypt(true, $key, $iv, $secret);
 		$secret = encrypt_decrypt(true, getStaticKey(), $iv, $secret);
 
-		#write id, iv, bcrypt password hash, and secret (b64) to database
+		#write id, iv, bcrypt password hash, and secret to database
 		writeSecret($db, $id, $iv, $hash, $secret);
 
 		#close db
