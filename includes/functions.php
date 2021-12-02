@@ -52,7 +52,7 @@
 			#static key needs to be created
 			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
 			$keyName = "./data/{$prefix}--{$keyName}";
-			$staticKey = crypto_rand_bytes(32);
+			$staticKey = random_bytes(32);
 
 			if ( $fp = fopen($keyName, "w") ) {
 				fwrite($fp, $staticKey);
@@ -114,15 +114,6 @@
 			throw new Exception('Failed to read from database!');
 		} else {
 			return ( $verify->fetchColumn() == 0 );
-		}
-	}
-
-	function crypto_rand_bytes($byteLen) {
-		$bytes = openssl_random_pseudo_bytes($byteLen, $cstrong);
-		if ( ! $cstrong ) {
-			throw new Exception('Failed to generate cryptographically secure bytes!');
-		} else {
-			return $bytes;
 		}
 	}
 
