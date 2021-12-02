@@ -146,8 +146,8 @@
 		$secret = encrypt_decrypt(true, $key, $iv, $secret);
 		$secret = encrypt_decrypt(true, getStaticKey(), $iv, $secret);
 
-		#write id (b64), iv, bcrypt password hash, and secret (b64) to database
-		writeSecret($db, base64_encode($id), $iv, $hash, $secret);
+		#write id, iv, bcrypt password hash, and secret (b64) to database
+		writeSecret($db, $id, $iv, $hash, $secret);
 
 		#close db
 		$db = null;
@@ -165,9 +165,14 @@
 			throw new Exception('This secret can not be found!');
 		}
 
-		#extract key and id from k. base64 encode id
+		#extract key and id from k
 		$key = substr($k, -32);
-		$id = base64_encode(substr($k, 0, 8));
+		$id = substr($k, 0, 8);
+
+		#validate id before using in db lookup
+		if ( preg_match('/[a-z0-9]{8}/i', $id) !== 1 ) {
+			throw new Exception('This secret can not be found!');
+		}
 
 		#look up secret by id
 		$secretQuery = readSecret($db, $id);
@@ -182,7 +187,7 @@
 		$secret = $secretQuery['secret'];
 
 		#verify hash from DB equals hash of id + key from URL
-		if ( ! password_verify(base64_decode($id) . $key, $hash) ) {
+		if ( ! password_verify($id . $key, $hash) ) {
 			throw new Exception('This secret can not be found!');
 		}
 
