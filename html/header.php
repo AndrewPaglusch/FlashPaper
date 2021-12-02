@@ -76,3 +76,8 @@
 				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
 			}
 		</script>
+		<?php
+			if ( $settings['announcement'] != '' ) {
+				echo '<div style="padding-top: 1%" class="container"><div class="alert alert-warning"><strong>Announcement:</strong> ' . $settings['announcement'] . '</div></div>';
+			}
+		?>
