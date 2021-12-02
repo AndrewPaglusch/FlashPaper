@@ -19,7 +19,7 @@ To further increase security, disable access logging in your web server's config
 
 ## Summary Of How It Works
 ### Submitting Secret
-* `secrets.sqlite` sqlite database created (if it doesn't already exist).
+* `<random>--secrets.sqlite` sqlite database created (if it doesn't already exist).
 * Random 256-bit AES key is created
 * Random 256-bit AES static key is created (if one doesn't exist already)
 * Random 128-bit IV is created
@@ -34,8 +34,8 @@ To further increase security, disable access logging in your web server's config
 
  
 ### Retrieving Secret
-* `k` value removed from URL and base64 decoded
-* Decoded `k` value split into two parts: ID and AES key
+* `k` value removed from URL
+* `k` value split into two parts: ID and AES key
 * IV, bcrypt hash, and ciphertext looked up from DB with ID from `k`
 * `k` bcrypt hash compared against bcrypt hash from DB (prevents tampering of URL)
 * Ciphertext decrypted with static AES key and IV
