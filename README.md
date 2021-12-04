@@ -5,43 +5,45 @@ A one-time encrypted zero-knowledge password/secret sharing application focused 
 
 https://flashpaper.io
 
-![Picture of Main Page](https://i.imgur.com/3gDOy5l.png)
-
-## Requirements
-* PHP 7.0+
-* Web server
+![Picture of Main Page](https://i.imgur.com/KIs9fjE.png)
 
 ## Installation
-Copy the contents of this repository to document root of your web server.
-Copy settings.example.php to settings.php and make customizations to that file
 
-To further increase security, disable access logging in your web server's configuration so nothing sensitive (IP addresses, user agent strings, timestamps, etc) are logged to disk.
+### Docker *(Recommended)*
+  1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper
+  2. Edit the `docker-compose.yml` file with your customizations
+  3. Run `docker-compose up -d` to start FlashPaper
+  4. Set up a reverse-proxy in front of FlashPaper that terminates SSL/TLS
 
-## Summary Of How It Works
+### Traditional
+  **Requirements:** PHP 7.0+ and a web server
+  1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper to the document root of your web server
+  2. Copy `settings.example.php` to `settings.php` and make customizations to that file
+  3. Disable access logging in your web server's configuration so nothing sensitive (IP addresses, user agent strings, timestamps, etc) are logged to disk
+
+## How It Works
 ### Submitting Secret
-* `<random>--secrets.sqlite` sqlite database created (if it doesn't already exist).
-* Random 256-bit AES key is created
-* Random 256-bit AES static key is created (if one doesn't exist already)
-* Random 128-bit IV is created
-* Random 64-bit ID is created
-* ID + AES key is hashed with bcrypt 
-* Submitted text is encrypted with AES-256-CBC using AES key and random IV
-* Ciphertext is now encrypted with AES-256-CBC using static AES key and random IV
-* ID and AES key joined (known as `k`)
-* ID, IV, bcrypt hash, and ciphertext stored in DB
-* `k` value returned to user in one-time URL
-  * Example URL: `https://flashpaper.io/?k=1a2b3c4d5a6b7c8d9a0b1c2d3a4b5c6d7e8f9g`
+  1. `<random>--secrets.sqlite` sqlite database created (if it doesn't already exist)
+  2. `<random>--aes-static.key` randomized 256-bit AES static key created (if one doesn't exist already)
+  3. Random 256-bit AES key created
+  4. Random 128-bit IV created
+  5. Random 64-bit ID created
+  6. ID + AES key hashed with bcrypt 
+  7. Submitted text encrypted with AES-256-CBC using AES key and random IV
+  8. Ciphertext now encrypted with AES-256-CBC using static AES key and random IV
+  9. ID and AES key joined (known as `k`)
+  10. ID, IV, bcrypt hash, and ciphertext stored in DB
+  11. `k` value returned to user in one-time URL
 
- 
 ### Retrieving Secret
-* `k` value removed from URL
-* `k` value split into two parts: ID and AES key
-* IV, bcrypt hash, and ciphertext looked up from DB with ID from `k`
-* `k` bcrypt hash compared against bcrypt hash from DB (prevents tampering of URL)
-* Ciphertext decrypted with static AES key and IV
-* Ciphertext decrypted with AES key from `k` and IV
-* Entry deleted from DB
-* Decrypted text sent to user
+  1. `k` value removed from URL
+  2. `k` value split into two parts: ID and AES key
+  3. IV, bcrypt hash, ciphertext looked up in DB with ID from `k`
+  4. `k` bcrypt hash compared against bcrypt hash from DB (prevents tampering of URL)
+  5. Ciphertext decrypted with static AES key and IV
+  6. Ciphertext decrypted with AES key from `k` and IV
+  7. Entry deleted from DB
+  8. Decrypted text sent to user
 
 ## Donations
 
