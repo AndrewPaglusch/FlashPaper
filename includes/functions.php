@@ -26,7 +26,7 @@
 
 		# find name of existing db or generate a new one if not found
 		if ( count($results) != 1 ) {
-			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+			$prefix = crypto_rand_string(32);
 			$dbName = "./data/{$prefix}--{$dbName}";
 		} else {
 			$dbName = $results[0];
@@ -50,9 +50,9 @@
 
 		if ( count($results) != 1 ) {
 			#static key needs to be created
-			$prefix = substr(str_shuffle(implode(array_merge(range('A','Z'), range('a','z'), range(0,9)))), 0, 20);
+			$prefix = crypto_rand_string(32);
 			$keyName = "./data/{$prefix}--{$keyName}";
-			$staticKey = random_str(32);
+			$staticKey = random_bytes(32);
 
 			if ( $fp = fopen($keyName, "w") ) {
 				fwrite($fp, $staticKey);
@@ -117,21 +117,14 @@
 		}
 	}
 
-	function random_str($byteLen) {
-		$bytes = openssl_random_pseudo_bytes($byteLen, $cstrong);
-		if ( ! $cstrong ) {
-			throw new Exception('Failed to generate cryptographically secure bytes!');
-		} else {
-			return $bytes;
+	function crypto_rand_string($strLen) {
+		# random_int() generates cryptographically secure pseudo-random integers
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$key = '';
+		for ($i = 0; $i < $strLen; ++$i) {
+			$key .= $chars[random_int(0, strlen($chars) -1)];
 		}
-	}
-
-	function base64_encode_mod($input) {
-		return strtr(base64_encode($input), '+/=', '-_#');
-	}
-
-	function base64_decode_mod($input) {
-		return base64_decode(strtr($input, '-_#', '+/='));
+		return $key;
 	}
 
 	function store_secret($secret) {
@@ -139,12 +132,12 @@
 		$db = connect();
 
 		#generate random id, iv, key
-		$id = random_str(8);
-		$iv = random_str(16);
-		$key = random_str(32);
+		$id = crypto_rand_string(8);
+		$iv = crypto_rand_string(16);
+		$key = crypto_rand_string(32);
 
 		#generate k value for url (id + key)
-		$k = base64_encode_mod($id . $key);
+		$k = $id . $key;
 
 		#generate hash of id + key
 		$hash = password_hash($id . $key, PASSWORD_BCRYPT);
@@ -153,18 +146,12 @@
 		$secret = encrypt_decrypt(true, $key, $iv, $secret);
 		$secret = encrypt_decrypt(true, getStaticKey(), $iv, $secret);
 
-		#base64 encode the id, iv, and secret for db storage
-		$id = base64_encode_mod($id);
-		$iv = base64_encode_mod($iv);
-		$secret = base64_encode_mod($secret);
-
-		#write secret_hash, iv, and secret to database
+		#write id, iv, bcrypt password hash, and secret to database
 		writeSecret($db, $id, $iv, $hash, $secret);
 
 		#close db
 		$db = null;
 
-		#return base64(id + key)
 		return $k;
 	}
 
@@ -174,27 +161,30 @@
 		$db = connect();
 
 		#validate length of k - must be 40 chars (id = 8, key = 32)
-		if ( strlen(base64_decode_mod($k)) != 40 ) {
+		if ( strlen($k) != 40 ) {
 			throw new Exception('This secret can not be found!');
 		}
 
-		#extract key and id from k. base64 encode id
-		$k = base64_decode_mod($k);
+		#extract key and id from k
 		$key = substr($k, -32);
 		$id = substr($k, 0, 8);
-		$idBase64 = base64_encode_mod($id);
+
+		#validate id before using in db lookup
+		if ( preg_match('/[a-z0-9]{8}/i', $id) !== 1 ) {
+			throw new Exception('This secret can not be found!');
+		}
 
 		#look up secret by id
-		$secretQuery = readSecret($db, $idBase64);
+		$secretQuery = readSecret($db, $id);
 
 		#throw exception if query failed
 		if ( ! $secretQuery ) {
 			throw new Exception('This secret can not be found!');
 		}
 
-		$iv = base64_decode_mod($secretQuery['iv']);
+		$iv = $secretQuery['iv'];
 		$hash = $secretQuery['hash'];
-		$secret = base64_decode_mod($secretQuery['secret']);
+		$secret = $secretQuery['secret'];
 
 		#verify hash from DB equals hash of id + key from URL
 		if ( ! password_verify($id . $key, $hash) ) {
@@ -206,7 +196,7 @@
 		$secret = encrypt_decrypt(false, $key, $iv, $secret);
 
 		#delete secret and verify it's gone
-		if ( ! deleteSecret($db, $idBase64) ) {
+		if ( ! deleteSecret($db, $id) ) {
 			# if we cant destroy it, dont give the secret out
 			throw new Exception('Failed to destroy secret!');
 		}
