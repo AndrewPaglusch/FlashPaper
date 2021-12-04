@@ -14,6 +14,7 @@ services:
       SITE_TITLE: "FlashPaper :: Self-Destructing Message"
       RETURN_FULL_URL: "true"
       MAX_SECRET_LENGTH: "3000"
+      ANNOUNCEMENT: ""
       MESSAGES_ERROR_SECRET_TOO_LONG: "Input length too long"
       MESSAGES_SUBMIT_SECRET_HEADER: "Create A Self-Destructing Message"
       MESSAGES_SUBMIT_SECRET_SUBHEADER: ""
