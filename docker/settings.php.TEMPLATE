@@ -5,6 +5,7 @@
 		"site_title" => "${SITE_TITLE}",
 		"return_full_url" => ${RETURN_FULL_URL},
 		"max_secret_length" => ${MAX_SECRET_LENGTH},
+		"announcement" => "${ANNOUNCEMENT}",
 		"messages" => [
 			"error_secret_too_long" => "${MESSAGES_ERROR_SECRET_TOO_LONG}",
 
