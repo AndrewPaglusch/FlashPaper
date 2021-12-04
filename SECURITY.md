@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-We will only accept security reports for the latest version of FlashPaper (`master` branch).
+We will only accept security reports for the latest version of FlashPaper (the latest release).
 
 ## Reporting a Vulnerability
 
