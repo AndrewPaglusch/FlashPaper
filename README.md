@@ -15,7 +15,7 @@ https://flashpaper.io
 Copy the contents of this repository to document root of your web server.
 Copy settings.example.php to settings.php and make customizations to that file
 
-To further increase security, disable access logging in your web server's configuration so nothing sensetive (IP addresses, useragents, timestamps, etc) are logged to disk.
+To further increase security, disable access logging in your web server's configuration so nothing sensitive (IP addresses, user agent strings, timestamps, etc) are logged to disk.
 
 ## Summary Of How It Works
 ### Submitting Secret
