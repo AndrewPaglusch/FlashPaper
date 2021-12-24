@@ -32,8 +32,9 @@ https://flashpaper.io
   7. Submitted text encrypted with AES-256-CBC using AES key and random IV
   8. Ciphertext now encrypted with AES-256-CBC using static AES key and random IV
   9. ID and AES key joined (known as `k`)
-  10. ID, IV, bcrypt hash, and ciphertext stored in DB
-  11. `k` value returned to user in one-time URL
+  10. Random prune date/time generated using `prune`->`min_days`/`max_days`
+  11. ID, IV, bcrypt hash, ciphertext, and prune epoch stored in DB
+  12. `k` value returned to user in one-time URL
 
 ### Retrieving Secret
   1. `k` value removed from URL
@@ -47,7 +48,7 @@ https://flashpaper.io
 
 ## Settings
 
-### `prune`
+### `prune`:
  - `enabled`: Turn on/off auto-pruning of old secrets from the database upon page load
  - `min_days`/`max_days`: When a secret is submitted, a random date/time is generated between `min_days` and `max_days` in the future. After that date/time has elapsed, the secret will be pruned from the database if `enabled` is set to `true`. This is to prevent your database from being filled with secrets that are never retrieved. NOTE: Even if `enabled` is set to `false`, the prune value will still be generated and stored in the database, but secrets will not be pruned unless `enabled` is switched to `true`.
 
