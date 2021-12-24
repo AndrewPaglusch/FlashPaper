@@ -6,6 +6,11 @@
 		'return_full_url' => true,
 		'max_secret_length' => 3000,
 		'announcement' => '',
+		'prune' => [
+			'enabled' => true,
+			'min_days' => 365,
+			'max_days' => 730
+		],
 		'messages' => [
 			'error_secret_too_long' => 'Input length too long',
 

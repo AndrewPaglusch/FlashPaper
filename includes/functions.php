@@ -35,7 +35,7 @@
 		# open the db (create if it doesnt exist)
 		try {
 			$db = new PDO("sqlite:{$dbName}");
-			$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT)');
+			$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT, "prune_epoch" INTEGER)');
 			return $db;
 		} catch (Exception $e) {
 			# re-throw exception so we can catch it higer up with a more helpful error message
@@ -78,12 +78,13 @@
 		}
 	}
 
-	function writeSecret($db, $id, $iv, $hash, $secret) {
-		$statement = $db->prepare('INSERT INTO "secrets" ("id", "iv", "hash", "secret") VALUES (:id, :iv, :hash, :secret)');
+	function writeSecret($db, $id, $iv, $hash, $secret, $prune_epoch) {
+		$statement = $db->prepare('INSERT INTO "secrets" ("id", "iv", "hash", "secret", "prune_epoch") VALUES (:id, :iv, :hash, :secret, :prune_epoch)');
 		$statement->bindValue(':id', $id);
 		$statement->bindValue(':iv', $iv);
 		$statement->bindValue(':hash', $hash);
 		$statement->bindValue(':secret', $secret);
+		$statement->bindValue(':prune_epoch', $prune_epoch);
 		if ( ! $statement->execute() ) {
 			throw new Exception('Failed to write to database!');
 		}
@@ -117,6 +118,15 @@
 		}
 	}
 
+	function secretCleanup($db) {
+		$db->exec('PRAGMA secure_delete = 1');
+		$statement = $db->prepare('DELETE FROM "secrets" WHERE prune_epoch < :epoch_now');
+		$statement->bindValue(':epoch_now', time());
+		if ( ! $statement->execute() ) {
+			throw new Exception('Failed to purge secrets from database!');
+		}
+	}
+
 	function crypto_rand_string($strLen) {
 		# random_int() generates cryptographically secure pseudo-random integers
 		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -127,7 +137,7 @@
 		return $key;
 	}
 
-	function store_secret($secret) {
+	function store_secret($secret, $settings) {
 		#connect to sqlite db
 		$db = connect();
 
@@ -135,6 +145,11 @@
 		$id = crypto_rand_string(8);
 		$iv = crypto_rand_string(16);
 		$key = crypto_rand_string(32);
+
+		#generate expiration datetime
+		$min_days = $settings['prune']['min_days'];
+		$max_days = $settings['prune']['max_days'];
+		$prune_epoch = rand(time() + (86400 * $min_days), time() + (86400 * $max_days));
 
 		#generate k value for url (id + key)
 		$k = $id . $key;
@@ -147,7 +162,7 @@
 		$secret = encrypt_decrypt(true, getStaticKey(), $iv, $secret);
 
 		#write id, iv, bcrypt password hash, and secret to database
-		writeSecret($db, $id, $iv, $hash, $secret);
+		writeSecret($db, $id, $iv, $hash, $secret, $prune_epoch);
 
 		#close db
 		$db = null;
