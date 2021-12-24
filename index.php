@@ -22,6 +22,15 @@
 		} catch (Exception $e) { display_error($e); }
 
 	} else {
+		if ($settings['prune']['enabled']) {
+			# clean up pruned secrets (if enabled)
+			# don't throw exceptions to user, since this should be transparent to them
+			try {
+				$db = connect();
+				secretCleanup($db);
+			} catch (Exception $e) { }
+		}
+
 		try {
 			display_form(); # display main page
 		} catch (Exception $e) { display_error($e); }
@@ -60,7 +69,7 @@
 		# verify secret length isnt too long
 		if ( strlen($_POST['secret']) > $settings['max_secret_length'] ) { throw new exception("Input length too long"); }
 
-		$message = store_secret($_POST['secret']);
+		$message = store_secret($_POST['secret'], $settings);
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);
