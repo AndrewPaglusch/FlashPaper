@@ -15,6 +15,9 @@
 [ -z "$MESSAGES_CONFIRM_VIEW_SECRET_BUTTON" ] && export MESSAGES_CONFIRM_VIEW_SECRET_BUTTON="View Secret"
 [ -z "$MESSAGES_VIEW_SECRET_HEADER" ] && export MESSAGES_VIEW_SECRET_HEADER="Self-Destructing Message"
 [ -z "$MESSAGES_VIEW_SECRET_SUBHEADER" ] && export MESSAGES_VIEW_SECRET_SUBHEADER="This message has been destroyed"
+[ -z "$PRUNE_ENABLED" ] && export PRUNE_ENABLED="true"
+[ -z "$PRUNE_MIN_DAYS" ] && export PRUNE_MIN_DAYS="365"
+[ -z "$PRUNE_MAX_DAYS" ] && export PRUNE_MAX_DAYS="730"
 
 
 # Create settings.php from environment and clean up the docker folder
