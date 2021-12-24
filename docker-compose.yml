@@ -25,4 +25,7 @@ services:
       MESSAGES_CONFIRM_VIEW_SECRET_BUTTON: "View Secret"
       MESSAGES_VIEW_SECRET_HEADER: "Self-Destructing Message"
       MESSAGES_VIEW_SECRET_HEADER: "This message has been destroyed"
+      PRUNE_ENABLED: "true"
+      PRUNE_MIN_DAYS: 365
+      PRUNE_MAX_DAYS: 730
       
