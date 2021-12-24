@@ -14,7 +14,8 @@
 [ -z "$MESSAGES_CONFIRM_VIEW_SECRET_HEADER" ] && export MESSAGES_CONFIRM_VIEW_SECRET_HEADER="View this secret?"
 [ -z "$MESSAGES_CONFIRM_VIEW_SECRET_BUTTON" ] && export MESSAGES_CONFIRM_VIEW_SECRET_BUTTON="View Secret"
 [ -z "$MESSAGES_VIEW_SECRET_HEADER" ] && export MESSAGES_VIEW_SECRET_HEADER="Self-Destructing Message"
-[ -z "$MESSAGES_VIEW_SECRET_HEADER" ] && export MESSAGES_VIEW_SECRET_HEADER="This message has been destroyed"
+[ -z "$MESSAGES_VIEW_SECRET_SUBHEADER" ] && export MESSAGES_VIEW_SECRET_SUBHEADER="This message has been destroyed"
+
 
 # Create settings.php from environment and clean up the docker folder
 DOLLAR='$' envsubst < /var/www/html/docker/settings.php.TEMPLATE > /var/www/html/settings.php
