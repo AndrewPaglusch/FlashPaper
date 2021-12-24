@@ -6,6 +6,11 @@
 		"return_full_url" => ${RETURN_FULL_URL},
 		"max_secret_length" => ${MAX_SECRET_LENGTH},
 		"announcement" => "${ANNOUNCEMENT}",
+		'prune' => [
+			'enabled' => ${PRUNE_ENABLED},
+			'min_days' => ${PRUNE_MIN_DAYS},
+			'max_days' => ${PRUNE_MAX_DAYS}
+		],
 		"messages" => [
 			"error_secret_too_long" => "${MESSAGES_ERROR_SECRET_TOO_LONG}",
 
