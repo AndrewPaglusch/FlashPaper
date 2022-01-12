@@ -7,11 +7,11 @@
 						<div style="font-style: italic">
 							<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_subheader'] ?></label>
 						</div>
-						<div style="margin-top:10px">
+						<div style="margin-top:10px; margin-bottom: 15px;">
 							<textarea class="form-control" id="secret" name="secret" rows="8" maxlength="<?php echo $settings['max_secret_length'] ?>" style="resize: vertical;" placeholder="Secret text..."><?php echo $template_text ?></textarea>
 						</div>
 					</div>
-					<div class="form-group row float-end" style='padding-top: 3%'>
+					<div class="form-group row float-end">
 						<div class="col">
 							<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
 								<option value="" selected disabled hidden>-- Select Template</option>
@@ -27,7 +27,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group row float-start" style='padding-top: 3%'>
+					<div class="form-group row float-start">
 						<div class="col">
 							<button name="submit" type="submit" class="btn btn-primary"><?php echo $settings['messages']['submit_secret_button'] ?></button>
 						</div>
