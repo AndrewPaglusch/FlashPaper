@@ -67,7 +67,10 @@
 		global $settings;
 
 		# verify secret length isnt too long
-		if ( strlen($_POST['secret']) > $settings['max_secret_length'] ) { throw new exception($settings['messages']['error_secret_too_long']); }
+		# newlines are always \r\n, so replace with \n so the strlen count is accurate
+		if ( strlen(str_replace("\r\n", "\n", $_POST['secret'])) > $settings['max_secret_length'] ) {
+			throw new exception($settings['messages']['error_secret_too_long']);
+		}
 
 		$message = store_secret($_POST['secret'], $settings);
 
