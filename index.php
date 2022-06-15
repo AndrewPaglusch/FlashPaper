@@ -67,7 +67,7 @@
 		global $settings;
 
 		# verify secret length isnt too long
-		if ( strlen($_POST['secret']) > $settings['max_secret_length'] ) { throw new exception("Input length too long"); }
+		if ( strlen($_POST['secret']) > $settings['max_secret_length'] ) { throw new exception($settings['messages']['error_secret_too_long']); }
 
 		$message = store_secret($_POST['secret'], $settings);
 
