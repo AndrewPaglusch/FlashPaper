@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.15
 
 RUN apk add --no-cache gettext curl nginx php7 php7-fpm php7-opcache php7-pdo php7-pdo_sqlite php7-openssl && \
     mkdir /var/www/html
