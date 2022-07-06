@@ -1,9 +1,7 @@
 version: "3.5"
 services:
   flashpaper:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
+    image: ghcr.io/andrewpaglusch/flashpaper:v2
     container_name: flashpaper
     restart: always
     volumes:
