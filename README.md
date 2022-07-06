@@ -1,6 +1,8 @@
 # FlashPaper
 A one-time encrypted zero-knowledge password/secret sharing application focused on simplicity and security. No database or complicated set-up required.
 
+[![Docker](https://github.com/AndrewPaglusch/FlashPaper/actions/workflows/docker_publish.yml/badge.svg)](https://github.com/AndrewPaglusch/FlashPaper/actions/workflows/docker_publish.yml)
+
 ## Demo
 
 https://flashpaper.io
@@ -10,6 +12,7 @@ https://flashpaper.io
 ## Installation
 
 ### Docker *(Recommended)*
+  The latest release of FlashPaper is available at [`ghcr.io/andrewpaglusch/flashpaper`](ghcr.io/andrewpaglusch/flashpaper).
   1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper
   2. Edit the `docker-compose.yml` file with your customizations
   3. Run `docker-compose up -d` to start FlashPaper
