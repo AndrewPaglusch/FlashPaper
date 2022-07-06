@@ -12,7 +12,7 @@ https://flashpaper.io
 ## Installation
 
 ### Docker *(Recommended)*
-  The latest release of FlashPaper is available at [`ghcr.io/andrewpaglusch/flashpaper`](ghcr.io/andrewpaglusch/flashpaper).
+  The latest release of FlashPaper is available at [`ghcr.io/andrewpaglusch/flashpaper`](https://ghcr.io/andrewpaglusch/flashpaper).
   1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper
   2. Edit the `docker-compose.yml` file with your customizations
   3. Run `docker-compose up -d` to start FlashPaper
