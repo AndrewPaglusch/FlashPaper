@@ -13,8 +13,8 @@ https://flashpaper.io
 
 ### Docker *(Recommended)*
   The latest release of FlashPaper is available at [`ghcr.io/andrewpaglusch/flashpaper`](https://ghcr.io/andrewpaglusch/flashpaper).
-  1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper
-  2. Edit the `docker-compose.yml` file with your customizations
+  1. Download [docker-compose.yml](https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/docker-compose.yml) from this repo
+  2. Edit `docker-compose.yml` with your customizations
   3. Run `docker-compose up -d` to start FlashPaper
   4. Set up a reverse-proxy in front of FlashPaper that terminates SSL/TLS
 
