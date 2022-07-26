@@ -4,7 +4,7 @@
 	<head>
 		<!--
 		######################################################################################
-		# Copyright (c) 2017-2022 Andrew Paglusch                                            #
+		# Copyright (c) 2017-<?php echo date("Y"); ?> Andrew Paglusch                                            #
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE         #
 		######################################################################################
 		-->
