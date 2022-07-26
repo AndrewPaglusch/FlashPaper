@@ -27,7 +27,7 @@ rm -rf /var/www/html/docker
 # Start php-fpm and nginx
 chown -R nginx: /var/www/html/data/
 touch /var/www/html/data/index.php
-php-fpm8
+$PHPFPM_VER
 nginx -c /etc/nginx/nginx.conf
 
 # Ready to serve?
@@ -43,4 +43,4 @@ for i in 1 2 3; do
 done
 
 echo "Access logging is disabled for production use. Tailing error logs..."
-tail -f /var/log/nginx/error.log /var/log/php8/error.log
+tail -f /var/log/nginx/error.log /var/log/$PHP_VER/error.log
