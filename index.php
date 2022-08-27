@@ -18,7 +18,7 @@
 
 	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
 		try {
-			display_secret_code($_POST['json']); # secret submitted. display url/code
+			display_secret_code(!empty($_POST['json'])); # secret submitted. display url/code
 		} catch (Exception $e) { display_error($e); }
 
 	} else {
@@ -79,8 +79,9 @@
 		}
 		if ($json) {
 			require_once('html/json_view_code.php');
-		}
-		require_once('html/view_code.php');
+		} else {
+		    require_once('html/view_code.php');
+        }
 	}
 
 	function build_url($k) {
