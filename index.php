@@ -18,7 +18,7 @@
 
 	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
 		try {
-			display_secret_code(); # secret submitted. display url/code
+			display_secret_code(!empty($_POST['json']); # secret submitted. display url/code
 		} catch (Exception $e) { display_error($e); }
 
 	} else {
@@ -63,7 +63,7 @@
 		require_once('html/view_secret.php');
 	}
 
-	function display_secret_code() {
+	function display_secret_code($json) {
 		global $settings;
 
 		# verify secret length isnt too long
@@ -76,6 +76,9 @@
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);
+		}
+		if ($json) {
+			require_once('html/json_view_code.php');
 		}
 		require_once('html/view_code.php');
 	}
