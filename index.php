@@ -3,7 +3,12 @@
 	require_once("includes/sanitycheck.php"); # check everything before we proceed
 	require_once("settings.php"); # load settings
 	require_once("includes/functions.php"); # load functions
-	require_once('html/header.php'); # display header
+
+	$json = !empty($_POST['json']))
+
+	if (!$json) {
+		require_once('html/header.php'); # display header if not JSON
+	}
 
 
 	if (!empty($_GET['k'])) {
@@ -18,7 +23,7 @@
 
 	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
 		try {
-			display_secret_code(!empty($_POST['json'])); # secret submitted. display url/code
+			display_secret_code($json); # secret submitted. display url/code
 		} catch (Exception $e) { display_error($e); }
 
 	} else {
@@ -36,7 +41,9 @@
 		} catch (Exception $e) { display_error($e); }
 	}
 
-	require_once('html/footer.php'); # display footer
+	if (!$json) {
+		require_once('html/footer.php'); # display footer
+	}
 
 	function display_form() {
 		global $settings;
