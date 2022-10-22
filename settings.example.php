@@ -4,6 +4,7 @@
 	$settings = [
 		'site_title' => 'FlashPaper :: Self-Destructing Message',
 		'return_full_url' => true,
+		'base_url' => '', # https://mydomain.com/flashpaper
 		'max_secret_length' => 3000,
 		'announcement' => '',
 		'prune' => [

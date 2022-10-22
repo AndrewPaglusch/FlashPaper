@@ -4,6 +4,7 @@
 
 [ -z "$SITE_TITLE" ] && export SITE_TITLE="FlashPaper :: Self-Destructing Message"
 [ -z "$RETURN_FULL_URL" ] && export RETURN_FULL_URL="true"
+[ -z "$BASE_URL" ] && export BASE_URL=""
 [ -z "$MAX_SECRET_LENGTH" ] && export MAX_SECRET_LENGTH="3000"
 [ -z "$MESSAGES_ERROR_SECRET_TOO_LONG" ] && export MESSAGES_ERROR_SECRET_TOO_LONG="Input length too long"
 [ -z "$MESSAGES_SUBMIT_SECRET_HEADER" ] && export MESSAGES_SUBMIT_SECRET_HEADER="Create A Self-Destructing Message"

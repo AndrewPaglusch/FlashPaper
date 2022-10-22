@@ -11,6 +11,7 @@ services:
     environment:
       SITE_TITLE: "FlashPaper :: Self-Destructing Message"
       RETURN_FULL_URL: "true"
+      BASE_URL: ""
       MAX_SECRET_LENGTH: "3000"
       ANNOUNCEMENT: ""
       MESSAGES_ERROR_SECRET_TOO_LONG: "Input length too long"
