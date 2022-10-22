@@ -81,6 +81,17 @@
 	}
 
 	function build_url($k) {
+		global $settings;
+
+		# use the base_url value from settings if it's there
+		if ( !empty($settings['base_url']) ) {
+			$base_url = $settings['base_url'];
+			$base_url = str_replace("index.php", "", $base_url); # remove index.php from base_url if it's there
+			$base_url = rtrim($base_url, '/') . '/'; # make sure base_url ends with a '/'
+			return $base_url . "?k=${k}";
+		}
+
+		# try our best to predict the base url of the FlashPaper instance
 		$scheme = (isset($_SERVER['REQUEST_SCHEME'])) ? $_SERVER['REQUEST_SCHEME'] . '://' : 'https://';
 		$hostname = $_SERVER['HTTP_HOST']; # my.flashpaper.io
 		$path = strtok($_SERVER['REQUEST_URI'], '?'); # strip any GET vars from url (like ?t=bla)
@@ -89,7 +100,6 @@
 		$path = rtrim($path, '/') . '/'; # make sure path ends with /
 		$args = "?k=${k}"; # /?k=a1b2c3d4...
 		return "${scheme}${hostname}${path}${args}";
-
 	}
 
 	function display_error($exception) {
