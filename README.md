@@ -55,7 +55,7 @@ https://flashpaper.io
  - `enabled`: Turn on/off auto-pruning of old secrets from the database upon page load
  - `min_days`/`max_days`: When a secret is submitted, a random date/time is generated between `min_days` and `max_days` in the future. After that date/time has elapsed, the secret will be pruned from the database if `enabled` is set to `true`. This is to prevent your database from being filled with secrets that are never retrieved. NOTE: Even if `enabled` is set to `false`, the prune value will still be generated and stored in the database, but secrets will not be pruned unless `enabled` is switched to `true`.
 
-## `base_url`:
+### `base_url`:
 FlashPaper will try to generate the secret retrieval URL based on information provided by the upstream webserver. This process isn't always 100% accurate. If the secret retrieval URL that FlashPaper creates isn't correct for your setup (this usually happens when you're using a reverse proxy upstream), you can manually specify the URL that FlashPaper will use. For example: A `base_url` of "https://foo.com/flashpaper" will result in retrieval URLs like "https://foo.com/flashpaper/?k=xxxxxxxxxxxxx".
 
 ## Donations
