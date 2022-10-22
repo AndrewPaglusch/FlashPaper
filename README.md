@@ -51,7 +51,7 @@ https://flashpaper.io
 
 ## Submitting Secrets via the API (with `curl`)
 
-FlashPaper can accept secret submissions through a simple API. The retrieval URL will be returned in a JSON object. The 
+FlashPaper can accept secret submissions through a simple API. The retrieval URL will be returned in a JSON object. 
 
 Here's what it looks like to submit a secret with `curl`:
 ```
