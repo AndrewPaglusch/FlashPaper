@@ -4,12 +4,13 @@
 	require_once("settings.php"); # load settings
 	require_once("includes/functions.php"); # load functions
 
-	$json = !empty($_POST['json']))
-
-	if (!$json) {
-		require_once('html/header.php'); # display header if not JSON
+	# display secret code in json format if requested
+	if (isset($_POST['json']) && isset($_POST['submit']) && !empty($_POST['secret'])) {
+		header("Content-Type: application/json");
+		die(display_secret_code(true));
 	}
 
+	require_once('html/header.php'); # display header
 
 	if (!empty($_GET['k'])) {
 		try {
@@ -41,9 +42,7 @@
 		} catch (Exception $e) { display_error($e); }
 	}
 
-	if (!$json) {
-		require_once('html/footer.php'); # display footer
-	}
+	require_once('html/footer.php'); # display footer
 
 	function display_form() {
 		global $settings;
@@ -70,7 +69,7 @@
 		require_once('html/view_secret.php');
 	}
 
-	function display_secret_code($json) {
+	function display_secret_code($return_only_json = false) {
 		global $settings;
 
 		# verify secret length isnt too long
@@ -84,11 +83,12 @@
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);
 		}
-		if ($json) {
-			require_once('html/json_view_code.php');
-		} else {
-		    require_once('html/view_code.php');
-        }
+
+		if ($return_only_json) {
+			return json_encode(array("url" => $message));
+		}
+
+		require_once('html/view_code.php');
 	}
 
 	function build_url($k) {
