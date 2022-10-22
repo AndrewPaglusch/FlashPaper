@@ -49,6 +49,16 @@ https://flashpaper.io
   7. Entry deleted from DB
   8. Decrypted text sent to user
 
+## Submitting Secrets via the API (with `curl`)
+
+FlashPaper can accept secret submissions through a simple API. The retrieval URL will be returned in a JSON object. The 
+
+Here's what it looks like to submit a secret with `curl`:
+```
+$ curl -s -X POST -d "secret=my secret&json=true" https://flashpaper.io
+{"url":"https://flashpaper.io/?k=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+```
+
 ## Settings
 
 ### `prune`:
