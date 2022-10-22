@@ -85,7 +85,7 @@
 		}
 
 		if ($return_only_json) {
-			return json_encode(array("url" => $message));
+			return json_encode(array("url" => $message), JSON_UNESCAPED_SLASHES);
 		}
 
 		require_once('html/view_code.php');
