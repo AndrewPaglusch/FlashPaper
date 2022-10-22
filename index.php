@@ -4,8 +4,8 @@
 	require_once("settings.php"); # load settings
 	require_once("includes/functions.php"); # load functions
 
-	# display secret code in json format if requested
-	if (isset($_POST['json']) && isset($_POST['submit']) && !empty($_POST['secret'])) {
+	# display secret retrieval url in json format if requested
+	if (isset($_POST['json']) && !empty($_POST['secret'])) {
 		header("Content-Type: application/json");
 		die(display_secret_code(true));
 	}
