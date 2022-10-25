@@ -18,6 +18,20 @@ https://flashpaper.io
   3. Run `docker-compose up -d` to start FlashPaper
   4. Set up a reverse-proxy in front of FlashPaper that terminates SSL/TLS
 
+#### Building an image
+  You can build your own image using the provided Dockerfile in the `docker/` folder. There are currently two:
+  - For intel
+  - For ARM 64 bit
+  In order to build, move the appropriate Dockerfile to the root of the repo, and either run `docker build . -t flashpaper -f arm.Dockerfile` for example, or
+  include it in your docker-compose:
+  ```
+  build:
+      context: .
+      dockerfile: ./arm.Dockerfile
+  ```
+  - You may omit the `image: <image_name>` line if building as it will use the built image by default.
+  You can now run `docker compose up --build` optionally followed by `docker compose logs --follow`.
+
 ### Traditional
   **Requirements:** PHP 7.0+ and a web server
   1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper to the document root of your web server
