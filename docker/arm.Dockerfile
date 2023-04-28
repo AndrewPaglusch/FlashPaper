@@ -2,8 +2,6 @@ FROM arm64v8/alpine:3.17.2
 
 # To reduce duplication
 ENV PHP_VER=php81
-# For use in entrypoint.sh
-ENV PHPFPM_VER=php-fpm81
 
 RUN apk add --no-cache gettext curl nginx $PHP_VER $PHP_VER-fpm $PHP_VER-opcache $PHP_VER-pdo $PHP_VER-pdo_sqlite $PHP_VER-openssl && \
     mkdir /var/www/html
