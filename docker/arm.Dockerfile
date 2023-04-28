@@ -1,6 +1,11 @@
 FROM arm64v8/alpine:3.17.2
 
-RUN apk add --no-cache gettext curl nginx php81 php81-fpm php81-opcache php81-pdo php81-pdo_sqlite php81-openssl && \
+# To reduce duplication
+ENV PHP_VER=php81
+# For use in entrypoint.sh
+ENV PHPFPM_VER=php-fpm81
+
+RUN apk add --no-cache gettext curl nginx $PHP_VER $PHP_VER-fpm $PHP_VER-opcache $PHP_VER-pdo $PHP_VER-pdo_sqlite $PHP_VER-openssl && \
     mkdir /var/www/html
 
 COPY . /var/www/html
@@ -8,7 +13,7 @@ COPY . /var/www/html
 RUN chmod -R 775 /var/www/html && \
     chown -R nginx:nginx /var/www/html
 
-COPY docker/php-fpm.conf /etc/php81/php-fpm.conf
+COPY docker/php-fpm.conf /etc/$PHP_VER/php-fpm.conf
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/entrypoint.sh /entrypoint.sh
 
@@ -17,4 +22,5 @@ RUN mkdir -p /var/run/nginx && \
     chown -R nginx:nginx /var/run/ && \
     chmod +x /entrypoint.sh
 VOLUME /var/www/html/data
+
 ENTRYPOINT ["/bin/ash", "/entrypoint.sh"]
