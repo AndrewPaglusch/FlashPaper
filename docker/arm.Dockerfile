@@ -1,4 +1,4 @@
-FROM arm64v8/alpine:3.18.0
+FROM arm64v8/alpine:3.18.2
 
 # To reduce duplication
 ENV PHP_VER=php81
