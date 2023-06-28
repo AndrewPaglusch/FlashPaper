@@ -59,7 +59,9 @@
 				outline: 2px solid #aeff00;
 			}
 			textarea:focus {
-				outline: 2px solid red;
+				outline: none !important;
+				border:1px solid red;
+				box-shadow: 0 0 10px #719ECE;
 			}
 			fieldset {
 				margin:10px;
