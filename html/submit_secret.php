@@ -17,6 +17,12 @@
 						</div>
 						<div class="form-group row float-start">
 							<div class="col">
+								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
+							</div>
+							<div class="col">
+								<button type="button" onclick="document.getElementById('secret').clear()" class="btn btn-primary"><img class="btn-img" src="./assets/no-data-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
+							</div>
+							<div class="col">
 								<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
 									<option value="" selected disabled hidden>-- Select Template</option>
 									<option value="./">No Template</option>
@@ -29,12 +35,6 @@
 										}
 									?>
 								</select>
-							</div>
-							<div class="col">
-								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
-							</div>
-							<div class="col">
-								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
 							</div>
 						</div>
 					</fieldset>
