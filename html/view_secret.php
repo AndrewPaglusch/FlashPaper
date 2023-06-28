@@ -1,6 +1,5 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 		<div id="form-div">
-			<img style="width: 120px;height:auto;" src="./assets/Ghost_Secret_logo_full.png">
 			<fieldset>
 				<div>
 					<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['view_secret_header'] ?></label>
