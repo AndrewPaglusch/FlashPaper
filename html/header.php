@@ -19,9 +19,6 @@
 				background-color: #232728;
 				
 			}
-			*:focus {
-				outline: none;
-			}
 			
 			#centered-div {
 				display: flex;
@@ -60,8 +57,14 @@
 				background-color: #f8f8f8;
 				resize: none;
 			}
-			textarea:focus {
+			textarea:focus-visible {
+				outline: 4px dashed black;
+			}
+			
+			/* Focusing the button with a mouse, touch, or stylus will show a subtle drop shadow. */
+			textarea:focus:not(:focus-visible) {
 				outline: none;
+				box-shadow: 1px 1px 5px rgba(1, 1, 0, .7);
 			}
 			fieldset {
 				margin:10px;
