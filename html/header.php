@@ -101,7 +101,7 @@
 				background-color: #aeff00;
 				color: #171a1a;
 				border: 1px solid #aeff00;
-				height: 52px;
+				height: 48px;
 			}
 			label {
 				color: #aeff00;
