@@ -123,7 +123,7 @@
 			.btn-img {
 				height:24px;
 				width:auto;
-				padding: 5px;
+				margin: 5px;
 			}
 
 		</style>
