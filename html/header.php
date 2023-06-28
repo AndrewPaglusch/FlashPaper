@@ -134,9 +134,8 @@
 			.btn-img {
 				height:24px;
 				width:auto;
-				margin-right: 15px;
 				top:-3px;
-				left: 10px;
+				left: -10px;
 				position: relative;
 			}
 
