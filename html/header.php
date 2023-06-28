@@ -75,13 +75,12 @@
 				background-color: #aeff00;
 				border: none;
 				color: #171a1a;
-				padding: 12px 18px;
+				padding: 12px 28px;
 				text-decoration: none;
 				font-size: 16px;
 				margin: 4px 2px;
 				cursor: pointer;
 				border: 1px solid #aeff00;
-				height: 35px;
 
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
@@ -102,7 +101,7 @@
 				background-color: #aeff00;
 				color: #171a1a;
 				border: 1px solid #aeff00;
-				height: 35px;
+				height: 45px;
 			}
 			label {
 				color: #aeff00;
