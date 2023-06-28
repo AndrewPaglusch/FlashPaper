@@ -4,6 +4,7 @@
 				<span class="text-muted small">Source code for GhostSecret is freely available at <a href="https://github.com/bleach86/FlashPaper">Github.com</a></span>
 			</div>
 			<br>
+			</br>
 			<div class="container">
 				<span class="text-muted small">Source code for FlashPaper is freely available at <a href="https://github.com/AndrewPaglusch/FlashPaper">Github.com</a></span>
 			</div>
