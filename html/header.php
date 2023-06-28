@@ -76,7 +76,6 @@
 				background-color: #aeff00;
 				border: none;
 				color: #171a1a;
-				padding: 12px 28px;
 				text-decoration: none;
 				font-size: 16px;
 				margin: 4px 2px;
