@@ -1,5 +1,5 @@
 <?php #defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
-		<div id="centered-div">
+		<div id="centered-div" class="centered-div">
 			<div id="form-div">
 				<form class="form-horizontal" action="" method="POST">
 					<fieldset>
