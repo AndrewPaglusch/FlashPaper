@@ -113,7 +113,7 @@
 			}
 
 			@media screen and (max-width: 450px) {
-				.new-pass-form {
+				.logo-img {
 					width: 60vw;
 					height: auto;
 				}
