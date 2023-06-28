@@ -17,6 +17,7 @@
 		<style>
 			html {
 				background-color: #232728;
+				font-family: 'Proxima Nova';
 				
 			}
 			
@@ -126,6 +127,13 @@
 				margin-right: 10px;
 				top:-3px;
 				position: relative;
+			}
+
+			@font-face {
+			font-family: 'Proxima Nova';
+			src:url('./assets/FontsFree-Net-proxima_nova_reg-webfont.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
 			}
 
 		</style>

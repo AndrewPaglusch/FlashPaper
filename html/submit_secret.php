@@ -4,9 +4,9 @@
 				<form class="form-horizontal" action="" method="POST">
 					<fieldset>
 						<div>
-							<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_header']; ?></label>
+							<label style="font-family: 'Proxima Nova', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_header']; ?></label>
 							<div style="font-style: italic">
-								<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_subheader'] ?></label>
+								<label style="font-family: 'Proxima Nova', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_subheader'] ?></label>
 							</div>
 							<div style="margin-top:10px; margin-bottom: 15px;">
 								<textarea class="form-control" id="secret" name="secret" rows="8" maxlength="<?php echo $settings['max_secret_length'] ?>" style="resize: vertical;" placeholder="Secret text..." autofocus><?php echo $template_text ?></textarea>
