@@ -81,6 +81,7 @@
 				margin: 4px 2px;
 				cursor: pointer;
 				border: 1px solid #aeff00;
+				height: 35px;
 
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
@@ -101,6 +102,7 @@
 				background-color: #aeff00;
 				color: #171a1a;
 				border: 1px solid #aeff00;
+				height: 35px;
 			}
 			label {
 				color: #aeff00;
