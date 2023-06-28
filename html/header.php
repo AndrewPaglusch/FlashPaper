@@ -67,6 +67,11 @@
 				box-shadow: 0 0 0 1px #aeff00;
 			}
 
+			.form-group {
+				display: flex;
+        		justify-content: center;
+			}
+
 
 			fieldset {
 				margin:10px;
@@ -104,6 +109,7 @@
 				color: #171a1a;
 				border: 1px solid #aeff00;
 				height: 50px;
+				width: 180px;
 			}
 			label {
 				color: #aeff00;
