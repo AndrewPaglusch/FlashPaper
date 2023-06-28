@@ -19,6 +19,9 @@
 				background-color: #232728;
 				
 			}
+			*:focus {
+				outline: none;
+			}
 			
 			#centered-div {
 				display: flex;
