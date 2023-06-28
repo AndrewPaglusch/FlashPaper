@@ -28,6 +28,7 @@
 				padding-top:35px;
 				padding-bottom:50px;
 				border: 1px solid #aeff00;
+				width: 5em;
 
 				margin:30px;
 				border-radius: 7px;
@@ -43,7 +44,7 @@
 				border: 2px solid #aeff00;
 			}
 			textarea {
-				width: 5em;
+				width: 100%;
 				height: 200px;
 				padding: 12px 20px;
 				box-sizing: border-box;
