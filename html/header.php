@@ -118,7 +118,7 @@
 					width: 60vw;
 					height: auto;
 				}
-				}
+			}
 
 		</style>
 	</head>
