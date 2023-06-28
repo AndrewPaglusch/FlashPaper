@@ -166,7 +166,7 @@
 			}
 		?>
 		<div class="centered-div" >
-			<a href="/" target="_blank">
+			<a href="/">
 				<img class="logo-img" src="./assets/Ghost_Secret_logo_full.png">
 			</a>
 		</div>
