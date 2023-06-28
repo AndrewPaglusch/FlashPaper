@@ -106,6 +106,14 @@
 			label {
 				color: #aeff00;
 			}
+			.logo-img {
+				width: 420px;
+				height:auto;
+				padding-top:45px;
+			}
+
+			
+
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
@@ -125,5 +133,5 @@
 			}
 		?>
 		<div class="centered-div" >
-			<img style="width: 420px;height:auto;padding-top:45px;" src="./assets/Ghost_Secret_logo_full.png">
+			<img class="logo-img" src="./assets/Ghost_Secret_logo_full.png">
 		</div>
