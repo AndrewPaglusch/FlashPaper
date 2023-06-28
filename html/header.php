@@ -126,6 +126,7 @@
 				width:auto;
 				margin-right: 10px;
 				top:-3px;
+				left: 10px;
 				position: relative;
 			}
 
