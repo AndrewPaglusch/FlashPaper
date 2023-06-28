@@ -55,14 +55,13 @@
 				box-sizing: border-box;
 				border: 2px solid #aeff00;
 				border-radius: 4px;
-				background-color: #232728;
 				resize: none;
-				color: #fafafa
+				
 			}
 			
 			.form-control:focus {
-				color: #212529;
-				background-color: #fff;
+				color: #fafafa;
+				background-color: #232728;
 				border-color: #aeff00;
 				outline: 0;
 				box-shadow: 0 0 0 1px #aeff00;
