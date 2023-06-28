@@ -2,6 +2,7 @@
 		<div id="form-div">
 			<fieldset>
 				<div>
+					<img style="width: 120px;height:auto;" src="./assets/Ghost_Secret_logo_full.png">
 					<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['view_secret_header'] ?></label>
 					<div style="font-style: italic">
 						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['view_secret_subheader'] ?></label>
