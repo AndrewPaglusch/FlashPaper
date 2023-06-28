@@ -57,6 +57,9 @@
 				background-color: #f8f8f8;
 				resize: none;
 			}
+			textarea:focus {
+				outline: none;
+			}
 			fieldset {
 				margin:10px;
 				border: 0;
