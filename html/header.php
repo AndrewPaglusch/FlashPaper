@@ -67,6 +67,12 @@
 				box-shadow: 0 0 0 1px #aeff00;
 			}
 
+			.form-group {
+				display: flex;
+				flex-direction: row;
+        		align-items: center;
+			}
+
 
 			fieldset {
 				margin:10px;
