@@ -136,7 +136,7 @@
 				height:24px;
 				width:auto;
 				top:-3px;
-				left: -10px;
+				float: left;
 				position: relative;
 			}
 
