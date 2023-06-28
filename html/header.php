@@ -39,6 +39,9 @@
 				border: 2px solid #aeff00;
 				opacity:1
 			}
+			.form-control{
+				border: 2px solid #aeff00;
+			}
 			textarea {
 				width: 100%;
 				height: 200px;
