@@ -61,9 +61,9 @@
 			.form-control:focus {
 				color: #212529;
 				background-color: #fff;
-				border-color: #171a1a;
+				border-color: #aeff00;
 				outline: 0;
-				box-shadow: 0 0 0 0.25rem #171a1a;
+				box-shadow: 0 0 0 0.25rem #aeff00;
 			}
 
 
