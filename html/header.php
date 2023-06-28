@@ -15,12 +15,19 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="./css/bootstrap_5.0.2.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<style>
+			html {
+				background-color: #232728;
+				
+			}
+			
+
 			#form-div {
-				background-color:rgba(72,72,72,0.1);
+				background-color:#171a1a;
 				padding-left:35px;
 				padding-right:35px;
 				padding-top:35px;
 				padding-bottom:50px;
+				border: 1px solid #aeff00;
 
 				margin:30px;
 				border-radius: 7px;
@@ -46,21 +53,21 @@
 				border: 0;
 			}
 			.btn-primary {
-				background-color: #4ca2ae;
+				background-color: #aeff00;
 				border: none;
-				color: white;
+				color: #171a1a;
 				padding: 12px 28px;
 				text-decoration: none;
 				font-size: 16px;
 				margin: 4px 2px;
 				cursor: pointer;
+				border: 1px solid #aeff00;
 
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
 			}
 			.btn-primary:hover {
-				background-color: #67b2bc;
-				color: white;
+				background-color: #171a1a;
 			}
 			.col-8 {
 				width: 320px !important;
