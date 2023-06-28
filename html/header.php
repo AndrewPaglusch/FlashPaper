@@ -95,6 +95,7 @@
 			}
 			.btn-primary:hover {
 				color: #aeff00;
+				background-color: #171a1a;
 				opacity: 0.25;
 			}
 			.col-8 {
