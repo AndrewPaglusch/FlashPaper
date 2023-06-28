@@ -109,6 +109,7 @@
 				background-color: #aeff00;
 				color: #171a1a;
 				border: 1px solid #aeff00;
+				margin: 4px 2px;
 				height: 50px;
 				width: 180px;
 			}
