@@ -57,15 +57,16 @@
 				background-color: #f8f8f8;
 				resize: none;
 			}
-			textarea:focus-visible {
-				outline: 4px dashed black;
-			}
 			
-			/* Focusing the button with a mouse, touch, or stylus will show a subtle drop shadow. */
-			textarea:focus:not(:focus-visible) {
-				outline: none;
-				box-shadow: 1px 1px 5px rgba(1, 1, 0, .7);
+			.form-control:focus {
+				color: #212529;
+				background-color: #fff;
+				border-color: #171a1a;
+				outline: 0;
+				box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
 			}
+
+
 			fieldset {
 				margin:10px;
 				border: 0;
