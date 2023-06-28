@@ -20,7 +20,7 @@
 				
 			}
 			
-			#centered-div {
+			.centered-div {
 				display: flex;
         		justify-content: center;
 			}
@@ -124,4 +124,4 @@
 				echo '<div style="padding-top: 1%" class="container"><div class="alert alert-warning"><strong>Announcement:</strong> ' . $settings['announcement'] . '</div></div>';
 			}
 		?>
-		<img style="width: 120px;height:auto;" src="./assets/Ghost_Secret_logo_full.png">
+		<img class="centered-div" style="width: 120px;height:auto;" src="./assets/Ghost_Secret_logo_full.png">
