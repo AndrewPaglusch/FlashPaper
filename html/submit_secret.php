@@ -15,7 +15,7 @@
 						<div class="form-group row float-end">
 							<div class="col">
 								<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
-									<option value="" selected disabled hidden>-- Select Template</option>
+									<option value="" selected disabled hidden><img class="btn-img" src="./assets/text-document-add-icon.png"> Select Template</option>
 									<option value="./">No Template</option>
 									<?php
 										$templates = glob('templates/*.txt');
