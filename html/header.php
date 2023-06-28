@@ -56,7 +56,7 @@
 				border-radius: 4px;
 				background-color: #f8f8f8;
 				resize: none;
-				outline-color: #aeff00;
+				outline: 2px solid #aeff00;
 			}
 			textarea:focus {
 				outline: 2px solid red;
