@@ -120,6 +120,12 @@
 				}
 			}
 
+			.btn-img {
+				height:24px;
+				width:auto;
+				padding: 5px;
+			}
+
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
