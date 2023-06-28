@@ -55,7 +55,7 @@
 				box-sizing: border-box;
 				border: 2px solid #aeff00;
 				border-radius: 4px;
-				background-color: #171a1a;
+				background-color: #232728;
 				resize: none;
 				color: #fafafa
 			}
