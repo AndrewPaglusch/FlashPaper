@@ -97,6 +97,7 @@
 				background-color: #171a1a;
 				border: 1px solid #aeff00;
 				color: #aeff00;
+				opacity: 0.25;
 			}
 			.col-8 {
 				width: 320px !important;
