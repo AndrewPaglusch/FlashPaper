@@ -56,7 +56,6 @@
 				border-radius: 4px;
 				background-color: #f8f8f8;
 				resize: none;
-				outline: 2px solid #aeff00;
 			}
 			fieldset {
 				margin:10px;
