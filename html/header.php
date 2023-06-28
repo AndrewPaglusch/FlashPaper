@@ -125,6 +125,7 @@
 				width:auto;
 				margin-right: 10px;
 				top:-3px;
+				position: relative;
 			}
 
 		</style>
