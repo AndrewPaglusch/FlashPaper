@@ -41,11 +41,14 @@
 				-webkit-border-radius: 7px;
 			}
 			.form-control[readonly] {
-				background-color:#ffffff !important;
+				color: #fafafa;
+				background-color: #232728 !important;
 				border: 2px solid #aeff00;
 				opacity:1
 			}
 			.form-control{
+				color: #fafafa;
+				background-color: #232728;
 				border: 2px solid #aeff00;
 			}
 			textarea {
