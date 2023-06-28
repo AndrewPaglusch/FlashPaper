@@ -32,6 +32,9 @@
 							<div class="col">
 								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
 							</div>
+							<div class="col">
+								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
+							</div>
 						</div>
 					</fieldset>
 				</form>
