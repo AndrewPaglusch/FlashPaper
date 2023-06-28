@@ -30,6 +30,9 @@
 				border: 1px solid #aeff00;
 				max-width: 900px;
 
+				display: flex;
+        		justify-content: center;
+
 				margin:30px;
 				border-radius: 7px;
 				-moz-border-radius: 7px;
