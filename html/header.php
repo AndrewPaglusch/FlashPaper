@@ -84,6 +84,9 @@
 				color: #171a1a;
 				border: 1px solid #aeff00;
 			}
+			label {
+				color: #aeff00;
+			}
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
