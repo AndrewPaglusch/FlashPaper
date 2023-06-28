@@ -126,6 +126,9 @@
 					width: 60vw;
 					height: auto;
 				}
+				.form-group {
+					flex-direction: column;
+				}
 			}
 
 			.btn-img {
