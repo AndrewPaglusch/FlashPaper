@@ -12,29 +12,29 @@
 								<textarea class="form-control" id="secret" name="secret" rows="8" maxlength="<?php echo $settings['max_secret_length'] ?>" style="resize: vertical;" placeholder="Secret text..." autofocus><?php echo $template_text ?></textarea>
 							</div>
 						</div>
-						<div class="form-group row float-end">
-							
-						</div>
-						<div class="form-group row float-start">
-							<div class="col">
-								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
-							</div>
-							<div class="col">
-								<button type="button" onclick="document.getElementById('secret').value = ''" class="btn btn-primary"><img class="btn-img" src="./assets/no-data-icon.png">Clear Message</button>
-							</div>
-							<div class="col">
-								<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
-									<option value="" selected disabled hidden>-- Select Template</option>
-									<option value="./">No Template</option>
-									<?php
-										$templates = glob('templates/*.txt');
-										foreach ($templates as $t) {
-											$filename = basename($t, '.txt');
-											$url_filename = urlencode($filename);
-											echo "<option value=\"?t={$url_filename}\">{$filename}</option>";
-										}
-									?>
-								</select>
+						<div class="centered-div">
+							<div class="form-group row float-start">
+
+								<div class="col">
+									<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
+								</div>
+								<div class="col">
+									<button type="button" onclick="document.getElementById('secret').value = ''" class="btn btn-primary"><img class="btn-img" src="./assets/no-data-icon.png">Clear Message</button>
+								</div>
+								<div class="col">
+									<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
+										<option value="" selected disabled hidden>-- Select Template</option>
+										<option value="./">No Template</option>
+										<?php
+											$templates = glob('templates/*.txt');
+											foreach ($templates as $t) {
+												$filename = basename($t, '.txt');
+												$url_filename = urlencode($filename);
+												echo "<option value=\"?t={$url_filename}\">{$filename}</option>";
+											}
+										?>
+									</select>
+								</div>
 							</div>
 						</div>
 					</fieldset>
