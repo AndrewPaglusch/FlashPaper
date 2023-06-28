@@ -70,12 +70,19 @@
 			.btn-primary:hover {
 				background-color: #171a1a;
 				border: 1px solid #aeff00;
+				color: #aeff00;
 			}
 			.col-8 {
 				width: 320px !important;
 			}
 			.col-4 {
 				width: 100% !important;
+			}
+
+			.form-select {
+				background-color: #aeff00;
+				color: #171a1a;
+
 			}
 		</style>
 	</head>
