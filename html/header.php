@@ -20,6 +20,10 @@
 				
 			}
 			
+			#centered-div {
+				display: flex;
+        		justify-content: center;
+			}
 
 			#form-div {
 				background-color:#171a1a;
@@ -29,9 +33,6 @@
 				padding-bottom:50px;
 				border: 1px solid #aeff00;
 				max-width: 900px;
-
-				display: flex;
-        		justify-content: center;
 
 				margin:30px;
 				border-radius: 7px;
