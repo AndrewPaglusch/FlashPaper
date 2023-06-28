@@ -125,5 +125,5 @@
 			}
 		?>
 		<div class="centered-div" >
-			<img style="width: 420px;height:auto;padding:45px;" src="./assets/Ghost_Secret_logo_full.png">
+			<img style="width: 420px;height:auto;padding-top:45px;" src="./assets/Ghost_Secret_logo_full.png">
 		</div>
