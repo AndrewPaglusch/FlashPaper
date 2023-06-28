@@ -30,7 +30,7 @@
 						</div>
 						<div class="form-group row float-start">
 							<div class="col">
-								<button name="submit" type="submit" class="btn btn-primary"><img style="height:24px;width:auto;" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
+								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
 							</div>
 						</div>
 					</fieldset>
