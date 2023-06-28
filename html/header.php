@@ -17,7 +17,7 @@
 		<style>
 			html {
 				background-color: #232728;
-				font-family: 'Proxima Nova';
+				font-family: Proxima Nova;
 				
 			}
 			
