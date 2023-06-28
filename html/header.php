@@ -68,6 +68,7 @@
 			}
 			.btn-primary:hover {
 				background-color: #171a1a;
+				border: 1px solid #aeff00;
 			}
 			.col-8 {
 				width: 320px !important;
@@ -77,7 +78,7 @@
 			}
 		</style>
 	</head>
-	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#171a1a">
+	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
 		<script>
 			if (location.protocol != 'https:') {
 				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
