@@ -63,7 +63,7 @@
 				background-color: #fff;
 				border-color: #aeff00;
 				outline: 0;
-				box-shadow: 0 0 0 0.25rem #aeff00;
+				box-shadow: 0 0 0 1px #aeff00;
 			}
 
 
