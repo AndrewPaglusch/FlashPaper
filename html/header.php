@@ -94,9 +94,7 @@
 				transition-duration: 0.4s;
 			}
 			.btn-primary:hover {
-				color: #aeff00;
-				background-color: #171a1a;
-				opacity: 0.25;
+				opacity: 0.60;
 			}
 			.col-8 {
 				width: 320px !important;
