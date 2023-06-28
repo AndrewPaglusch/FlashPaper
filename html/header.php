@@ -36,6 +36,7 @@
 			}
 			.form-control[readonly] {
 				background-color:#ffffff !important;
+				border: 2px solid #aeff00;
 				opacity:1
 			}
 			textarea {
