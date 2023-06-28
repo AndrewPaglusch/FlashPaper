@@ -28,7 +28,7 @@
 				padding-top:35px;
 				padding-bottom:50px;
 				border: 1px solid #aeff00;
-				max-width: 600px;
+				max-width: 900px;
 
 				margin:30px;
 				border-radius: 7px;
