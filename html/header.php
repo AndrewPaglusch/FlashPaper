@@ -56,9 +56,12 @@
 				border-radius: 4px;
 				background-color: #f8f8f8;
 				resize: none;
+				outline-color: #aeff00;
 			}
 			textarea:focus {
-				outline-color: #aeff00;
+				outline: none;
+				box-shadow: 0 0 0 2px #aeff00; /* Change this to the desired color */
+				/* Add any additional styles as needed */
 			}
 			fieldset {
 				margin:10px;
