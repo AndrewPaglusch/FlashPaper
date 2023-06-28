@@ -81,7 +81,7 @@
 				cursor: pointer;
 				border: 1px solid #aeff00;
 				height: 50px;
-				width: 75px;
+				width: 180px;
 
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
