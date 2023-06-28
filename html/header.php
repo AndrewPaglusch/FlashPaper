@@ -94,9 +94,6 @@
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
 			}
-			.btn-primary:hover {
-				opacity: 0.60;
-			}
 			.col-8 {
 				width: 320px !important;
 			}
