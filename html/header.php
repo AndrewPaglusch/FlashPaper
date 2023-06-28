@@ -109,6 +109,7 @@
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
+		<img src="./assets/Ghost_Secret_logo_full.png">
 		<script>
 			if (location.protocol != 'https:') {
 				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
