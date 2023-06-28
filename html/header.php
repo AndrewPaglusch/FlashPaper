@@ -48,7 +48,6 @@
 				border-radius: 4px;
 				background-color: #f8f8f8;
 				resize: none;
-				text-shadow: 0 2px 0 #aeff00;
 			}
 			fieldset {
 				margin:10px;
