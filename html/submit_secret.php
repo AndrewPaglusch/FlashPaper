@@ -20,7 +20,7 @@
 								<button name="submit" type="submit" class="btn btn-primary"><img class="btn-img" src="./assets/padlock-black-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
 							</div>
 							<div class="col">
-								<button type="button" onclick="document.getElementById('secret').value = ''" class="btn btn-primary"><img class="btn-img" src="./assets/no-data-icon.png"><?php echo $settings['messages']['submit_secret_button'] ?></button>
+								<button type="button" onclick="document.getElementById('secret').value = ''" class="btn btn-primary"><img class="btn-img" src="./assets/no-data-icon.png">Clear Message</button>
 							</div>
 							<div class="col">
 								<select id="select" name="select" class="form-select" onChange="window.location.href=this.value">
