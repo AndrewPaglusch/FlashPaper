@@ -59,7 +59,7 @@
 				outline-color: #aeff00;
 			}
 			textarea:focus {
-				outline: none;
+				outline: 0;
 				box-shadow: 0 0 0 2px #aeff00; /* Change this to the desired color */
 				/* Add any additional styles as needed */
 			}
