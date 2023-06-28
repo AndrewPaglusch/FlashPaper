@@ -112,7 +112,12 @@
 				padding-top:45px;
 			}
 
-			
+			@media screen and (max-width: 450px) {
+				.new-pass-form {
+					width: 60vw;
+					height: auto;
+				}
+				}
 
 		</style>
 	</head>
