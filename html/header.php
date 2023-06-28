@@ -76,10 +76,10 @@
 				background-color: #aeff00;
 				border: none;
 				color: #171a1a;
-				padding: 12px 28px;
+
 				text-decoration: none;
 				font-size: 12pt;
-				margin: 4px 2px;
+
 				cursor: pointer;
 				border: 1px solid #aeff00;
 				height: 50px;
