@@ -71,7 +71,6 @@
 				display: flex;
 				flex-direction: row;
         		align-items: center;
-				background-color: #171a1a;
 			}
 
 
@@ -93,6 +92,11 @@
 
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
+			}
+			.btn-primary:hover {
+				background-color: #171a1a;
+				border: 1px solid #aeff00;
+				color: #aeff00;
 			}
 			.col-8 {
 				width: 320px !important;
