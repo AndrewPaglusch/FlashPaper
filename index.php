@@ -80,7 +80,7 @@
 
 		// echo("<script>console.log('PHP: " . $_POST['expire-days'] . "');</script>");
 
-		$message = store_secret($_POST['secret'], $settings, $_POST['expire-days']);
+		$message = store_secret($_POST['secret'], $settings, $_POST['expire-days'], $_POST['view-count']);
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);

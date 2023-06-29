@@ -35,7 +35,7 @@
 		# open the db (create if it doesnt exist)
 		try {
 			$db = new PDO("sqlite:{$dbName}");
-			$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT, "prune_epoch" INTEGER)');
+			$db->exec('CREATE TABLE IF NOT EXISTS "secrets" ("id" TEXT PRIMARY KEY, "iv" TEXT, "hash" TEXT, "secret" TEXT, "views" INTEGER, "views_max" INTEGER, "prune_epoch" INTEGER)');
 			return $db;
 		} catch (Exception $e) {
 			# re-throw exception so we can catch it higer up with a more helpful error message
@@ -78,12 +78,14 @@
 		}
 	}
 
-	function writeSecret($db, $id, $iv, $hash, $secret, $prune_epoch) {
-		$statement = $db->prepare('INSERT INTO "secrets" ("id", "iv", "hash", "secret", "prune_epoch") VALUES (:id, :iv, :hash, :secret, :prune_epoch)');
+	function writeSecret($db, $id, $iv, $hash, $secret, $views, $views_max, $prune_epoch) {
+		$statement = $db->prepare('INSERT INTO "secrets" ("id", "iv", "hash", "secret", "views", "views_max", "prune_epoch") VALUES (:id, :iv, :hash, :secret, :views, :views_max, :prune_epoch)');
 		$statement->bindValue(':id', $id);
 		$statement->bindValue(':iv', $iv);
 		$statement->bindValue(':hash', $hash);
 		$statement->bindValue(':secret', $secret);
+		$statement->bindValue(':views', $views);
+		$statement->bindValue(':views_max', $viwes_max);
 		$statement->bindValue(':prune_epoch', $prune_epoch);
 		if ( ! $statement->execute() ) {
 			throw new Exception('Failed to write to database!');
@@ -137,7 +139,7 @@
 		return $key;
 	}
 
-	function store_secret($secret, $settings, $expire_days) {
+	function store_secret($secret, $settings, $expire_days, $views_max) {
 		#connect to sqlite db
 		$db = connect();
 
@@ -161,8 +163,10 @@
 		$secret = encrypt_decrypt(true, $key, $iv, $secret);
 		$secret = encrypt_decrypt(true, getStaticKey(), $iv, $secret);
 
+		$views = 0;
+
 		#write id, iv, bcrypt password hash, and secret to database
-		writeSecret($db, $id, $iv, $hash, $secret, $prune_epoch);
+		writeSecret($db, $id, $iv, $hash, $secret, $views, $views_max, $prune_epoch);
 
 		#close db
 		$db = null;
