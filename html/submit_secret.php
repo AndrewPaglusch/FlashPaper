@@ -41,12 +41,12 @@
 							<div class="centered-div center-slider">
 								<label for="expire-days" class="slider-desc">Days Before Expiration </label>
 								<input type="range" min="1" max="100" value="50" class="slider" id="expire-days" oninput="this.nextElementSibling.value = this.value">
-								<output class="slider-value">50</output><span class="slider-after">Days</span>
+								<output class="slider-value">50</output><span class="slider-after slider-value">Days</span>
 							</div>
 							<div class="centered-div center-slider">
 								<label for="view-count" class="slider-desc">Views Before Destruction </label>
 								<input type="range" min="1" max="100" value="50" class="slider" id="view-count" oninput="this.nextElementSibling.value = this.value">
-								<output class="slider-value">50</output><span class="slider-after">Views</span>
+								<output class="slider-value">50</output><span class="slider-after slider-value">Views</span>
 							</div>
 						</div>
 					</fieldset>
