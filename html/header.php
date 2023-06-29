@@ -175,7 +175,6 @@
 				font-family: 'Proxima Nova', arial, serif;
 				color:#fafafa; line-height: 1.25;
 				font-size: 30px;
-				font-weight: bold;
 			}
 
 			.main-label-green {
