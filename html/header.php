@@ -133,6 +133,11 @@
 				.form-group {
 					flex-direction: column;
 				}
+				.slider-desc {
+					font-size: 10pt;
+					color: #fafafa;
+					margin-right: 10px;
+				}
 			}
 
 			.btn-img {
