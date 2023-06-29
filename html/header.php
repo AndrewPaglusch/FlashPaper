@@ -151,12 +151,13 @@
 			}
 
 			.slider {
-				max-width: 50%;
+				width: 35%;
 			}
 
 			.slider-desc {
-				font-size: 10pt;
+				font-size: 12pt;
 				color: #fafafa;
+				margin-right: 25px;
 			}
 
 		</style>
