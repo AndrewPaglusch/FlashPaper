@@ -67,6 +67,8 @@
 		$secret = retrieve_secret($_POST['k']);
 		$message = htmlentities($secret[0]);
 		$views_left = $secret[1];
+
+		echo("<script>console.log('PHP: " . $views_left . "');</script>");
 		
 		if ( $views_left <= 0) {
 			$view_message = htmlentities($settings['messages']['view_secret_subheader']);
