@@ -137,7 +137,7 @@
 		return $key;
 	}
 
-	function store_secret($secret, $settings) {
+	function store_secret($secret, $settings, $expire_days) {
 		#connect to sqlite db
 		$db = connect();
 
@@ -149,7 +149,7 @@
 		#generate expiration datetime
 		$min_days = $settings['prune']['min_days'];
 		$max_days = $settings['prune']['max_days'];
-		$prune_epoch = rand(time() + (86400 * $min_days), time() + (86400 * $max_days));
+		$prune_epoch = time() + (86400 * $expire_days);
 
 		#generate k value for url (id + key)
 		$k = $id . $key;

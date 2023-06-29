@@ -78,9 +78,9 @@
 			throw new exception($settings['messages']['error_secret_too_long']);
 		}
 
-		echo("<script>console.log('PHP: " . $_POST['expire-days'] . "');</script>");
+		// echo("<script>console.log('PHP: " . $_POST['expire-days'] . "');</script>");
 
-		$message = store_secret($_POST['secret'], $settings);
+		$message = store_secret($_POST['secret'], $settings, $_POST['expire-days']);
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);
