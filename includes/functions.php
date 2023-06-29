@@ -85,7 +85,7 @@
 		$statement->bindValue(':hash', $hash);
 		$statement->bindValue(':secret', $secret);
 		$statement->bindValue(':views', $views);
-		$statement->bindValue(':views_max', $viwes_max);
+		$statement->bindValue(':views_max', $views_max);
 		$statement->bindValue(':prune_epoch', $prune_epoch);
 		if ( ! $statement->execute() ) {
 			throw new Exception('Failed to write to database!');
