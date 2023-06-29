@@ -180,6 +180,11 @@
 				margin-left: 25px;
 			}
 
+			.slider-after {
+				color: #aeff00;
+				margin-left:1ch;
+			}
+
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
