@@ -217,7 +217,7 @@
 		$secret = $secretQuery['secret'];
 		$views = $secretQuery['views'];
 		$views_max = $secretQuery['views_max'];
-		$views_left = $views_max - $views+1;
+		$views_left = $views_max - ($views+1);
 
 		#verify hash from DB equals hash of id + key from URL
 		if ( ! password_verify($id . $key, $hash) ) {
