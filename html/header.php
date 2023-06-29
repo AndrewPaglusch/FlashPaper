@@ -174,7 +174,6 @@
 			.main-label {
 				font-family: 'Proxima Nova', arial, serif;
 				color:#fafafa; line-height: 1.25;
-				margin: 0 0 10px;
 				font-size: 30px;
 				font-weight: bold;
 			}
