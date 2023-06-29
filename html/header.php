@@ -141,6 +141,11 @@
 				.slider {
 					width: 75%;
 				}
+
+				.slider-value {
+					font-size: 10pt;
+					margin-left: 10px;
+				}
 			}
 
 			.btn-img {
@@ -167,6 +172,12 @@
 				font-size: 12pt;
 				color: #fafafa;
 				margin-right: 25px;
+			}
+
+			.slider-value {
+				font-size: 12pt;
+				color: #aeff00;
+				margin-left: 25px;
 			}
 
 		</style>
