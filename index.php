@@ -71,7 +71,7 @@
 		if ( $views_left <= 0) {
 			$view_message = htmlentities($settings['messages']['view_secret_subheader']);
 		} else {
-			$view_message = htmlentities("There are " . $views_left . "views until destruction.");
+			$view_message = htmlentities("There are " . $views_left . " views until destruction.");
 		}
 
 		require_once('html/view_secret.php');
