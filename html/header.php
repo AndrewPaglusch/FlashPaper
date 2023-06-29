@@ -146,6 +146,10 @@
 					font-size: 10pt;
 					margin-left: 10px;
 				}
+
+				.center-slider {
+					flex-direction: column;
+				}
 			}
 
 			.btn-img {
@@ -184,6 +188,7 @@
 				color: #aeff00;
 				margin-left:1ch;
 			}
+
 
 		</style>
 	</head>
