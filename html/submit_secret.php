@@ -39,7 +39,7 @@
 						</div>
 						<br>
 						<div class="centered-div" style="flex-direction: column;">
-							<label for="expire-days">Days Before Expiration </label>
+							<label for="expire-days" class="slider-desc">Days Before Expiration </label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="expire-days">
 							<br>
 							<input type="range" min="1" max="100" value="50" class="slider" id="view-count">
