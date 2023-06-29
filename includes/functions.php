@@ -235,10 +235,11 @@
 				# if we cant destroy it, dont give the secret out
 				throw new Exception('Failed to destroy secret!');
 			}
+			#close db
+			$db = null;
 			return array($secret, 0);
 		} else {
 			updateViews($db, $id, $views+1);
-			
 
 			#close db
 			$db = null;
