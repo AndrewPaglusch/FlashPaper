@@ -151,7 +151,7 @@
 			}
 
 			.slider {
-				max-width: 75%;
+				max-width: 50%;
 			}
 
 			.slider-desc {
