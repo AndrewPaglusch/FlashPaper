@@ -78,7 +78,9 @@
 			throw new exception($settings['messages']['error_secret_too_long']);
 		}
 
-		echo "<script>console.log('stuff: " . $_POST[`expire-days`] . "' );</script>";
+		$expire = $_POST[`expire-days`]
+
+		echo "<script>console.log('stuff: " . $expire . "' );</script>";
 
 		$message = store_secret($_POST['secret'], $settings);
 
