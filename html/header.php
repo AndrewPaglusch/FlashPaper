@@ -197,6 +197,10 @@
 				.slider-after {
 					font-size:10pt;
 				}
+				
+				.main-label {
+					font-size: 15px;
+				}
 
 			}
 

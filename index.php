@@ -67,8 +67,6 @@
 		$secret = retrieve_secret($_POST['k']);
 		$message = htmlentities($secret[0]);
 		$views_left = $secret[1];
-
-		echo("<script>console.log('PHP: " . $views_left . "');</script>");
 		
 		if ( $views_left <= 0) {
 			$view_message = htmlentities($settings['messages']['view_secret_subheader']);
@@ -87,8 +85,6 @@
 		if ( strlen(str_replace("\r\n", "\n", $_POST['secret'])) > $settings['max_secret_length'] ) {
 			throw new exception($settings['messages']['error_secret_too_long']);
 		}
-
-		// echo("<script>console.log('PHP: " . $_POST['view-count'] . "');</script>");
 
 		$message = store_secret($_POST['secret'], $settings, $_POST['expire-days'], $_POST['view-count']);
 
