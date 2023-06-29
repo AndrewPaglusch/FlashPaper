@@ -190,9 +190,6 @@
 					font-size:10pt;
 				}
 
-				.center-slider {
-					flex-direction: column;
-				}
 			}
 
 
