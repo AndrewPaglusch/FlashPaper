@@ -234,7 +234,7 @@
 				# if we cant destroy it, dont give the secret out
 				throw new Exception('Failed to destroy secret!');
 			}
-			return ($secret, 0);
+			return array($secret, 0);
 		} else {
 			updateViews($db, $id, $views+1);
 			
@@ -243,7 +243,7 @@
 			#close db
 			$db = null;
 			#return decrypted text
-			return ($secret, $views_left);
+			return array($secret, $views_left);
 		}
 	}
 
