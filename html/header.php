@@ -150,6 +150,10 @@
 			font-style: normal;
 			}
 
+			.slider {
+				max-width: 75%;
+			}
+
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">

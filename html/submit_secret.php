@@ -39,9 +39,9 @@
 						</div>
 						<br>
 						<div class="centered-div" style="flex-direction: column;">
-							<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+							<input type="range" min="1" max="100" value="50" class="slider" id="expire-days">
 							<br>
-							<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+							<input type="range" min="1" max="100" value="50" class="slider" id="view-count">
 						</div>
 					</fieldset>
 				</form>
