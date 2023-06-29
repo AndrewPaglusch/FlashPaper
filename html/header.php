@@ -138,6 +138,9 @@
 					color: #fafafa;
 					margin-right: 10px;
 				}
+				.slider {
+					width: 75%;
+				}
 			}
 
 			.btn-img {
