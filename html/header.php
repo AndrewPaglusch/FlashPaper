@@ -4,7 +4,8 @@
 	<head>
 		<!--
 		######################################################################################
-		# Copyright (c) 2017-<?php echo date("Y"); ?> Andrew Paglusch                                            #
+		# Copyright (c) 2017-<?php echo date("Y"); ?> Andrew Paglusch
+		# Copyright (c) 2023-<?php echo date("Y"); ?> Ghost Core Developers                                        #
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE         #
 		######################################################################################
 		-->
