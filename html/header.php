@@ -171,6 +171,14 @@
 				box-shadow: 0 0 0 1px #aeff00;
 			}
 
+			.main-label {
+				font-family: 'Proxima Nova', arial, serif;
+				color:#fafafa; line-height: 1.25;
+				margin: 0 0 10px;
+				font-size: 30px;
+				font-weight: bold;
+			}
+
 
 			@media screen and (max-width: 450px) {
 				.logo-img {
