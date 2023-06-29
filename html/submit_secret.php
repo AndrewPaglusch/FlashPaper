@@ -21,7 +21,7 @@
 							<div class="centered-div center-slider">
 								<label for="view-count" class="slider-desc">Views Before Destruction </label>
 								<input type="range" min="1" max="100" value="1" class="slider" id="view-count" oninput="this.nextElementSibling.value = this.value">
-								<output class="slider-value">1</output><span class="slider-after">View</span><span value="return count > 1 ? 's' : '';"></span>
+								<output class="slider-value">1</output><span class="slider-after">View</span><span value="return document.getElementById('view-count').value > 1 ? 's' : '';"></span>
 							</div>
 						</div>
 						
