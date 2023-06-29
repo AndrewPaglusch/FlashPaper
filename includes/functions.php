@@ -166,7 +166,7 @@
 		$views = 0;
 
 		#write id, iv, bcrypt password hash, and secret to database
-		writeSecret($db, $id, $iv, $hash, $secret, $views, $views_max, $prune_epoch);
+		writeSecret($db, $id, $iv, $hash, $secret, $views, (int)$views_max, $prune_epoch);
 
 		#close db
 		$db = null;
