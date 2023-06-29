@@ -154,6 +154,11 @@
 				max-width: 75%;
 			}
 
+			.slider-desc {
+				font-size: 10pt;
+				color: #fafafa;
+			}
+
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''" style="background-color:#232728">
