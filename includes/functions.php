@@ -165,7 +165,6 @@
 
 		$views = 0;
 
-		$views_max = (int)$views_max;
 
 		#write id, iv, bcrypt password hash, and secret to database
 		writeSecret($db, $id, $iv, $hash, $secret, $views, $views_max, $prune_epoch);
