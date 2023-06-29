@@ -1,13 +1,15 @@
 version: "3.5"
 services:
   flashpaper:
-    image: ghcr.io/andrewpaglusch/flashpaper:v2
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     container_name: flashpaper
     restart: always
     volumes:
-      - './data:/var/www/html/data'
+      - "./data:/var/www/html/data"
     ports:
-      - '8080:80'
+      - "8080:80"
     environment:
       SITE_TITLE: "FlashPaper :: Self-Destructing Message"
       RETURN_FULL_URL: "true"
@@ -27,4 +29,3 @@ services:
       PRUNE_ENABLED: "true"
       PRUNE_MIN_DAYS: 365
       PRUNE_MAX_DAYS: 730
-      
