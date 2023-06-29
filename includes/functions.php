@@ -226,6 +226,7 @@
 		#decrypt secret with the static key, and then with url key
 		$secret = encrypt_decrypt(false, getStaticKey(), $iv, $secret);
 		$secret = encrypt_decrypt(false, $key, $iv, $secret);
+		
 
 		if ( $views + 1 >= $views_max) {
 			#delete secret and verify it's gone
@@ -233,16 +234,17 @@
 				# if we cant destroy it, dont give the secret out
 				throw new Exception('Failed to destroy secret!');
 			}
+			return ($secret, 0);
 		} else {
 			updateViews($db, $id, $views+1);
+			
+			$views_left = $views_max - $views+1
+
+			#close db
+			$db = null;
+			#return decrypted text
+			return ($secret, $views_left);
 		}
-		
-
-		#close db
-		$db = null;
-
-		#return decrypted text
-		return $secret;
 	}
 
 ?>

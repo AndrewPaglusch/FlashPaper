@@ -65,7 +65,9 @@
 		global $settings;
 
 		$secret = retrieve_secret($_POST['k']);
-		$message = htmlentities($secret);
+		$message = htmlentities($secret)[0];
+		$views_left = $secret[1]
+		echo("<script>console.log('PHP: " . $views_left . "');</script>");
 		require_once('html/view_secret.php');
 	}
 
