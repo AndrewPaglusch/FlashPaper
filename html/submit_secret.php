@@ -15,7 +15,7 @@
 						<div style="margin-bottom:10px;">
 							<div class="centered-div center-slider">
 								<label for="expire-days" class="slider-desc">Days Before Expiration </label>
-								<input type="range" min="1" max="365" value="50" class="slider" id="expire-days" oninput="this.nextElementSibling.value = this.value">
+								<input type="range" min="1" max="365" value="50" class="slider" name="expire-days" id="expire-days" oninput="this.nextElementSibling.value = this.value">
 								<output class="slider-value">30</output><span class="slider-after">Days</span>
 							</div>
 							<div class="centered-div center-slider">
