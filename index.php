@@ -78,7 +78,7 @@
 			throw new exception($settings['messages']['error_secret_too_long']);
 		}
 
-		echo("<script>console.log('PHP: " . $_POST['view-count'] . "');</script>");
+		// echo("<script>console.log('PHP: " . $_POST['view-count'] . "');</script>");
 
 		$message = store_secret($_POST['secret'], $settings, $_POST['expire-days'], $_POST['view-count']);
 

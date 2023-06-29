@@ -103,6 +103,15 @@
 		}
 	}
 
+	function updateViews($db, $id, $views) {
+		$statement = $db->prepare('UPDATE "secrets" SET views=:views WHERE id = :id');
+		$statement->bindValue(':id', $id);
+		$statement->bindValue(':views', $views);
+		if ( ! $statement->execute() ) {
+			throw new Exception('Failed to read from database!');
+		} 
+	}
+
 	function deleteSecret($db, $id) {
 		$db->exec('PRAGMA secure_delete = 1');
 		$statement = $db->prepare('DELETE FROM "secrets" WHERE id = :id');
@@ -206,6 +215,8 @@
 		$iv = $secretQuery['iv'];
 		$hash = $secretQuery['hash'];
 		$secret = $secretQuery['secret'];
+		$views = $secretQuery['views'];
+		$views_max = $secretQuery['views_max'];
 
 		#verify hash from DB equals hash of id + key from URL
 		if ( ! password_verify($id . $key, $hash) ) {
@@ -216,11 +227,16 @@
 		$secret = encrypt_decrypt(false, getStaticKey(), $iv, $secret);
 		$secret = encrypt_decrypt(false, $key, $iv, $secret);
 
-		#delete secret and verify it's gone
-		if ( ! deleteSecret($db, $id) ) {
-			# if we cant destroy it, dont give the secret out
-			throw new Exception('Failed to destroy secret!');
+		if ( $views + 1 >= $views_max) {
+			#delete secret and verify it's gone
+			if ( ! deleteSecret($db, $id) ) {
+				# if we cant destroy it, dont give the secret out
+				throw new Exception('Failed to destroy secret!');
+			}
+		} else {
+			updateViews($db, $id, $views+1);
 		}
+		
 
 		#close db
 		$db = null;
