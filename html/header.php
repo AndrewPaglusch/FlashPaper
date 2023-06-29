@@ -165,6 +165,7 @@
 
 			.form-select:focus {
 				color: #fafafa;
+				background-color: #232728;
 				border-color: #aeff00;
 				outline: 0;
 				box-shadow: 0 0 0 1px #aeff00;
