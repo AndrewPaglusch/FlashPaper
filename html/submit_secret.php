@@ -44,7 +44,7 @@
 						</div>
 						<br>
 						<div class="centered-div" style="flex-direction: column;">
-							<label for="expire-days" class="slider-desc">Views Before Destruction </label>
+							<label for="view-count" class="slider-desc">Views Before Destruction </label>
 							<input type="range" min="1" max="100" value="50" class="slider" id="view-count">
 						</div>
 					</fieldset>
