@@ -37,8 +37,10 @@
 								</div>
 							</div>
 						</div>
+						<br></br>
 						<div class="centered-div">
 							<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+							<br></br>
 							<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
 						</div>
 					</fieldset>
