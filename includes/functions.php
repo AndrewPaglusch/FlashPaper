@@ -238,7 +238,7 @@
 		} else {
 			updateViews($db, $id, $views+1);
 			
-			$views_left = $views_max - $views+1
+			$views_left = $views_max - $views+1;
 
 			#close db
 			$db = null;
