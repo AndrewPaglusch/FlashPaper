@@ -160,6 +160,7 @@
 
 			.slider {
 				width: 35%;
+				accent-color: #aeff00;
 			}
 
 			.slider-desc {
