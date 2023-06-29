@@ -179,6 +179,10 @@
 				font-weight: bold;
 			}
 
+			.main-label-green {
+				color: #aeff00;
+			}
+
 
 			@media screen and (max-width: 450px) {
 				.logo-img {

@@ -3,7 +3,7 @@
 			<div id="form-div">
 				<fieldset>
 					<div>
-						<label style="font-family: 'Proxima Nova', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['view_code_header'] ?></label>
+						<label class="main-label main-label-green"><?php echo $settings['messages']['view_code_header'] ?></label>
 						<div style="font-style: italic">
 							<label style="font-family: 'Proxima Nova', arial, serif; line-height: 1.25; color:#fafafa; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['view_code_subheader'] ?></label>
 						</div>

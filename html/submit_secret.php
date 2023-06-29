@@ -4,7 +4,7 @@
 				<form class="form-horizontal" action="" method="POST">
 					<fieldset>
 						<div>
-							<label class="main-label" ><?php echo $settings['messages']['submit_secret_header']; ?></label>
+							<label class="main-label"><?php echo $settings['messages']['submit_secret_header']; ?></label>
 							<div style="font-style: italic">
 								<label style="font-family: 'Proxima Nova', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_subheader'] ?></label>
 							</div>
