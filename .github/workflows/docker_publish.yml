@@ -30,6 +30,13 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+    strategy:
+      matrix:
+        include:
+          - dockerfile: Dockerfile
+            platform: linux/amd64
+          - dockerfile: arm.Dockerfile
+            platform: linux/arm64/v8
 
     steps:
       - name: Checkout repository
@@ -69,8 +76,8 @@ jobs:
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
         with:
           context: .
-          file: docker/Dockerfile
+          file: docker/${{ matrix.dockerfile }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
+          platforms: ${{ matrix.platform }}
