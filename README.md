@@ -19,9 +19,7 @@ https://flashpaper.io
   4. Set up a reverse-proxy in front of FlashPaper that terminates SSL/TLS
 
 #### Building an Image
-  You can build your own image using the provided Dockerfile in the `docker/` folder. There are currently two:
-  - For x86_64 (`docker/Dockerfile`)
-  - For ARM64 (`docker/arm.Dockerfile`)
+  You can build your own image using the provided Dockerfile in the `docker/` folder.
 
   In order to build FlashPaper, run `docker build . -t flashpaper -f docker/Dockerfile`. If you would like to build FlashPaper for a different CPU architecture, replace `docker/Dockerfile` with the appropriate Dockerfile.
   You can also build via docker-compose by replacing the `image:` line in [docker-compose.yml](https://github.com/AndrewPaglusch/FlashPaper/blob/master/docker-compose.yml) with the following (make sure to choose the Dockerfile for your architecture):
