@@ -24,7 +24,7 @@
 
 	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
 		try {
-			display_secret_code($json); # secret submitted. display url/code
+			display_secret_code(false); # secret submitted. display url/code
 		} catch (Exception $e) { display_error($e); }
 
 	} else {
