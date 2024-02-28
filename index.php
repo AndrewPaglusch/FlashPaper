@@ -99,7 +99,7 @@
 			$base_url = $settings['base_url'];
 			$base_url = str_replace("index.php", "", $base_url); # remove index.php from base_url if it's there
 			$base_url = rtrim($base_url, '/') . '/'; # make sure base_url ends with a '/'
-			return $base_url . "?k=${k}";
+			return $base_url . "?k={$k}";
 		}
 
 		# try our best to predict the base url of the FlashPaper instance
@@ -109,8 +109,8 @@
 		$path = str_replace("index.php","",$path); # remove index.php from path if it's there
 		$path = preg_replace('/(\/+)/','/',$path); # strip any duplicate /'s from path
 		$path = rtrim($path, '/') . '/'; # make sure path ends with /
-		$args = "?k=${k}"; # /?k=a1b2c3d4...
-		return "${scheme}${hostname}${path}${args}";
+		$args = "?k={$k}"; # /?k=a1b2c3d4...
+		return "{$scheme}{$hostname}{$path}{$args}";
 	}
 
 	function display_error($exception) {
