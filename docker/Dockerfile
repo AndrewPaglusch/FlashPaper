@@ -1,6 +1,6 @@
 FROM alpine:3.19.1
 
-RUN apk add --no-cache gettext curl nginx php81 php81-fpm php81-opcache php81-pdo php81-pdo_sqlite php81-openssl && \
+RUN apk add --no-cache gettext curl nginx php83 php83-fpm php83-opcache php83-pdo php83-pdo_sqlite php83-openssl && \
     mkdir /var/www/html
 
 COPY . /var/www/html
@@ -8,7 +8,7 @@ COPY . /var/www/html
 RUN chmod -R 775 /var/www/html && \
     chown -R nginx:nginx /var/www/html
 
-COPY docker/php-fpm.conf /etc/php81/php-fpm.conf
+COPY docker/php-fpm.conf /etc/php83/php-fpm.conf
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/entrypoint.sh /entrypoint.sh
 
