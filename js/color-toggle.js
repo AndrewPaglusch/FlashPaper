@@ -4,28 +4,45 @@
  */
 
 const themeStitcher = document.getElementById("themingSwitcher");
-const isSystemThemeSetToDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-// set toggler position based on system theme
-if (isSystemThemeSetToDark) {
-  themeStitcher.checked = true;
+// Load theme preference from local storage or fall back to system preference
+const storedThemePreference = localStorage.getItem('themePreference');
+let themePreference;
+
+if (storedThemePreference !== null) {
+  // Use stored preference if available
+  themePreference = storedThemePreference === 'true';
+} else {
+  // Use system theme if no preference is stored
+  themePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  // Save the initial preference based on system theme
+  localStorage.setItem('themePreference', themePreference);
 }
 
-// add listener to theme toggler
+// Apply the theme based on the retrieved or determined preference
+themeStitcher.checked = themePreference;
+applyTheme(themePreference); // Ensure the theme is applied on page load
+
+// Add listener to theme toggler
 themeStitcher.addEventListener("change", (e) => {
-  toggleTheme(e.target.checked);
+  const isChecked = e.target.checked;
+  applyTheme(isChecked);
+  // Update the current theme preference in local storage whenever it is changed
+  localStorage.setItem('themePreference', isChecked);
 });
 
-const toggleTheme = (isChecked) => {
-  const theme = isChecked ? "dark" : "light";
-
+function applyTheme(isDarkTheme) {
+  const theme = isDarkTheme ? "dark" : "light";
   document.documentElement.dataset.bsTheme = theme;
 }
 
-// add listener to toggle theme with Shift + D
+// Add listener to toggle theme with Shift + D
 document.addEventListener("keydown", (e) => {
   if (e.shiftKey && e.key === "D") {
-    themeStitcher.checked = !themeStitcher.checked;
-    toggleTheme(themeStitcher.checked);
+    const newCheckedState = !themeStitcher.checked;
+    themeStitcher.checked = newCheckedState;
+    applyTheme(newCheckedState);
+    // Update the current theme preference in local storage whenever it is toggled via shortcut
+    localStorage.setItem('themePreference', newCheckedState);
   }
 });
