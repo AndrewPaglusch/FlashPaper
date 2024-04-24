@@ -12,7 +12,8 @@
 		<!-- Meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="./css/solid.min.css" >
+		<!-- Font Awesom CSS -->
+		<link rel="stylesheet" href="./css/all.min.css" rel="stylesheet" />
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 		<style>
@@ -73,6 +74,16 @@
 		<script src="./js/color-toggle.js" defer>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">
+	<script>
+			if (location.protocol != 'https:') {
+				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
+			}
+			function copyText() {
+				var textToCopy = document.getElementById("copy");
+				textToCopy.select();
+				document.execCommand("copy");
+			}
+		</script>
 		<header>
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		  		<div class="container-fluid">
@@ -95,16 +106,6 @@
 		      		</span>
 		  		</div>
 			</nav>
-			<script>
-			if (location.protocol != 'https:') {
-				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
-			}
-			function copyText() {
-				var textToCopy = document.getElementById("copy");
-				textToCopy.select();
-				document.execCommand("copy");
-			}
-		</script>
 			<?php
 			if ( $settings['announcement'] != '' ) {
 				echo '<div style="padding-top: 1%" class="container"><div class="alert alert-warning"><strong>Announcement:</strong> ' . $settings['announcement'] . '</div></div>';
