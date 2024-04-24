@@ -1,6 +1,6 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="auto">
 	<head>
 		<!--
 		######################################################################################
