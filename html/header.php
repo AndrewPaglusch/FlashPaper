@@ -96,12 +96,12 @@
 					</a>
 					<span class="navbar-text">
 						<li class="nav-item align-items-center d-flex" >
- 							<i class="fas fa-sun"></i>
+ 							<i class="fa-solid fa-sun"></i>
 				  			<!-- Default switch -->
   							<div class="ms-2 form-check form-switch">
     						<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
   							</div>
-  							<i class="fas fa-moon"></i>
+  							<i class="fa-solid fa-moon"></i>
 						</li>
 		      		</span>
 		  		</div>
