@@ -1,6 +1,6 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="dark">
 	<head>
 		<!--
 		######################################################################################
@@ -71,7 +71,29 @@
 		</style>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">
-		<script>
+		<header>
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		  		<div class="container-fluid">
+		    		<a class="navbar-brand" href="#">
+						<?php
+							if ( $settings['site_title'] != '' ) {
+								echo '' . $settings['site_title'] . '';
+							}
+						?>
+					</a>
+					<span class="navbar-text">
+						<li class="nav-item align-items-center d-flex" >
+ 							<i class="fas fa-sun"></i>
+				  			<!-- Default switch -->
+  							<div class="ms-2 form-check form-switch">
+    						<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
+  							</div>
+  							<i class="fas fa-moon"></i>
+						</li>
+		      		</span>
+		  		</div>
+			</nav>
+			<script>
 			if (location.protocol != 'https:') {
 				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
 			}
@@ -81,8 +103,9 @@
 				document.execCommand("copy");
 			}
 		</script>
-		<?php
+			<?php
 			if ( $settings['announcement'] != '' ) {
 				echo '<div style="padding-top: 1%" class="container"><div class="alert alert-warning"><strong>Announcement:</strong> ' . $settings['announcement'] . '</div></div>';
 			}
-		?>
+			?>
+		</header>
