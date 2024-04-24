@@ -31,7 +31,6 @@
 				-webkit-border-radius: 7px;
 			}
 			.form-control[readonly] {
-				background-color:#ffffff !important;
 				opacity:1
 			}
 			textarea {
@@ -41,7 +40,6 @@
 				box-sizing: border-box;
 				border: 2px solid #ccc;
 				border-radius: 4px;
-				background-color: #f8f8f8;
 				resize: none;
 			}
 			fieldset {
