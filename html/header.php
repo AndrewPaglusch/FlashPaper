@@ -88,7 +88,7 @@
 							}
 						?>
 						<?php
-							if ( $settings['display_title'] = 'true') {
+							if ( $settings['display_title'] == 'true') {
 								echo '' . $settings['site_title'] . '';
 							}
 						?>
