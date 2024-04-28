@@ -79,11 +79,16 @@
 			}
 		</script>
 		<header>
-			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<nav class="navbar navbar-expand-lg">
 		  		<div class="container-fluid">
 		    		<a class="navbar-brand" href="#">
 						<?php
-							if ( $settings['site_title'] != '' ) {
+							if ( $settings['site_logo'] != '' ) {
+								echo '<img src="'. $settings['site_logo'] .'" alt="Logo" width="200" class="d-inline-block align-middle">';
+							}
+						?>
+						<?php
+							if ( $settings['display_title'] = 'true') {
 								echo '' . $settings['site_title'] . '';
 							}
 						?>
