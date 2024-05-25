@@ -3,6 +3,8 @@
 
 	${DOLLAR}settings = [
 		"site_title" => "${SITE_TITLE}",
+		"site_logo" => "${SITE_LOGO}",
+		"display_title" => "${DISPLAY_TITLE}",
 		"return_full_url" => ${RETURN_FULL_URL},
 		"base_url" => "${BASE_URL}",
 		"max_secret_length" => ${MAX_SECRET_LENGTH},

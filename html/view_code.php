@@ -12,13 +12,6 @@
 					<div class="col">
 						<button class="btn btn-primary" type="button" onclick="copyText()">Copy</button>
 					</div>
-					<script>
-						function copyText() {
-							var textToCopy = document.getElementById("copy");
-							textToCopy.select();
-							document.execCommand("copy");
-						}
-					</script>
 				</div>
 			</fieldset>
 		</div>
