@@ -3,7 +3,7 @@
 # Env Variables
 
 [ -z "$SITE_TITLE" ] && export SITE_TITLE="FlashPaper :: Self-Destructing Message"
-[ -z "$SITE_LOGO"] && export SITE_LOGO="img/logo.png"
+[ -z "$SITE_LOGO"] && export SITE_LOGO=""
 [ -z "$DISPLAY_TITLE"] && export DISPLAY_TITLE="false"
 [ -z "$RETURN_FULL_URL" ] && export RETURN_FULL_URL="true"
 [ -z "$BASE_URL" ] && export BASE_URL=""
