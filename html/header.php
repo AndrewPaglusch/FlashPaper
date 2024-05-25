@@ -70,14 +70,19 @@
 				width: 100% !important;
 			}
 		</style>
-		<script src="./js/color-toggle.js" defer>
+		<script src="./js/color-toggle.js" defer></script>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">
 	<script>
 			if (location.protocol != 'https:') {
 				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
 			}
-		</script>
+			function copyText() {
+				var textToCopy = document.getElementById("copy");
+				textToCopy.select();
+				document.execCommand("copy");
+			}
+	</script>
 		<header>
 			<nav class="navbar navbar-expand-lg">
 		  		<div class="container-fluid">
@@ -100,7 +105,7 @@
  							<i class="fa-solid fa-sun"></i>
 				  			<!-- Default switch -->
   							<div class="ms-2 form-check form-switch">
-    						<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
+    								<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
   							</div>
   							<i class="fa-solid fa-moon"></i>
 						</li>

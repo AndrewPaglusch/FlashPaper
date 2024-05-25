@@ -3,7 +3,7 @@
  * with modifications to support Bootstrap
  */
 
-const themeStitcher = document.getElementById("themingSwitcher");
+const themeSwitcher = document.getElementById("themingSwitcher");
 
 // Load theme preference from local storage or fall back to system preference
 const storedThemePreference = localStorage.getItem('themePreference');
@@ -20,11 +20,11 @@ if (storedThemePreference !== null) {
 }
 
 // Apply the theme based on the retrieved or determined preference
-themeStitcher.checked = themePreference;
+themeSwitcher.checked = themePreference;
 applyTheme(themePreference); // Ensure the theme is applied on page load
 
 // Add listener to theme toggler
-themeStitcher.addEventListener("change", (e) => {
+themeSwitcher.addEventListener("change", (e) => {
   const isChecked = e.target.checked;
   applyTheme(isChecked);
   // Update the current theme preference in local storage whenever it is changed
@@ -39,8 +39,8 @@ function applyTheme(isDarkTheme) {
 // Add listener to toggle theme with Shift + D
 document.addEventListener("keydown", (e) => {
   if (e.shiftKey && e.key === "D") {
-    const newCheckedState = !themeStitcher.checked;
-    themeStitcher.checked = newCheckedState;
+    const newCheckedState = !themeSwitcher.checked;
+    themeSwitcher.checked = newCheckedState;
     applyTheme(newCheckedState);
     // Update the current theme preference in local storage whenever it is toggled via shortcut
     localStorage.setItem('themePreference', newCheckedState);
