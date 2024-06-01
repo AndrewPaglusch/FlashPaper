@@ -4,6 +4,7 @@
 	$settings = [
 		'site_title' => 'FlashPaper :: Self-Destructing Message',
 		'site_logo' => 'img/logo.png',
+		'display_logo' => 'true', # true/false
 		'display_title' => 'false', # true/false  
 		'return_full_url' => true,
 		'base_url' => '', # https://mydomain.com/flashpaper
