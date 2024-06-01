@@ -86,33 +86,33 @@
 		<header>
 			<nav class="navbar navbar-expand-lg">
 		  		<div class="container-fluid">
-		    		<a class="navbar-brand" href="#">
-						<?php
-							if ( $settings['site_logo'] != '' && $settings['display_logo'] == 'true' ) {
-								echo '<img src="'. $settings['site_logo'] .'" alt="Logo" width="200" class="d-inline-block align-middle">';
-							}
-						?>
-						<?php
-							if ( $settings['display_title'] == 'true') {
-								echo $settings['site_title'];
-							}
-						?>
+			    		<a class="navbar-brand" href="">
+					<?php
+						if ( $settings['site_logo'] != '' && $settings['display_logo'] == 'true' ) {
+							echo '<img src="'. $settings['site_logo'] .'" alt="Logo" width="200" class="d-inline-block align-middle">';
+						}
+					?>
+					<?php
+						if ( $settings['display_title'] == 'true') {
+							echo $settings['site_title'];
+						}
+					?>
 					</a>
 					<span class="navbar-text">
 						<li class="nav-item align-items-center d-flex" >
- 							<i class="fa-solid fa-sun"></i>
-				  			<!-- Default switch -->
-  							<div class="ms-2 form-check form-switch">
-    								<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
-  							</div>
-  							<i class="fa-solid fa-moon"></i>
+	 						<i class="fa-solid fa-sun"></i>
+							<!-- Default switch -->
+	  						<div class="ms-2 form-check form-switch">
+	    							<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
+	  						</div>
+	  						<i class="fa-solid fa-moon"></i>
 						</li>
-		      		</span>
+			      		</span>
 		  		</div>
 			</nav>
 			<?php
-			if ( $settings['announcement'] != '' ) {
-				echo '<div style="padding-top: 1%" class="container"><div class="alert alert-warning"><strong>Announcement:</strong> ' . $settings['announcement'] . '</div></div>';
-			}
+				if ( $settings['announcement'] != '' ) {
+					echo '<div style="padding-top: 1%" class="container"><div class="alert alert-warning"><strong>Announcement:</strong> ' . $settings['announcement'] . '</div></div>';
+				}
 			?>
 		</header>
