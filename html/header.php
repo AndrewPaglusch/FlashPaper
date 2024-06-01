@@ -88,7 +88,7 @@
 		  		<div class="container-fluid">
 		    		<a class="navbar-brand" href="#">
 						<?php
-							if ( $settings['site_logo'] != '' ) {
+							if ( $settings['site_logo'] != '' && $settings['display_logo'] == 'true' ) {
 								echo '<img src="'. $settings['site_logo'] .'" alt="Logo" width="200" class="d-inline-block align-middle">';
 							}
 						?>

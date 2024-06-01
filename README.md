@@ -80,11 +80,12 @@ $ curl -s -X POST -d "secret=my secret&json=true" https://flashpaper.io
 ### `base_url`:
 FlashPaper will try to generate the secret retrieval URL based on information provided by the upstream webserver. This process isn't always 100% accurate. If the secret retrieval URL that FlashPaper creates isn't correct for your setup (this usually happens when you're using a reverse proxy upstream), you can manually specify the URL that FlashPaper will use. For example: A `base_url` of "https://foo.com/flashpaper" will result in retrieval URLs like "https://foo.com/flashpaper/?k=xxxxxxxxxxxxx".
 
-### `site_logo`: 
-FlashPaper will pull your logo image from this path or url. For best results, check out the default logo in `img\logo.png`. Remove the path or url here if you do not want a logo.
+### `display_logo`:
+ - `true`: The logo set in `site_logo` (either a file path or a URL) will be displayed at the top of the page. If `site_logo` isn't set, the default FlashPaper logo at `img/logo.png` will be displayed
+ - `false`: No logo will be displayed on your FlashPaper instance
 
 ### `display_title`:
- - `true`: The setting `site_title` will be displayed next to the logo. 
+ - `true`: The setting `site_title` will be displayed at the top of the page. If `display_logo` is enabled, the text will appear to the right of the logo. 
  - `false`: The setting `site_title` will not be displayed.
 
 ## Donations
