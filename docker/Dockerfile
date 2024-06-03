@@ -1,4 +1,4 @@
-FROM alpine:3.19.1
+FROM alpine:3.20.0
 
 RUN apk add --no-cache gettext curl nginx php83 php83-fpm php83-opcache php83-pdo php83-pdo_sqlite php83-openssl && \
     mkdir /var/www/html
