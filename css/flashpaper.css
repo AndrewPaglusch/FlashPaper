@@ -32,3 +32,14 @@ fieldset {
 .col-4 {
     width: 100% !important;
 }
+.btn-primary {
+    border: none;
+    padding: 12px 28px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
