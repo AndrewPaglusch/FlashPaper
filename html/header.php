@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="./css/fontawesome.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="./css/solid.min.css" rel="stylesheet" />
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 		<style>
 			#form-div {
 				background-color:rgba(72,72,72,0.1);

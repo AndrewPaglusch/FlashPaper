@@ -13,6 +13,8 @@ services:
       SITE_LOGO: "img/logo.png"
       DISPLAY_LOGO: "true"
       DISPLAY_TITLE: "false"
+      CUSTOM_CSS: "false"
+      BOOTSTRAP_THEME: "bootstrap"
       RETURN_FULL_URL: "true"
       BASE_URL: "" # https://mydomain.com/flashpaper
       MAX_SECRET_LENGTH: "3000"
