@@ -34,6 +34,7 @@ fieldset {
 }
 .btn-primary {
     border: none;
+    color: white;
     padding: 12px 28px;
     text-decoration: none;
     font-size: 16px;
