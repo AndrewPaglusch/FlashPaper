@@ -6,6 +6,8 @@
 [ -z "$SITE_LOGO"] && export SITE_LOGO="img/logo.png"
 [ -z "$DISPLAY_LOGO"] && export DISPLAY_LOGO="true"
 [ -z "$DISPLAY_TITLE"] && export DISPLAY_TITLE="false"
+[ -z "$CUSTOM_CSS"] && export CUSTOM_CSS="false"
+[ -z "$BOOTSTRAP_THEME"] && export BOOTSTRAP_THEME="flashpaper"
 [ -z "$RETURN_FULL_URL" ] && export RETURN_FULL_URL="true"
 [ -z "$BASE_URL" ] && export BASE_URL=""
 [ -z "$MAX_SECRET_LENGTH" ] && export MAX_SECRET_LENGTH="3000"

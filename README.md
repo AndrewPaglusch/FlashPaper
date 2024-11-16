@@ -88,6 +88,13 @@ FlashPaper will try to generate the secret retrieval URL based on information pr
  - `true`: The setting `site_title` will be displayed at the top of the page. If `display_logo` is enabled, the text will appear to the right of the logo. 
  - `false`: The setting `site_title` will not be displayed.
 
+### `custom_css`:
+ - `true`: FlashPaper will load your own CSS from `css/custom.css`. Make sure this is mapped into the FlashPaper container.
+ - `false`: FlashPaper will not load custom CSS from `css/custom.css`.
+
+### `bootstrap_theme`:
+ - This is the folder name of a Bootstrap theme in the `css/bootstrap` directory. Defaults to `flashpaper`
+
 ## Donations
 
 PayPal: https://paypal.me/AndrewPaglusch

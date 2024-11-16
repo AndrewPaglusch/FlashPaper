@@ -16,60 +16,20 @@
 		<link rel="stylesheet" href="./css/fontawesome.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="./css/solid.min.css" rel="stylesheet" />
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-		<style>
-			#form-div {
-				background-color:rgba(72,72,72,0.1);
-				padding-left:35px;
-				padding-right:35px;
-				padding-top:35px;
-				padding-bottom:50px;
+		<?php
+                if ( $settings['bootstrap_theme'] != 'flashpaper') {
+				echo '<link rel="stylesheet" href="./css/bootstrap/'. $settings['bootstrap_theme'] .'/bootstrap.min.css">';
+			} else {
+				echo'<link rel="stylesheet" href="./css/bootstrap/flashpaper/bootstrap.min.css">';
+			}
+		?>
+        <link rel="stylesheet" href="./css/flashpaper.css">                                   
+		<?php
+                if ( $settings['custom_css'] == 'true') {
+				echo '<link rel="stylesheet" href="./css/custom.css">';
+			}
+		?>
 
-				margin:30px;
-				border-radius: 7px;
-				-moz-border-radius: 7px;
-				-webkit-border-radius: 7px;
-			}
-			.form-control[readonly] {
-				opacity:1
-			}
-			textarea {
-				width: 100%;
-				height: 200px;
-				padding: 12px 20px;
-				box-sizing: border-box;
-				border: 2px solid #ccc;
-				border-radius: 4px;
-				resize: none;
-			}
-			fieldset {
-				margin:10px;
-				border: 0;
-			}
-			.btn-primary {
-				background-color: #4ca2ae;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-decoration: none;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-
-				-webkit-transition-duration: 0.4s; /* Safari */
-				transition-duration: 0.4s;
-			}
-			.btn-primary:hover {
-				background-color: #67b2bc;
-				color: white;
-			}
-			.col-8 {
-				width: 320px !important;
-			}
-			.col-4 {
-				width: 100% !important;
-			}
-		</style>
 		<script src="./js/color-toggle.js" defer></script>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">

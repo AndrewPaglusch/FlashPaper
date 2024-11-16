@@ -19,6 +19,23 @@
 			$errors[] = 'The settings.php file is not readable or does not exist';
 		}
 
+		# make sure custom.css exists when set
+		if ( $settings['custom_css'] == 'true') {
+			// Verify that the custom.css file exists
+			if ( ! file_exists('./css/custom.css')) {
+				$errors[] = 'The custom.css file is not readable or does not exist';
+			}
+		}
+
+		# make sure bootstrap theme folder exists
+		if ( $settings['bootstrap_theme'] != 'flashpaper') {
+			$bootstrap_theme = $settings['bootstrap_theme'];
+			$theme_folder_path = './css/bootstrap/' . $bootstrap_theme;
+			if ( ! is_dir($theme_folder_path)) {
+				$errors[] = 'Error: The bootstrap theme folder "' . $bootstrap_theme . '" does not exist';
+			}
+		}
+
 		return $errors;
 	}
 
