@@ -3,7 +3,7 @@
 
 	$settings = [
 		"site_title" => getenv('SITE_TITLE') ?: "FlashPaper :: Self-Destructing Message",
-		"site_logo" => getenv('SITE_LOGO') ?: "img/logo.png",
+		"site_logo" => getenv('SITE_LOGO') ?: "img/logo.svg",
 		"display_logo" => getenv('DISPLAY_LOGO') ?: "true",
 		"display_title" => getenv('DISPLAY_TITLE') ?: "false",
 		"custom_css" => getenv('CUSTOM_CSS') ?: "false",

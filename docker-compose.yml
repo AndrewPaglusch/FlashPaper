@@ -10,7 +10,7 @@ services:
       - '8080:80'
     environment:
       SITE_TITLE: "FlashPaper :: Self-Destructing Message"
-      SITE_LOGO: "img/logo.png"
+      SITE_LOGO: "img/logo.svg"
       DISPLAY_LOGO: "true"
       DISPLAY_TITLE: "false"
       RETURN_FULL_URL: "true"
