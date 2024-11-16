@@ -6,6 +6,8 @@
 		"site_logo" => "${SITE_LOGO}",
 		"display_logo" => "${DISPLAY_LOGO}",
 		"display_title" => "${DISPLAY_TITLE}",
+		"custom_css" => ${CUSTOM_CSS},
+		"bootstrap_theme" => ${BOOTSTRAP_THEME},
 		"return_full_url" => ${RETURN_FULL_URL},
 		"base_url" => "${BASE_URL}",
 		"max_secret_length" => ${MAX_SECRET_LENGTH},
