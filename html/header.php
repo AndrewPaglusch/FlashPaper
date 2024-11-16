@@ -17,10 +17,10 @@
 		<link rel="stylesheet" href="./css/solid.min.css" rel="stylesheet" />
 		<!-- Bootstrap CSS -->
 		<?php
-                if ( $settings['bootstrap_theme'] != 'bootstrap') {
+                if ( $settings['bootstrap_theme'] != 'flashpaper') {
 				echo '<link rel="stylesheet" href="./css/bootstrap/'. $settings['bootstrap_theme'] .'/bootstrap.min.css">';
 			} else {
-				echo'<link rel="stylesheet" href="./css/bootstrap/bootstrap/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">';
+				echo'<link rel="stylesheet" href="./css/bootstrap/flashpaper/bootstrap.min.css">';
 			}
 		?>
         <link rel="stylesheet" href="./css/flashpaper.css">                                   
