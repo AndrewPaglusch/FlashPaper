@@ -29,6 +29,7 @@
 
 		# make sure bootstrap theme folder exists
 		if ( $settings['bootstrap_theme'] != 'flashpaper') {
+			$bootstrap_theme = $settings['bootstrap_theme'];
 			$theme_folder_path = './css/bootstrap/' . $bootstrap_theme;
 			if ( ! is_dir($theme_folder_path)) {
 				$errors[] = 'Error: The bootstrap theme folder "' . $bootstrap_theme . '" does not exist';
