@@ -3,7 +3,7 @@
 
 	$settings = [
 		'site_title' => 'FlashPaper :: Self-Destructing Message',
-		'site_logo' => 'img/logo.png',
+		'site_logo' => 'img/logo.svg',
 		'display_logo' => 'true', # true/false
 		'display_title' => 'false', # true/false  
 		'return_full_url' => true,
