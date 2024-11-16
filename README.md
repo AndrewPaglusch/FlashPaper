@@ -89,11 +89,11 @@ FlashPaper will try to generate the secret retrieval URL based on information pr
  - `false`: The setting `site_title` will not be displayed.
 
 ### `custom_css`:
- - `true`: FlashPaper will load a custom.css file from the css directory
- - `false`: FlashPaper will ignore the custom.css file from the css directory.
+ - `true`: FlashPaper will load your own CSS from `css/custom.css`. Make sure this is mapped into the FlashPaper container.
+ - `false`: FlashPaper will not load custom CSS from `css/custom.css`.
 
 ### `bootstrap_theme`:
- - This is the foldername of a Bootstrap theme in the `css/bootstrap` directory. Defaults to `flashpaper`
+ - This is the folder name of a Bootstrap theme in the `css/bootstrap` directory. Defaults to `flashpaper`
 
 ## Donations
 
