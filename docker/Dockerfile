@@ -11,10 +11,14 @@ RUN chmod -R 775 /var/www/html && \
 COPY docker/php-fpm.conf /etc/php83/php-fpm.conf
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/entrypoint.sh /entrypoint.sh
+COPY docker/settings.php /var/www/html/settings.php
 
-RUN mkdir -p /var/run/nginx && \
+RUN RUN rm -rf /var/www/html/docker && \
+    mkdir -p /var/run/nginx && \
     mkdir -p /var/run/php-fpm && \
     chown -R nginx:nginx /var/run/ && \
     chmod +x /entrypoint.sh
+
 VOLUME /var/www/html/data
+
 ENTRYPOINT ["/bin/ash", "/entrypoint.sh"]
