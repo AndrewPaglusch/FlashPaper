@@ -66,7 +66,24 @@
 
 		$secret = retrieve_secret($_POST['k']);
 		$message = htmlentities($secret);
-		require_once('html/view_secret.php');
+
+		$formdata = [];
+		$props = explode("\n",$message);
+		foreach ($props as $kvp) {
+			if (str_contains($kvp, ":")) {
+				list($key, $val) = explode(":", $kvp, 2);
+				$formdata[str_replace("_", " ", $key)] = $val;
+			} else {
+				// $formdata['secret'] = null;
+			}
+		}
+
+		if ($formdata['secret'] != "HTML_FORM_SECRET") {
+			require_once('html/view_secret.php');
+		} else {
+			$html = get_template_html($formdata);
+			require_once('html/view_secret_html.php');
+		}
 	}
 
 	function display_secret_code($return_only_json = false) {
@@ -78,7 +95,16 @@
 			throw new exception($settings['messages']['error_secret_too_long']);
 		}
 
-		$message = store_secret($_POST['secret'], $settings);
+		$secret = $_POST['secret'];
+		if ($secret == "HTML_FORM_SECRET") {
+			$tmp = "";
+			foreach($_POST as $key => $val) {
+				$tmp = "$tmp$key:$val\n";
+			}
+			$secret = $tmp;
+		}
+
+		$message = store_secret($secret, $settings);
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);

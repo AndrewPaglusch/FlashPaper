@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="./css/solid.min.css" rel="stylesheet" />
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/table.css" rel="stylesheet" />
 		<style>
 			#form-div {
 				background-color:rgba(72,72,72,0.1);
@@ -71,22 +72,15 @@
 			}
 		</style>
 		<script src="./js/color-toggle.js" defer></script>
+		<script src="./js/templates.js" defer></script>
+		<script src="./js/flashpaper.js"></script>
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">
-	<script>
-			if (location.protocol != 'https:') {
-				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
-			}
-			function copyText() {
-				var textToCopy = document.getElementById("copy");
-				textToCopy.select();
-				document.execCommand("copy");
-			}
-	</script>
+
 		<header>
 			<nav class="navbar navbar-expand-lg">
-		  		<div class="container-fluid">
-			    		<a class="navbar-brand" href="">
+					<div class="container-fluid">
+							<a class="navbar-brand" href="">
 					<?php
 						if ( $settings['site_logo'] != '' && $settings['display_logo'] == 'true' ) {
 							echo '<img src="'. $settings['site_logo'] .'" alt="Logo" width="200" class="d-inline-block align-middle">';
@@ -102,13 +96,13 @@
 						<li class="nav-item align-items-center d-flex" >
 	 						<i class="fa-solid fa-sun"></i>
 							<!-- Default switch -->
-	  						<div class="ms-2 form-check form-switch">
-	    							<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
-	  						</div>
-	  						<i class="fa-solid fa-moon"></i>
+								<div class="ms-2 form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" id="themingSwitcher" />
+								</div>
+								<i class="fa-solid fa-moon"></i>
 						</li>
-			      		</span>
-		  		</div>
+								</span>
+					</div>
 			</nav>
 			<?php
 				if ( $settings['announcement'] != '' ) {
@@ -116,3 +110,15 @@
 				}
 			?>
 		</header>
+
+		<div id="overlay" class="mx-auto overlay" style="z-index:-100;">
+			<fieldset style="text-align: center; height: 100%; display: grid; place-items: center;">
+				<div class="form-group row float-middle">
+					<div class="col">
+						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 15px; font-size: 30px; font-weight: bold; padding-bottom: 1%"><span id="errormsg"></span></label>
+						<br />
+						<a href="javascript:;" class="btn btn-primary w-20 mx-auto" onclick="close_overlay()">Home</a>
+					</div>
+				</div>
+			</fieldset>
+		</div>

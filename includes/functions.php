@@ -223,4 +223,134 @@
 		return $secret;
 	}
 
+	function get_template_html($formdata, $editable = false) {
+		$html = "";
+		$copy = "";
+
+		// Get the template name, and convert any + (space in HTML) back to space
+		$template = explode("=",$formdata['select'])[0];
+		$template = str_replace("+", " ", $template);
+
+		// If the template does not any of the HTML input types,
+		// return the contents as a plain file.
+		$file = file_get_contents("templates/$template.txt", true);
+		if (!preg_match_all('/(radio|select|number|textarea|datetime|date|time|datetime|checkbox)/', $file)) {
+			return $file;
+		}
+
+		// Disable all controls and hide the copy buttons
+		// if the template is in edit mode.
+		$disabled = $editable ? null : "disabled";
+		$copyButton = null;
+
+		// Read the contents of the template file line by line.
+		$file_handle = fopen("templates/$template.txt", "r");
+		foreach (get_all_lines($file_handle) as $line) {
+			// Get the name, element and propeties to create the HTML elements
+			preg_match(
+				'/(?<name>.+):\s+(?<element>radio|select|number|textarea|datetime|date|time|datetime|checkbox)?(\((?<props>.+)?\))?/',
+				$line,
+				$matches
+			);
+
+			// Get the name of the element to encode as a base64 string id
+			$name = trim($matches["name"]);
+			$id = base64_encode($name);
+
+			// Get the type of the HTML element
+			$elementType = null;
+			if (array_key_exists("element", $matches)) {
+				$elementType = trim($matches["element"]);
+			}
+
+			// Get the properties for the HTML element
+			$props = null;
+			if (array_key_exists("props", $matches)) {
+				$props = trim($matches["props"]);
+			}
+
+			// Skip if the element is a known element from FlashPaper
+			if (preg_match('/(secret|select|submit).?/', $name)==false) {
+				$new = null;
+				$style = null;
+				$checked = null;
+				$value = null;
+				$selected = null;
+
+				// Extracts the value from the form
+				if (array_key_exists($name, $formdata)) {
+					$value = trim($formdata[$name]);
+				}
+
+				// Add the HTML control based on the element type from the template
+				switch ($elementType) {
+					case "radio":
+						$i = 0;
+						foreach(explode(",", $props) as $exploded) {
+							$exploded = trim($exploded);
+							if ($value == $exploded) {$checked = "checked";}
+							$new = "$new<input type='radio' id='${name}_$i' name='$name' value='$exploded' $disabled $checked/><label for='${name}_$i' >$exploded</label>";
+							$checked = null;
+							$i++;
+						}
+						break;
+					case "select":
+						$options = null;
+						foreach(explode(",", $props) as $exploded) {
+							$exploded = trim($exploded);
+							if ($value == $exploded) {$selected = "selected";}
+							$options = "$options<option $selected>$exploded</option>";
+						}
+						$new = "$new<select id='$id' name='$name' value='$value' $disabled >$options</select>";
+						break;
+					case "number":
+						list($min,$max) = explode(",", $props);
+						$new = "<input type='number' id='$id' name='$name' value='$value' $disabled min='$min' max='$max'>";
+						break;
+					case "date":
+					case "time":
+						$new = "<input type='$elementType' id='$id' name='$name' value='$value' $disabled />";
+						break;
+					case "datetime":
+						$new = "<input type='datetime-local' id='$id' name='$name' value='$value' $disabled />";
+						break;
+					case "checkbox":
+						$checked = $value == "on" ? "checked" : null;
+						$new = "<input type='checkbox' id='$id' name='$name' $checked $disabled />";
+						break;
+					case "textarea":
+						$new = "<textarea id='$id' name='$name' class='form-control' $disabled >$value</textarea>";
+						$style = "style='width: inherit'";
+						break;
+					default:
+						if ($name != null) {
+							$new = "<input type='input' id='$id' name='$name' value='$value' $disabled />";
+						}
+						break;
+				}
+
+				// Prevents adding blank lines to the HTML controls
+				if ($new != null) {
+					if ($disabled != null) {
+						$copyButton = "<input type='image' class='icon' src='/img/copy.svg' onclick='copyText(\"$id\", \"$elementType\")'/>";
+					}
+					$html = "$html<ul><li><label for='$id'>$name</label></li><li $style>$new</li><li>$copyButton</li></ul></br>\n";
+					$copy = "$copy$name:$value\n";
+				}
+			}
+		}
+		fclose($file_handle);
+
+		$html = "<div class='html_secret'>$html</div>";
+		$html = "$html<textarea id='copy' style='display: none;'>$copy</textarea>";
+
+		return $html;
+	}
+
+	function get_all_lines($file_handle) {
+		while (!feof($file_handle)) {
+			yield fgets($file_handle);
+		}
+	}
+
 ?>
