@@ -231,7 +231,7 @@
 		$template = explode("=",$formdata['select'])[0];
 		$template = str_replace("+", " ", $template);
 
-		// If the template does not any of the HTML input types,
+		// If the template does not contain any of the HTML input types,
 		// return the contents as a plain file.
 		$file = file_get_contents("templates/$template.txt", true);
 		if (!preg_match_all('/(radio|select|number|textarea|datetime|date|time|datetime|checkbox)/', $file)) {
