@@ -248,7 +248,7 @@
 		foreach (get_all_lines($file_handle) as $line) {
 			// Get the name, element and properties to create the HTML elements
 			preg_match(
-				'/(?<name>.+):\s+(?<element>radio|select|number|textarea|datetime|date|time|datetime|checkbox)?(\((?<props>.+)?\))?/',
+				'/(?<name>.+):\s+(?<element>radio|select|number|textarea|datetime|date|time|checkbox)?(\((?<props>.+)?\))?/',
 				$line,
 				$matches
 			);
