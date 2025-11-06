@@ -24,7 +24,7 @@ function show_flashpaper_form(html) {
 	const secret = document.getElementById("secret");
 	const isHtmlSecret = html.includes("html_secret");
 
-	// Switch between a view wilth multiple HTML elements
+	// Switch between a view with multiple HTML elements
 	// or a single textarea, depending on the template
 	if (isHtmlSecret) {
 		secret.style.display = "none";
