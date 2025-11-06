@@ -55,7 +55,7 @@ function close_overlay() {
 	const template = document.getElementById("select");
 
 	template.value="./";
-	overlay.style.display = "hidden";
+	overlay.style.display = "none";
 	overlay.style.opacity = 0;
 
 	setTimeout(() => {
