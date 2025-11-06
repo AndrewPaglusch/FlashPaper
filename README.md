@@ -74,7 +74,7 @@ $ curl -s -X POST -d "secret=my secret&json=true" https://flashpaper.io
 It is possible to submit a HTML secret through the API, to do so include the fields ``secret`` and ``select`` when submitting the data.
 
 - `secret`: The secret **must** be ``HTML_FORM_SECRET``
-- `select`: The name of the template that will be used to displaying the secret.
+- `select`: The name of the template that will be used to display the secret.
 
 Include other fields present in the template as ``label=value``, for example to set a radio button called ``Radio`` to the value of ``Option B`` add ``Radio=Option B`` to the body of the post.
 
