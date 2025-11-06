@@ -112,7 +112,7 @@ FlashPaper supports HTML forms to generate and display secrets. When creating a 
 - `Time`: time
 - `Textarea`: textarea
 
-When viewing the secrets from an HTML template each field can be copied individually or the entire contents 
+When viewing the secrets from an HTML template, each field can be copied individually, or you can copy the entire contents at once.
 
 ## Donations
 

@@ -61,8 +61,8 @@ function copyText(id, type) {
 	if (typeof id === 'undefined') {id = "copy";}
 	if (typeof type === 'undefined') {type = null;}
 
-	var element = null;
-	var text = null;
+	let element = null;
+	let text = null;
 
 	switch (type) {
 		case "radio":
