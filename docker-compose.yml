@@ -4,6 +4,12 @@ services:
     image: ghcr.io/andrewpaglusch/flashpaper:v2
     container_name: flashpaper
     restart: always
+    read_only: true
+    tmpfs:
+      - /opt/flashpaper:noexec
+      - /var/log:noexec
+    security_opt:
+      - no-new-privileges:true
     volumes:
       - './data:/var/www/html/data'
     ports:
@@ -30,4 +36,9 @@ services:
       PRUNE_ENABLED: "true"
       PRUNE_MIN_DAYS: 365
       PRUNE_MAX_DAYS: 730
-      
+    healthcheck:
+      test: curl --fail http://localhost:80 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
