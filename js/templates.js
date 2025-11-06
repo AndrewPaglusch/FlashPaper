@@ -5,7 +5,7 @@ function loadTemplate(templateName) {
 				const overlay = document.getElementById("overlay");
 				const errormsg = document.getElementById("errormsg");
 
-				errormsg.innerText="Could not load the requested template"
+				errormsg.innerText="Could not load the requested template";
 				overlay.style.zIndex = 100;
 				overlay.style.display = "block";
 				overlay.style.opacity = 1;
