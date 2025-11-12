@@ -13,6 +13,7 @@ function StopContainer {
 trap StopContainer SIGTERM
 
 # Change owner of flashpaper tmpfs directory, mounted from docker
+mkdir /opt/flashpaper
 chown nginx: /opt/flashpaper
 
 # Start php-fpm and nginx

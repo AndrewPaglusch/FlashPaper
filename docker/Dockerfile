@@ -8,7 +8,7 @@ COPY . /var/www/html
 RUN chmod -R 775 /var/www/html && \
     chown -R nginx:nginx /var/www/html
 
-COPY docker/php.ini /etc/php83/php.ini
+COPY docker/php.ini /etc/php83/conf.d/99_flashpaper.ini
 COPY docker/php-fpm.conf /etc/php83/php-fpm.conf
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/entrypoint.sh /entrypoint.sh
