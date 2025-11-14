@@ -1,14 +1,10 @@
 function loadTemplate(templateName) {
-	httpGetAsync(`${document.location}/ajax.php?select=${templateName}`, (response) => {
+	httpGetAsync(`${document.location.origin}/ajax.php?select=${templateName}`, (response) => {
 		switch (response) {
 			case "TEMPLATE_NOT_FOUND":
-				const overlay = document.getElementById("overlay");
-				const errormsg = document.getElementById("errormsg");
-
-				errormsg.innerText="Could not load the requested template";
-				overlay.style.zIndex = 100;
-				overlay.style.display = "block";
-				overlay.style.opacity = 1;
+				show_overlay("Could not find the requested template", "Ok");
+				document.getElementById("secret").blur();
+				document.querySelector("#overlay").querySelector("a").setAttribute("redirect", true);
 				break;
 
 			default:
@@ -29,7 +25,7 @@ function show_flashpaper_form(html) {
 	if (isHtmlSecret) {
 		secret.style.display = "none";
 		secret.innerHTML = "";
-    secret.value = "HTML_FORM_SECRET";
+		secret.value = "HTML_FORM_SECRET";
 
 		content.insertAdjacentHTML("beforeend", html);
 	} else {
@@ -50,11 +46,25 @@ function httpGetAsync(url, callback) {
 	xmlHttp.send(null);
 }
 
+function show_overlay(message, buttonText = "Home", callback) {
+	const overlay = document.getElementById("overlay");
+	const errormsg = document.getElementById("errormsg");
+
+	document.querySelector("#overlay").querySelector("a").innerHTML = buttonText;
+
+	errormsg.innerText = message;
+	overlay.style.zIndex = 100;
+	overlay.style.display = "block";
+	overlay.style.opacity = 1;
+
+	if (typeof callback !== 'undefined') { callback(); }
+}
+
 function close_overlay() {
 	const overlay = document.getElementById("overlay");
 	const template = document.getElementById("select");
 
-	template.value="./";
+	template.selectedIndex = 0;
 	overlay.style.display = "none";
 	overlay.style.opacity = 0;
 

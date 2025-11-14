@@ -1,6 +1,6 @@
 <?php #defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 		<div id="form-div">
-			<form class="form-horizontal" action="" method="POST">
+			<form class="form-horizontal" action="/" method="POST">
 				<fieldset>
 					<div>
 						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['submit_secret_header']; ?></label>

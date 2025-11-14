@@ -78,12 +78,18 @@
 			}
 		}
 
-		if ($formdata['secret'] != "HTML_FORM_SECRET") {
-			require_once('html/view_secret.php');
-		} else {
+		// Choose how to render the secrets
+		$template = 'html/view_secret.php';
+		if (
+			array_key_exists('secret', $formdata)
+			&& ($formdata['secret'] == "HTML_FORM_SECRET")
+		) {
+			("HTML Form set");
 			$html = get_template_html($formdata);
-			require_once('html/view_secret_html.php');
+			$template = 'html/view_secret_html.php';
 		}
+
+		require_once($template);
 	}
 
 	function display_secret_code($return_only_json = false) {

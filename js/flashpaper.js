@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 		header.appendChild(dangerDiv);
 	}
 
-	// If the secret being created if from an HTML form,
+	// If the secret being created is from an HTML form,
 	// add a flag to the secret element
 	const button = document.getElementById("submit");
 	if (button != null) {
@@ -18,6 +18,27 @@ document.addEventListener("DOMContentLoaded", (e) => {
 				secret.innerHTML = `HTML_FORM_SECRET`;
 			}
 		});
+	}
+
+	// If the page was loaded with a template in the URL (/?t=template),
+	// then check if the template contains HTML elements and render it as
+	// a HTML form
+	const url = new URL(document.location);
+	const hasTemplateName = url.searchParams.has("t");
+	const templateName = url.searchParams.get("t");
+	const secret = document.getElementById("secret");
+	const htmlRegex = /(?<name>.+):\s+(?<element>radio|select|number|textarea|datetime|date|time|checkbox)?(\((?<props>.+)?\))?/;
+	const isHtmlTemplate = () => {
+		if (secret == null) { return false; }
+		return secret.value.match(htmlRegex) == null ? false : true;
+	};
+	if (hasTemplateName && isHtmlTemplate) {
+		loadTemplate(templateName.replace(" ", "+"));
+		const select = document.getElementById("select");
+		select.value = templateName.replace(" ", "+");
+	} else if (templateName != null) {
+		show_overlay(`Template not found\r\n'${templateName}'`, "Ok");
+		document.getElementById("select").selectedIndex = 0;
 	}
 
 	resize_form_html_elements();
@@ -36,10 +57,10 @@ function resize_form_html_elements() {
 	});
 	valuesList.forEach( e => {
 		if (e.firstChild == null) {return;}
-    if (
-      e.clientWidth > valueMaxWidth &&
-      e.firstChild.nodeName != "TEXTAREA"
-    ) { valueMaxWidth = e.clientWidth; }
+		if (
+			e.clientWidth > valueMaxWidth &&
+			e.firstChild.nodeName != "TEXTAREA"
+		) { valueMaxWidth = e.clientWidth; }
 	});
 
 	// Change the width of all elements to match the largest element

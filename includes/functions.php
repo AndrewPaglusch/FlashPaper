@@ -228,8 +228,14 @@
 		$copy = "";
 
 		// Get the template name, and convert any + (space in HTML) back to space
-		$template = explode("=",$formdata['select'])[0];
-		$template = str_replace("+", " ", $template);
+		$template = urldecode(explode("=",$formdata['select'])[0]);
+
+		// A safety check to prevent possible directory traversal
+		$template_path = "templates/" . $template . ".txt";
+		$templates = glob('templates/*.txt');
+		if ( ! in_array($template_path, $templates, true) ) {
+			return "TEMPLATE_NOT_FOUND";
+		}
 
 		// If the template does not contain any of the HTML input types,
 		// return the contents as a plain file.
