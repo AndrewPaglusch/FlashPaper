@@ -12,6 +12,16 @@
 		<!-- Meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<?php
+			if ( $settings['noindex'] == 'true') {
+				echo '<meta name="robots" content="noindex">'
+			}
+		?>
+		<?php
+			if ( $settings['nofollow'] == 'true') {
+				echo '<meta name="robots" content="nofollow">'
+			}
+		?>
 		<!-- Font Awesome CSS -->
 		<link rel="stylesheet" href="./css/fontawesome.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="./css/solid.min.css" rel="stylesheet" />
