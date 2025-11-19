@@ -88,6 +88,10 @@ FlashPaper will try to generate the secret retrieval URL based on information pr
  - `true`: The setting `site_title` will be displayed at the top of the page. If `display_logo` is enabled, the text will appear to the right of the logo. 
  - `false`: The setting `site_title` will not be displayed.
 
+ ### `noindex, nofollow`:
+ - `true`: Is setting the metadata section for `noindex` or `nofollow`. Google bots should not index your page or follow links
+ - `false`: Google bots could index your page or follow links
+
 ## Donations
 
 PayPal: https://paypal.me/AndrewPaglusch

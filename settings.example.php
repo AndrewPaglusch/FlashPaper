@@ -5,7 +5,9 @@
 		'site_title' => 'FlashPaper :: Self-Destructing Message',
 		'site_logo' => 'img/logo.svg',
 		'display_logo' => 'true', # true/false
-		'display_title' => 'false', # true/false  
+		'display_title' => 'false', # true/false
+		'noindex' => 'true', # true/false
+		'nofollow' => 'true', # true/false
 		'return_full_url' => true,
 		'base_url' => '', # https://mydomain.com/flashpaper
 		'max_secret_length' => 3000,
