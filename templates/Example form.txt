@@ -1,0 +1,8 @@
+Radio: radio(Option A,Option B)
+Combobox: select(Option A, Option B, Option C)
+Number: number(23,47)
+Checkbox: checkbox
+Date and time: datetime
+Date: date
+Time: time
+Textarea: textarea

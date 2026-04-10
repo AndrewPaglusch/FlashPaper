@@ -71,6 +71,18 @@ $ curl -s -X POST -d "secret=my secret&json=true" https://flashpaper.io
 {"url":"https://flashpaper.io/?k=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
 ```
 
+It is possible to submit a HTML secret through the API, to do so include the fields ``secret`` and ``select`` when submitting the data.
+
+- `secret`: The secret **must** be ``HTML_FORM_SECRET``
+- `select`: The name of the template that will be used to display the secret.
+
+Include other fields present in the template as ``label=value``, for example to set a radio button called ``Radio`` to the value of ``Option B`` add ``Radio=Option B`` to the body of the post.
+
+Altogether creating a secret to use an HTML template using the API looks like this:
+```
+curl -s -X POST -d "json=true&secret=HTML_FORM_SECRET&select=Example form&Radio=Option B" https://flashpaper.io
+```
+
 ## Settings
 
 ### `prune`:
@@ -87,6 +99,20 @@ FlashPaper will try to generate the secret retrieval URL based on information pr
 ### `display_title`:
  - `true`: The setting `site_title` will be displayed at the top of the page. If `display_logo` is enabled, the text will appear to the right of the logo. 
  - `false`: The setting `site_title` will not be displayed.
+
+## HTML Templates
+FlashPaper supports HTML forms to generate and display secrets. When creating a template that supports HTML elements. Define one element per line, and each element must have the following format `<label>: <element_type>(options)`.
+
+- `Radio`: radio(Option A,Option B)
+- `Combobox`: select(Option A, Option B, Option C)
+- `Number`: number(min,max)
+- `Checkbox`: checkbox
+- `Date and time`: datetime
+- `Date`: date
+- `Time`: time
+- `Textarea`: textarea
+
+When viewing the secrets from an HTML template, each field can be copied individually, or you can copy the entire contents at once.
 
 ## Donations
 

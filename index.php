@@ -5,9 +5,13 @@
 	require_once("includes/functions.php"); # load functions
 
 	# display secret retrieval url in json format if requested
-	if (isset($_POST['json']) && !empty($_POST['secret'])) {
+	if (isset($_POST['json'])) {
 		header("Content-Type: application/json");
-		die(display_secret_code(true));
+		try {
+			die(display_secret_code(true));
+		} catch (Exception $e){
+			die(json_encode(array("url" => null, "error" => $e->getMessage()), JSON_UNESCAPED_SLASHES));
+		}
 	}
 
 	require_once('html/header.php'); # display header
@@ -22,7 +26,7 @@
 			display_secret(); # user confirmed viewing the secret
 		} catch (Exception $e) { display_error($e); }
 
-	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
+	} elseif (isset($_POST['submit'])) {
 		try {
 			display_secret_code(false); # secret submitted. display url/code
 		} catch (Exception $e) { display_error($e); }
@@ -66,19 +70,73 @@
 
 		$secret = retrieve_secret($_POST['k']);
 		$message = htmlentities($secret);
-		require_once('html/view_secret.php');
+
+		$formdata = [];
+		$props = explode("\n",$message);
+		foreach ($props as $kvp) {
+			if (str_contains($kvp, "=")) {
+				list($key, $val) = explode("=", $kvp, 2);
+				$formdata[str_replace("_", " ", $key)] = $val;
+			}
+		}
+
+		// Set the template to the plain text secret by default.
+		$template = 'html/view_secret.php';
+
+		// Check if the secret uses a HTML form and
+		// set the template to the HTML form#
+		if (array_key_exists('select', $formdata)) {
+			if (template_exists(urldecode($formdata['select']))) {
+				$html = get_template_html($formdata);
+				$template = 'html/view_secret_html.php';
+			}
+		}
+
+		require_once($template);
 	}
 
 	function display_secret_code($return_only_json = false) {
 		global $settings;
 
-		# verify secret length isnt too long
+		// A secret or select(template name) is expected
+		if (
+				 !array_key_exists('select', $_POST)
+			&& !array_key_exists('secret', $_POST)
+		) {
+			throw new Exception("No template or secret was submitted");
+		}
+
+		$secret = false;
+
+		if (array_key_exists('secret', $_POST)) {
+			$secret = $_POST['secret'];
+		}
+
+		if (is_html_template($_POST)) {
+			$tmp = "";
+			$keys = get_html_template_keys(urldecode($_POST['select']));
+			foreach($_POST as $key => $val) {
+				if (
+						 !in_array($key, $keys)
+					&& !in_array($key, array('submit', 'secret', 'select', 'json'))
+					) { throw new Exception("The element named '$key' was not found in the template"); }
+				$tmp = "$tmp$key=$val\n";
+			}
+			$secret = $tmp;
+		}
+
+		// If we didn't get a secret, exit with error
+		if ($secret == false) {
+			throw new Exception("Unable to get secret!");
+		}
+
+ 		# verify secret length isnt too long
 		# newlines are always \r\n, so replace with \n so the strlen count is accurate
-		if ( strlen(str_replace("\r\n", "\n", $_POST['secret'])) > $settings['max_secret_length'] ) {
+		if (strlen(str_replace("\r\n", "\n", $secret)) > $settings['max_secret_length']) {
 			throw new exception($settings['messages']['error_secret_too_long']);
 		}
 
-		$message = store_secret($_POST['secret'], $settings);
+		$message = store_secret($secret, $settings);
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);
