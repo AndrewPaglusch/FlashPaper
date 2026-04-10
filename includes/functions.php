@@ -234,7 +234,7 @@
 		$template_path = "templates/" . $template . ".txt";
 		$templates = glob('templates/*.txt');
 		if ( ! in_array($template_path, $templates, true) ) {
-			return "TEMPLATE_NOT_FOUND";
+			throw new Exception("Template not found!");
 		}
 
 		// If the template does not contain any of the HTML input types,
@@ -252,6 +252,7 @@
 		// Read the contents of the template file line by line.
 		$file_handle = fopen("templates/$template.txt", "r");
 		foreach (get_all_lines($file_handle) as $line) {
+
 			// Get the name, element and properties to create the HTML elements
 			preg_match(
 				'/(?<name>.+):\s+(?<element>radio|select|number|textarea|datetime|date|time|checkbox)?(\((?<props>.+)?\))?/',
@@ -285,7 +286,7 @@
 
 				// Extracts the value from the form
 				if (array_key_exists($name, $formdata)) {
-					$value = trim($formdata[$name]);
+					$value = htmlspecialchars(trim($formdata[$name]), ENT_QUOTES, 'UTF-8');
 				}
 
 				// Add the HTML control based on the element type from the template
@@ -304,6 +305,7 @@
 						$options = null;
 						foreach(explode(",", $props) as $exploded) {
 							$exploded = trim($exploded);
+							$selected = null;
 							if ($value == $exploded) {$selected = "selected";}
 							$options = "$options<option $selected>$exploded</option>";
 						}
@@ -359,4 +361,62 @@
 		}
 	}
 
+	function template_exists($template) {
+		// A safety check to prevent possible directory traversal
+		$template_path = "templates/" . $template . ".txt";
+		$templates = glob('templates/*.txt');
+		if (!in_array($template_path, $templates, true)) {
+			return false;
+		}
+		return true;
+	}
+
+	function is_html_template($data) {
+		if (array_key_exists("select", $data)) {
+			if (!isset($_POST)) {
+				$template_name = urldecode($data['select']);
+			} else {
+				$template_name = urldecode(explode(":", $data['select'])[0]);
+			}
+			if (!empty($template_name)) {
+				template_exists($template_name) or throw new Exception("Template not found!");
+				$file = file_get_contents("templates/$template_name.txt", true);
+				if (preg_match_all('/(radio|select|number|textarea|datetime|date|time|checkbox)/', $file)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	function get_html_template_keys($template) {
+
+		template_exists($template) or throw new Exception("Template not found!");
+
+		// If the template does not contain any of the HTML input types,
+		// return the contents as a plain file.
+		$file = file_get_contents("templates/$template.txt", true);
+		if (!preg_match_all('/(radio|select|number|textarea|datetime|date|time|checkbox)/', $file)) {
+			throw new Exception("No HTML elements found in template!");
+		}
+
+		$keys = [];
+
+		// Read the contents of the template file line by line.
+		$file_handle = fopen("templates/$template.txt", "r");
+		foreach (get_all_lines($file_handle) as $line) {
+
+			// Get the name, element and properties to create the HTML elements
+			preg_match(
+				'/(?<name>.+):\s+(?<element>radio|select|number|textarea|datetime|date|time|checkbox)?(\((?<props>.+)?\))?/',
+				$line,
+				$matches
+			);
+
+			if ($matches['name'] == null) { throw new Exception("The element in the template is invalid!"); }
+			array_push($keys, str_replace(' ', '_', $matches['name']));
+		}
+
+		return $keys;
+	}
 ?>

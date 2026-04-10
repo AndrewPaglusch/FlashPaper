@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 		button.addEventListener("click", () =>{
 			const content = document.getElementById("content");
 			const secret = document.getElementById("secret");
-			if (content.children.length > 1) {
-				secret.innerHTML = `HTML_FORM_SECRET`;
-			}
 		});
 	}
 

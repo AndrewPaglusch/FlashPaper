@@ -25,7 +25,6 @@ function show_flashpaper_form(html) {
 	if (isHtmlSecret) {
 		secret.style.display = "none";
 		secret.innerHTML = "";
-		secret.value = "HTML_FORM_SECRET";
 
 		content.insertAdjacentHTML("beforeend", html);
 	} else {
