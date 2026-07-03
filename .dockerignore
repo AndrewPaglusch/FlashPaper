@@ -1,5 +1,7 @@
 LICENSE
 README.md
+SECURITY.md
+readme-screenshot-*.png
 settings.example.php
 docker-compose.yml
 \.*

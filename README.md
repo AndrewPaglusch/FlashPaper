@@ -7,7 +7,7 @@ A one-time encrypted zero-knowledge password/secret sharing application focused 
 
 https://flashpaper.io
 
-![Picture of Main Page](https://i.imgur.com/KIs9fjE.png)
+![Picture of Main Page](readme-screenshot-dark.png)
 
 ## Installation
 
@@ -81,7 +81,7 @@ $ curl -s -X POST -d "secret=my secret&json=true" https://flashpaper.io
 FlashPaper will try to generate the secret retrieval URL based on information provided by the upstream webserver. This process isn't always 100% accurate. If the secret retrieval URL that FlashPaper creates isn't correct for your setup (this usually happens when you're using a reverse proxy upstream), you can manually specify the URL that FlashPaper will use. For example: A `base_url` of "https://foo.com/flashpaper" will result in retrieval URLs like "https://foo.com/flashpaper/?k=xxxxxxxxxxxxx".
 
 ### `display_logo`:
- - `true`: The logo set in `site_logo` (either a file path or a URL) will be displayed at the top of the page. If `site_logo` isn't set, the default FlashPaper logo at `img/logo.png` will be displayed
+ - `true`: The logo set in `site_logo` (either a file path or a URL) will be displayed at the top of the page. If `site_logo` isn't set, the default FlashPaper logo at `img/logo.svg` will be displayed
  - `false`: No logo will be displayed on your FlashPaper instance
 
 ### `display_title`:
