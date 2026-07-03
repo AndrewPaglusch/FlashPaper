@@ -1,6 +1,6 @@
 FROM alpine:3.20.3
 
-RUN apk add --no-cache gettext curl nginx php83 php83-fpm php83-opcache php83-pdo php83-pdo_sqlite php83-openssl && \
+RUN apk add --no-cache curl nginx php83 php83-fpm php83-opcache php83-pdo php83-pdo_sqlite php83-openssl && \
     mkdir /var/www/html
 
 COPY . /var/www/html
