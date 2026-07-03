@@ -1,17 +1,11 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
 		<div id="form-div">
 			<fieldset>
-				<div>
-					<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 30px; font-weight: bold;"><?php echo $settings['messages']['view_secret_header'] ?></label>
-					<div style="font-style: italic">
-						<label style="font-family: 'Enriqueta', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 15px; font-weight: bold;"><?php echo $settings['messages']['view_secret_subheader'] ?></label>
-					</div>
-					<div style="margin-top:10px">
-						<textarea readonly id="copy" class="form-control" name="secret" rows="8" style="resize: vertical; margin-bottom: 15px"><?php echo $message ?></textarea>
-					</div>
-					<div class="col">
-						<button class="btn btn-primary" type="button" onclick="copyText()">Copy</button>
-					</div>
+				<h1 class="fp-title"><?php echo $settings['messages']['view_secret_header'] ?></h1>
+				<p class="fp-subtitle"><?php echo $settings['messages']['view_secret_subheader'] ?></p>
+				<textarea readonly id="copy" class="form-control" rows="8"><?php echo $message ?></textarea>
+				<div class="fp-actions">
+					<button class="btn btn-primary" type="button" onclick="copyText()">Copy</button>
 				</div>
 			</fieldset>
 		</div>

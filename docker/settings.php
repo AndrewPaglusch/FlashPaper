@@ -6,8 +6,6 @@
 		"site_logo" => getenv('SITE_LOGO') ?: "img/logo.svg",
 		"display_logo" => filter_var(getenv('DISPLAY_LOGO') ?: "true", FILTER_VALIDATE_BOOLEAN),
 		"display_title" => filter_var(getenv('DISPLAY_TITLE') ?: "false", FILTER_VALIDATE_BOOLEAN),
-		"custom_css" => filter_var(getenv('CUSTOM_CSS') ?: "false", FILTER_VALIDATE_BOOLEAN),
-		"bootstrap_theme" => getenv('BOOTSTRAP_THEME') ?: "flashpaper",
 		"return_full_url" => filter_var(getenv('RETURN_FULL_URL') ?: "true", FILTER_VALIDATE_BOOLEAN),
 		"base_url" => getenv('BASE_URL') ?: "",
 		"max_secret_length" => (int)(getenv('MAX_SECRET_LENGTH') ?: 3000),

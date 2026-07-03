@@ -5,29 +5,23 @@
 
 const themeSwitcher = document.getElementById("themingSwitcher");
 
-// Load theme preference from local storage or fall back to system preference
+// Stored preference wins; otherwise fall back to the system theme
 const storedThemePreference = localStorage.getItem('themePreference');
 let themePreference;
 
 if (storedThemePreference !== null) {
-  // Use stored preference if available
   themePreference = storedThemePreference === 'true';
 } else {
-  // Use system theme if no preference is stored
   themePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  // Save the initial preference based on system theme
   localStorage.setItem('themePreference', themePreference);
 }
 
-// Apply the theme based on the retrieved or determined preference
 themeSwitcher.checked = themePreference;
-applyTheme(themePreference); // Ensure the theme is applied on page load
+applyTheme(themePreference);
 
-// Add listener to theme toggler
 themeSwitcher.addEventListener("change", (e) => {
   const isChecked = e.target.checked;
   applyTheme(isChecked);
-  // Update the current theme preference in local storage whenever it is changed
   localStorage.setItem('themePreference', isChecked);
 });
 
@@ -36,13 +30,12 @@ function applyTheme(isDarkTheme) {
   document.documentElement.dataset.bsTheme = theme;
 }
 
-// Add listener to toggle theme with Shift + D
+// Shift + D toggles the theme
 document.addEventListener("keydown", (e) => {
   if (e.shiftKey && e.key === "D") {
     const newCheckedState = !themeSwitcher.checked;
     themeSwitcher.checked = newCheckedState;
     applyTheme(newCheckedState);
-    // Update the current theme preference in local storage whenever it is toggled via shortcut
     localStorage.setItem('themePreference', newCheckedState);
   }
 });
