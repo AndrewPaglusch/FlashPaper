@@ -25,7 +25,7 @@
 		$results = glob("./data/*--{$dbName}");
 
 		# find name of existing db or generate a new one if not found
-		if ( count($results) != 1 ) {
+		if ( count($results) < 1 ) {
 			$prefix = crypto_rand_string(32);
 			$dbName = "./data/{$prefix}--{$dbName}";
 		} else {
