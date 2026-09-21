@@ -30,6 +30,14 @@ https://flashpaper.io
       dockerfile: docker/Dockerfile
   ```
 
+### Easypanel
+  If you'd rather not manage the container yourself, [Easypanel](https://easypanel.io) is a self-hosted deployment platform with a one-click FlashPaper template:
+
+  [![Deploy on Easypanel][easypanel-btn]][easypanel-deploy]
+
+  [easypanel-btn]: https://easypanel.io/img/deploy-on-easypanel-40.svg
+  [easypanel-deploy]: https://easypanel.io/templates/flashpaper
+
 ### Traditional
   **Requirements:** PHP 7.0+ and a web server
   1. Download and extract the [latest release](https://github.com/AndrewPaglusch/FlashPaper/releases/latest) of FlashPaper to the document root of your web server
